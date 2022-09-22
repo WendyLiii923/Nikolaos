@@ -6,6 +6,6 @@
         maxActive="100" maxIdle="30" maxWait="10000" 
         url="jdbc:mysql://localhost:3306/18_project_db"
         driverClassName="com.mysql.cj.jdbc.Driver"
-        username="rootee" password="lwl220420"
+        username="root" password="lwl220420"
     />
 </Context>
