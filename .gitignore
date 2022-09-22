@@ -13,7 +13,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-context.xml
+src/main/webapp/META-INF/context.xml
 
 # External tool builders
 .externalToolBuilders/
