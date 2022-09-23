@@ -6,77 +6,91 @@
 <head>
 <meta charset="UTF-8">
 <title>Category</title>
+<%@ include file="../include/Header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/TopBar.jsp" %>
 
-	<div align="left">
-		<h3>分類</h3>
-		<h4>
-			<a href="<c:url value='/ProductService/showProducts' />">全部商品</a>
-		</h4>
-		<table border="1">
-			<c:forEach var="category" items="${categoryList}">
-				<tr>
-					<td><a
+<div class="d-flex" style="height: calc(100vh - 56px)">
+	<div class="h-100 p-3 border-right" style="width: 200px">
+		<div class="list-group list-group-flush">
+		<c:forEach var="category" items="${categoryList}">
+			<tr>
+				<td>
+					<a class="list-group-item list-group-item-action"
 						href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${category.id}"/>
-					<c:param name="parentId" value="${category.parentId}"/>
-					</c:url>">
-							${category.name} </a></td>
-				</tr>
-			</c:forEach>
-		</table>
+								<c:param name="categoryId" value="${category.id}"/>
+								<c:param name="parentId" value="${category.parentId}"/>
+							</c:url>">
+						${category.name} </a>
+				</td>
+			</tr>
+		</c:forEach>
+		</div>
 	</div>
-	<div align="center">
-	<h3>
-		<a href="<c:url value='/ProductService/showProducts'>
+	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
+			 style="height: 50px; background-color: #515151">
+			<div>
+				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
 					<c:param name="categoryId" value="${category.id}"/>
 					<c:param name="parentId" value="${category.parentId}"/>
 					<c:param name="status" value="新到舊"/>
 				</c:url>">新到舊
-		</a> | 
-		<a href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${category.id}"/>
-					<c:param name="parentId" value="${category.parentId}"/>
-					<c:param name="status" value="舊到新"/>
-				</c:url>">舊到新
-		</a> | 
-		
-		<a href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${category.id}"/>
-					<c:param name="parentId" value="${category.parentId}"/>
-					<c:param name="status" value="低到高"/>
-				</c:url>">低到高
-		</a> | 
-		
-		<a href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${category.id}"/>
-					<c:param name="parentId" value="${category.parentId}"/>
-					<c:param name="status" value="高到低"/>
-				</c:url>">高到低
-		</a><br>
-	</h3>
-		<form action="<c:url value='/ProductService/showProducts' />" method="GET">
-			<input type="hidden" name="categoryId" value="${category.id}" >
-			<input type="hidden" name="parentId" value="${category.parentId}" >
-			<input type="hidden" name='status'  value='價格區間' >
-    		最低價:<input type='text' name='start'  value='${start}' >
-  			最高價:<input type='text' name='end'  value='${end}' >
-  			<input type="submit" value="確定"><P/>
-		</form>
-		
-		<table border="1">
-		<c:forEach var="product" items="${productList}">
-			<tr>
-				<td>商品圖片${product.cover}</td>
-				<td><a href="<c:url value='/ProductService/showProduct'>
-					<c:param name="productId" value="${product.id}"/>
-					</c:url>">${product.name}
-					</a></td>
-				<td>價格: ${product.price}</td>
-			</tr>
-		</c:forEach>
-		</table>
+				</a> | 
+				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+							<c:param name="categoryId" value="${category.id}"/>
+							<c:param name="parentId" value="${category.parentId}"/>
+							<c:param name="status" value="舊到新"/>
+						</c:url>">舊到新
+				</a> | 
+				
+				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+							<c:param name="categoryId" value="${category.id}"/>
+							<c:param name="parentId" value="${category.parentId}"/>
+							<c:param name="status" value="低到高"/>
+						</c:url>">低到高
+				</a> | 
+				
+				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+							<c:param name="categoryId" value="${category.id}"/>
+							<c:param name="parentId" value="${category.parentId}"/>
+							<c:param name="status" value="高到低"/>
+						</c:url>">高到低
+				</a>
+			</div>
+			<div>
+				<i class="fa fa-2x fa-th-large mr-3 " aria-hidden="true"></i>
+				<i class="fa fa-2x fa-th-list" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="w-100 m-3">
+			<table class="table table-striped table-bordered w-100">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">圖片</th>
+			      <th scope="col">商品名稱</th>
+			      <th scope="col">價格</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  <c:forEach var="product" items="${productList}" varStatus="status">
+			    <tr>
+			    	<td>${status.index}</td>
+			        <td>${product.cover}</td>
+				    <td>
+				    	<a href="<c:url value='/ProductService/showProduct'>
+						<c:param name="productId" value="${product.id}"/>
+						</c:url>">${product.name}
+						</a></td>
+					<td>${product.price}</td>
+			    </tr>
+		      </c:forEach>
+			  </tbody>
+			</table>
+		</div>
 	</div>
+</div>
 </body>
 </html>
