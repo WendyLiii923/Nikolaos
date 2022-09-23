@@ -39,8 +39,8 @@ public class CartService {
 		}
 	}
 	
-	public List<UsedCartDetail> getCartDetailList(Integer cartId, Integer productId) {
-		return cartDetailDao.getCartDetail(cartId, productId);
+	public List<UsedCartDetail> getCartDetailList(Integer cartId) {
+		return cartDetailDao.getCartDetailList(cartId);
 	}
 	
 	public UsedCart updateCartStatus(Integer cartId) {

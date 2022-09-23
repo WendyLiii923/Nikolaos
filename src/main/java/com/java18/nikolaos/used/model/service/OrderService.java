@@ -2,6 +2,10 @@ package com.java18.nikolaos.used.model.service;
 
 import java.util.List;
 
+import com.java18.nikolaos.used.model.UsedCartDetail;
+import com.java18.nikolaos.used.model.UsedOrderDetail;
+import com.java18.nikolaos.used.model.dao.CartDao;
+import com.java18.nikolaos.used.model.dao.CartDetailDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +22,9 @@ public class OrderService {
 	OrderDao orderDao;
 	@Autowired
 	OrderDetailDao orderDetailDao;
+	@Autowired
+	CartDetailDao cartDetailDao;
+
 	
 	public UsedOrder createOrder(Integer memberId, Integer totalPrice, Integer shippingFee) {
 		return orderDao.createOrder(memberId, totalPrice, shippingFee);
@@ -27,9 +34,15 @@ public class OrderService {
 		return orderDao.getOrderList(orderId);
 	}
 	
-//	待處理
-//	public UsedOrderDetail createOrderDetail(Integer orderId, UsedCartDetail aCartDetail) {
-//		
-//	}
+	public void addOrderDetail(Integer orderId, Integer cartId) {
+		List<UsedCartDetail> cartDetails = cartDetailDao.getCartDetailList(cartId);
+		for (UsedCartDetail cartDetail: cartDetails) {
+			orderDetailDao.createOrderDetail(orderId, cartDetail);
+		}
+	}
+
+	public List<UsedOrderDetail> getOrderDetailList(Integer orderId) {
+		return orderDetailDao.getOrderDetailList(orderId);
+	}
 
 }

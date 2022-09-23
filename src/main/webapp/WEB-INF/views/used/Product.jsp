@@ -17,7 +17,8 @@
 			<c:forEach var="category" items="${categoryList}">
 				<tr>
 					<td><a href="<c:url value='/ProductService/showProducts'>
- 					<c:param name="categoryId" value="${category.id}"/> 
+ 					<c:param name="categoryId" value="${category.id}"/>
+ 					<c:param name="parentId" value="${category.parentId}"/>
 					</c:url>">${category.name} </a></td>
 				</tr>
 			</c:forEach>
@@ -50,9 +51,13 @@
 				<td>${product.price}</td>
 			</tr>
 		</table>
-		<a href="<c:url value='/ProductService/showCart' >
-					<c:param name="productId" value="${product.id}"/>
-				</c:url>">加入購物車</a>
+
+			<form action="<c:url value='/CartService/showCart' />">
+				<input type="hidden" name="productId" value="${product.id}" >
+				<input type="hidden" name="productQty" value="1" >
+				memberId:<input type='text' name='memberId'  value='${memberId}' >
+				<input type="submit" value="加入購物車"><P/>
+			</form>
 	</div>
 </body>
 </html>

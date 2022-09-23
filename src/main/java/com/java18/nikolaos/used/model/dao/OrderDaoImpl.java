@@ -16,7 +16,7 @@ public class OrderDaoImpl implements OrderDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String selectOrderByMemberId = "FROM com.java18.nikolaos.used.model.UsedOrder WHERE MEMBERID=:MEMBERID";
+	private final String selectOrderByMemberId = "FROM com.java18.nikolaos.used.model.UsedOrder WHERE memberId=:MEMBERID";
 	
 	public OrderDaoImpl() {
 		

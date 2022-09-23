@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Order</title>
 </head>
 <body>
 
@@ -29,17 +29,17 @@
 	<h4>商品們</h4>
 	<div>
 		<table border="1">
-			<c:forEach var="cartDetail" items="${cartDetailList}">
+			<c:forEach var="orderDetail" items="${orderDetailList}">
 				<tr>
-					<td>productId: ${cartDetail.productId}</td>
-					<td>productQty: ${cartDetail.productQty}</td>
+					<td>productId: ${orderDetail.productId}</td>
+					<td>productQty: ${orderDetail.productQty}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 	
 	<div>
-	 	<a href="<c:url value='/OrderService/showOrder' />">結帳</a>
+	 	<a href="<c:url value='/ProductService/showProducts' />">結帳</a>
 	</div>
 
 </body>

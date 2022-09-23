@@ -1,7 +1,9 @@
 package com.java18.nikolaos.used.controller;
 
+import com.java18.nikolaos.used.model.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +20,23 @@ public class CartController {
 	
 	@Autowired
 	CartService cartService;
+	@Autowired
+	CategoryService categoryService;
+
+	@RequestMapping("/showCart")
+	public String order(Model model,
+						@RequestParam(required = false) Integer memberId,
+						@RequestParam(required = false) Integer categoryId,
+						@RequestParam(required = false) Integer productId,
+						@RequestParam(required = false) Integer productQty
+	) {
+		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		model.addAttribute("cartDetail",cartService.createCartDetail(getCart.getId(), productId, productQty));
+		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("category", categoryService.getCategoryById(categoryId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/Cart";
+	}
 	
 	@PostMapping
 	@ResponseBody
@@ -46,7 +65,7 @@ public class CartController {
 			@RequestParam Integer cartId,
 			@RequestParam Integer productId) {
 		UsedCart uncheckOutCart = cartService.getUncheckOutCart(memberId);
-		cartService.getCartDetailList(uncheckOutCart.getId(), productId);
+		cartService.getCartDetailList(uncheckOutCart.getId());
 		cartService.updateCartStatus(uncheckOutCart.getId());
 		return null;
 	}

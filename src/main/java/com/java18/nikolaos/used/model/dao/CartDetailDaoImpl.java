@@ -17,7 +17,9 @@ public class CartDetailDaoImpl implements CartDetailDao {
 	private SessionFactory sessionFactory;
 	
 	private final String selectProductsByCartIdAndProductId = "FROM com.java18.nikolaos.used.model.UsedCartDetail "
-			+ "WHERE CARTID=:CARTID AND PRODUCTID=:PRODUCTID";
+			+ "WHERE cartId=:CARTID AND productId=:PRODUCTID";
+	private final String selectProductsByCartId = "FROM com.java18.nikolaos.used.model.UsedCartDetail "
+			+ "WHERE cartId=:CARTID";
 	
 	private Session getSession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -43,10 +45,9 @@ public class CartDetailDaoImpl implements CartDetailDao {
 	}
 
 	@Override
-	public List<UsedCartDetail> getCartDetail(Integer cartId, Integer productId) {
-		Query<UsedCartDetail> check = getSession().createQuery(selectProductsByCartIdAndProductId, UsedCartDetail.class);
+	public List<UsedCartDetail> getCartDetailList(Integer cartId) {
+		Query<UsedCartDetail> check = getSession().createQuery(selectProductsByCartId, UsedCartDetail.class);
 		check.setParameter("CARTID", cartId);
-		check.setParameter("PRODUCTID", productId);
 		List<UsedCartDetail> list = check.list();
 		return list;
 	}
