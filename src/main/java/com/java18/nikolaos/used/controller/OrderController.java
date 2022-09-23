@@ -1,6 +1,5 @@
 package com.java18.nikolaos.used.controller;
 
-import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.UsedOrder;
 import com.java18.nikolaos.used.model.service.CartService;
 import com.java18.nikolaos.used.model.service.CategoryService;

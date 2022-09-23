@@ -19,6 +19,18 @@ public class ProductService {
 	@Autowired
 	private ProductDao productDao;
 
+	/**
+	 *  商品狀態
+	 *  暫存 - temp
+	 *  發布 - published
+	 *  刪除 - delete
+	 *  下架 - archive
+	 */
+	public static final String PRODUCT_STATUS_TEMP = "temp";
+	public static final String PRODUCT_STATUS_PUBLISHED = "published";
+	public static final String PRODUCT_STATUS_DELETE = "delete";
+	public static final String PRODUCT_STATUS_ARCHIVE = "archive";
+
 	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId) {
 		return productDao.createProduct(name, price, content, memberId, categoryId);
 	}

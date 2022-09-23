@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.Members;
@@ -16,23 +14,12 @@ import com.java18.nikolaos.used.model.UsedCategory;
 import com.java18.nikolaos.used.model.UsedProduct;
 
 @Repository
-public class ProductDaoImpl implements ProductDao {
-
-	@Autowired
-	private SessionFactory sessionFactory;
+public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDao {
 
 	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE ID=:PRODUCTID";
 	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.UsedProduct";
 	private String selectProductByParentId = "Select p From com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c WHERE c.parentId = :categoryId";
 	private String selectProductByQuery = "Select p FROM com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c";
-	public ProductDaoImpl() {
-
-	}
-
-	private Session getSession() {
-		Session session = sessionFactory.getCurrentSession();
-		return session;
-	}
 
 	@Override
 	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId) {
@@ -53,26 +40,22 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public UsedProduct getProduct(Integer id) {
-		Query<UsedProduct> check = getSession().createQuery(selectProductById, UsedProduct.class);
-		check.setParameter("PRODUCTID", id);
-		List<UsedProduct> list = check.list();
-		UsedProduct getItem = list.get(0);
-		return getItem;
+		Query<UsedProduct> query = getSession().createQuery(selectProductById, UsedProduct.class);
+		query.setParameter("PRODUCTID", id);
+		return getOne(query);
 	}
 
 	@Override
 	public List<UsedProduct> getProductList() {
-		Query<UsedProduct> check = getSession().createQuery(selectAllProduct, UsedProduct.class);
-		List<UsedProduct> list = check.list();
-		return list;
+		Query<UsedProduct> query = getSession().createQuery(selectAllProduct, UsedProduct.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<UsedProduct> getProductListByParentId(Integer categoryId) {
-		Query<UsedProduct> check = getSession().createQuery(selectProductByParentId, UsedProduct.class);
-		check.setParameter("categoryId", categoryId);
-		List<UsedProduct> list = check.list();
-		return list;
+		Query<UsedProduct> query = getSession().createQuery(selectProductByParentId, UsedProduct.class);
+		query.setParameter("categoryId", categoryId);
+		return query.getResultList();
 	}
 
 	@Override
