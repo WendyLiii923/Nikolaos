@@ -1,6 +1,7 @@
 package com.java18.nikolaos.used.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -15,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
-@Table(name = "used_order")
-public class UsedOrder {
-	
+@Table(name = "order_view")
+public class OrderView {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -37,30 +39,16 @@ public class UsedOrder {
 	private Integer shippingFee;
 	
 	@Column(name = "email")
-	String email;
+	private String email;
 	
 	@Column(name = "address")
-	String address;
+	private String address;
 	
 	@Column(name = "phone")
-	String phone;
+	private String phone;
 	
-	public UsedOrder() {
-		
-	}
-
-	public UsedOrder(Integer id, Timestamp createTime, Integer memberId, Integer totalPrice, Integer shippingFee,
-			String email, String address, String phone) {
-		super();
-		this.id = id;
-		this.createTime = createTime;
-		this.memberId = memberId;
-		this.totalPrice = totalPrice;
-		this.shippingFee = shippingFee;
-		this.email = email;
-		this.address = address;
-		this.phone = phone;
-	}
+	@Transient
+	private List<OrderDetailView> orderDetailViewList;
 
 	public Integer getId() {
 		return id;
@@ -126,13 +114,12 @@ public class UsedOrder {
 		this.phone = phone;
 	}
 
-	@Override
-	public String toString() {
-		return "UsedOrder [id=" + id + ", createTime=" + createTime + ", memberId=" + memberId + ", totalPrice="
-				+ totalPrice + ", shippingFee=" + shippingFee + ", email=" + email + ", address=" + address + ", phone="
-				+ phone + "]";
+	public List<OrderDetailView> getOrderDetailviewList() {
+		return orderDetailviewList;
 	}
 
-	
+	public void setOrderDetailviewList(List<OrderDetailView> orderDetailviewList) {
+		this.orderDetailviewList = orderDetailviewList;
+	}
 	
 }
