@@ -7,23 +7,24 @@ import org.springframework.util.StringUtils;
 
 public class PageInfo {
 
-    private Integer pageSize;
-    // number of per page
+    // 每頁顯示的數量
+    private Integer limit;
 
-    private Integer pageNum;
-    // current page Number
+    // 當前頁數
+    private Integer currentPage;
 
+    // 排序方式
     private Sort sort;
 
-    public PageInfo(Integer pageSize, Integer pageNum) {
-        this.pageSize = (pageSize != null) ? pageSize : Const.DEFAULT_PAGE_SIZE;
-        this.pageNum = (pageNum != null) ? pageNum : Const.FIRST_PAGE_NUM;
+    public PageInfo(Integer limit, Integer currentPage) {
+        this.limit = (limit != null) ? limit : Const.DEFAULT_PAGE_SIZE;
+        this.currentPage = (currentPage != null) ? currentPage : Const.FIRST_PAGE_NUM;
         // check the value and use the default setting
     }
 
-    public PageInfo(Integer pageSize, Integer pageNum, Sort sort) {
-        this.pageSize = (pageSize != null) ? pageSize : Const.DEFAULT_PAGE_SIZE;
-        this.pageNum = (pageNum != null) ? pageNum : Const.FIRST_PAGE_NUM;
+    public PageInfo(Integer limit, Integer currentPage, Sort sort) {
+        this.limit = (limit != null) ? limit : Const.DEFAULT_PAGE_SIZE;
+        this.currentPage = (currentPage != null) ? currentPage : Const.FIRST_PAGE_NUM;
         // check the value and use the default setting
         this.sort = sort;
     }
@@ -32,8 +33,8 @@ public class PageInfo {
         String pageSize = String.valueOf(map.get(Const.PAGE_SIZE));
         String pageNum = String.valueOf(map.get(Const.PAGE_NUM));
 
-        this.pageSize = (pageSize != null) ? Integer.valueOf(pageSize) : Const.DEFAULT_PAGE_SIZE;
-        this.pageNum = (pageNum != null) ? Integer.valueOf(pageNum) : Const.FIRST_PAGE_NUM;
+        this.limit = (pageSize != null) ? Integer.valueOf(pageSize) : Const.DEFAULT_PAGE_SIZE;
+        this.currentPage = (pageNum != null) ? Integer.valueOf(pageNum) : Const.FIRST_PAGE_NUM;
         // check the value and use the default setting
 
         if (hasSortInfo(map)) {
@@ -63,20 +64,20 @@ public class PageInfo {
         return this.sort != null;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
-    public Integer getPageNum() {
-        return pageNum;
+    public Integer getCurrentPage() {
+        return currentPage;
     }
 
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
     }
 
     public Sort getSort() {

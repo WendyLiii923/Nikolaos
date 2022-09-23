@@ -1,8 +1,13 @@
 package com.java18.nikolaos.used.controller;
 
+import com.java18.nikolaos.used.model.UsedCollect;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.ProductService;
-import com.java18.nikolaos.used.model.service.UsedCollectService;
+import com.java18.nikolaos.used.model.service.CollectService;
+import com.java18.nikolaos.used.model.util.Page;
+import com.java18.nikolaos.used.model.util.PageInfo;
+import com.java18.nikolaos.used.model.util.PageInfo.Sort;
+import com.java18.nikolaos.used.model.util.PageInfo.Sort.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,15 +22,26 @@ import static com.java18.nikolaos.used.model.service.ProductService.PRODUCT_STAT
 
 @Controller
 @RequestMapping("/CollectService")
-public class UsedCollectController {
+public class CollectController {
 
     @Autowired
-    private UsedCollectService usedCollectService;
+    private CollectService collectService;
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Page<UsedCollect>> getCollectList(
+            @RequestParam(defaultValue = "1") Integer currentPage,
+            @RequestParam(defaultValue = "10") Integer limit,
+            @RequestParam Integer memberId
+    ){
+        Sort sort = new Sort(Direction.DESC, new String[]{"createTime"});
+        PageInfo pageInfo = new PageInfo(limit, currentPage, sort);
+        return ResponseEntity.ok(collectService.getCurrentPageCollectList(memberId, pageInfo));
+    }
+
+    @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Map<String,String>> addNewCollect(
             @RequestBody Map<String, Integer> data
@@ -35,12 +51,12 @@ public class UsedCollectController {
         Map<String, String> map;
         map = checkProductAndMemberStatus(productId, memberId);
         if(map.containsKey("success")){
-            return ResponseEntity.ok(usedCollectService.addNewCollect(productId, memberId));
+            return ResponseEntity.ok(collectService.addNewCollect(productId, memberId));
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }
 
-    @DeleteMapping(path = "/remove", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(path = "/remove", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Map<String,String>> removeCollect(
             @RequestBody Map<String, Integer> data
@@ -50,7 +66,7 @@ public class UsedCollectController {
         Map<String, String> map;
         map = checkProductAndMemberStatus(productId, memberId);
         if(map.containsKey("success")){
-            return ResponseEntity.ok(usedCollectService.deleteCollect(productId, memberId));
+            return ResponseEntity.ok(collectService.deleteCollect(productId, memberId));
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }

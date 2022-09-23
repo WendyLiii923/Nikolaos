@@ -114,12 +114,12 @@ public class OrderView {
 		this.phone = phone;
 	}
 
-	public List<OrderDetailView> getOrderDetailviewList() {
-		return orderDetailviewList;
+	public List<OrderDetailView> getOrderDetailViewList() {
+		return orderDetailViewList;
 	}
 
-	public void setOrderDetailviewList(List<OrderDetailView> orderDetailviewList) {
-		this.orderDetailviewList = orderDetailviewList;
+	public void setOrderDetailViewList(List<OrderDetailView> orderDetailviewList) {
+		this.orderDetailViewList = orderDetailviewList;
 	}
 	
 }

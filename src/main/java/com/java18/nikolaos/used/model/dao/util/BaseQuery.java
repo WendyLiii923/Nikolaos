@@ -1,5 +1,7 @@
 package com.java18.nikolaos.used.model.dao.util;
 
+import com.java18.nikolaos.used.model.util.Page;
+import com.java18.nikolaos.used.model.util.PageInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -20,5 +22,11 @@ public abstract class BaseQuery<T> {
 
     public T getOne(Query<T> query){
         return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
+    }
+
+    public List<T> getListWithPage(Query<T> query, PageInfo pageInfo){
+        Integer skip = pageInfo.getLimit() * (pageInfo.getCurrentPage() - 1);
+        return query.setFirstResult(skip).setMaxResults(pageInfo.getLimit())
+                .getResultList();
     }
 }

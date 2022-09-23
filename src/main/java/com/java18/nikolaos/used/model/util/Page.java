@@ -4,27 +4,28 @@ import java.util.List;
 
 public class Page<T>{
 
-    private Integer pageSize;
-    //number of per page
+    // 每頁顯示的數量
+    private Integer limit;
 
+    // 當前頁數
     private Integer currentPage;
-    //current page
 
+    // 總頁數
     private Integer totalPages;
-    //total pages
 
-    private Integer totalNum;
-    //total number
+    //該項目總數量
+    private Integer totalElement;
 
-    private List<T> records;
-    //list of data
 
-    public Page(List<T> records,Integer pageNum, Integer pageSize,long totalCount) {
-        this.records = records;
-        this.pageSize = pageSize;
-        this.currentPage = pageNum;
-        this.totalPages = (int) Math.ceil(((double) totalCount)/pageSize);
-        this.totalNum = (int)totalCount;
+    //該項目當前頁數的 list
+    private List<T> data;
+
+    public Page(List<T> data,Integer currentPage, Integer limit, long totalElement) {
+        this.limit = limit;
+        this.currentPage = currentPage;
+        this.totalPages = (int) Math.ceil(((double) totalElement)/limit);
+        this.totalElement = (int)totalElement;
+        this.data = data;
     }
 
     public Page() {
@@ -32,16 +33,16 @@ public class Page<T>{
     }
 
     public void setPageInfo(PageInfo pageInfo) {
-        this.pageSize = pageInfo.getPageSize();
-        this.currentPage = pageInfo.getPageNum();
+        this.limit = pageInfo.getLimit();
+        this.currentPage = pageInfo.getCurrentPage();
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
     public Integer getCurrentPage() {
@@ -60,20 +61,20 @@ public class Page<T>{
         this.totalPages = totalPages;
     }
 
-    public Integer getTotalNum() {
-        return totalNum;
+    public Integer getTotalElement() {
+        return totalElement;
     }
 
-    public void setTotalNum(Integer totalNum) {
-        this.totalNum = totalNum;
+    public void setTotalElement(Integer totalElement) {
+        this.totalElement = totalElement;
     }
 
-    public List<T> getRecords() {
-        return records;
+    public List<T> getData() {
+        return data;
     }
 
-    public void setRecords(List<T> records) {
-        this.records = records;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
     public boolean getIsFirstPage() {

@@ -2,14 +2,16 @@ package com.java18.nikolaos.used.model.dao;
 
 import com.java18.nikolaos.used.model.UsedCollect;
 import com.java18.nikolaos.used.model.dao.util.BaseQuery;
+import com.java18.nikolaos.used.model.util.PageInfo;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UsedCollectDaoImpl extends BaseQuery<UsedCollect> implements UsedCollectDao {
+public class CollectDaoImpl extends BaseQuery<UsedCollect> implements CollectDao {
 
-    private String selectCollectByMemberIdAndProductId = "FROM com.java18.nikolaos.used.model.UsedCollect WHERE MEMBERID=:memberId AND PRODUCTID=:productId";
+    private String selectCollectByMemberIdAndProductId = "FROM com.java18.nikolaos.used.model.UsedCollect WHERE memberId=:memberId AND productId=:productId";
+    private String selectCollectByMemberId = "FROM com.java18.nikolaos.used.model.UsedCollect WHERE memberId=:memberId";
 
     @Override
     public UsedCollect createCollect(Integer productId, Integer memberId) {
@@ -44,9 +46,19 @@ public class UsedCollectDaoImpl extends BaseQuery<UsedCollect> implements UsedCo
     }
 
     @Override
-    public List<UsedCollect> getCollectList(Integer memberId) {
-        return null;
+    public List<UsedCollect> getAllCollectList(Integer memberId) {
+        Query<UsedCollect> query = getSession().createQuery(selectCollectByMemberId, UsedCollect.class);
+        query.setParameter("memberId", memberId);
+        return query.getResultList();
     }
+
+    @Override
+    public List<UsedCollect> getCollectListWithPage(Integer memberId, PageInfo pageInfo) {
+        Query<UsedCollect> query = getSession().createQuery(selectCollectByMemberId, UsedCollect.class);
+        query.setParameter("memberId", memberId);
+        return getListWithPage(query, pageInfo);
+    }
+
 
     @Override
     public UsedCollect getCollectByProductIdAndMemberId(Integer productId, Integer memberId) {
