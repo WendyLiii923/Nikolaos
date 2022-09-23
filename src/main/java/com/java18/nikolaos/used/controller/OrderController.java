@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.java18.nikolaos.used.model.UsedOrder;
 import com.java18.nikolaos.used.model.service.CartService;
 import com.java18.nikolaos.used.model.service.CategoryService;
