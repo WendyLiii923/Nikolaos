@@ -39,7 +39,7 @@
 	</div>
 	
 	<div>
-	 	<a href="<c:url value='/ProductService/showProducts' />">結帳</a>
+	 	<a href="<c:url value='/ProductService/showOrderList' />">確認並送出</a>
 	</div>
 
 </body>

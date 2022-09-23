@@ -1,14 +1,17 @@
 package com.java18.nikolaos.used.controller;
 
-import com.java18.nikolaos.used.model.UsedCart;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.java18.nikolaos.used.model.UsedOrder;
 import com.java18.nikolaos.used.model.service.CartService;
 import com.java18.nikolaos.used.model.service.CategoryService;
 import com.java18.nikolaos.used.model.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/OrderService")
