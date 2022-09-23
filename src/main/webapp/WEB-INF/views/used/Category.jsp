@@ -59,36 +59,50 @@
 						</c:url>">高到低
 				</a>
 			</div>
+			<div class="d-flex align-items-center">
+				價格區間：
+				<form class="d-flex" action="<c:url value='/ProductService/showProducts' />" method="GET">
+					<input type="hidden" name="categoryId" value="${category.id}" >
+					<input type="hidden" name="parentId" value="${category.parentId}" >
+					<input type="hidden" name='status'  value='價格區間' >
+		    		<input type='text' name='start'   value='${start}' placeholder="最低價">
+		    		<span style="line-height: 35px">~</span>
+		  			<input type='text' name='end'   value='${end}' placeholder="最高價">
+		  			<input type="submit" class="d-none" value="確定"><P/>
+				</form>
+			</div>
 			<div>
 				<i class="fa fa-2x fa-th-large mr-3 " aria-hidden="true"></i>
 				<i class="fa fa-2x fa-th-list" aria-hidden="true"></i>
 			</div>
 		</div>
-		<div class="w-100 m-3">
-			<table class="table table-striped table-bordered w-100">
-			  <thead>
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">圖片</th>
-			      <th scope="col">商品名稱</th>
-			      <th scope="col">價格</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  <c:forEach var="product" items="${productList}" varStatus="status">
-			    <tr>
-			    	<td>${status.index}</td>
-			        <td>${product.cover}</td>
-				    <td>
-				    	<a href="<c:url value='/ProductService/showProduct'>
-						<c:param name="productId" value="${product.id}"/>
-						</c:url>">${product.name}
-						</a></td>
-					<td>${product.price}</td>
-			    </tr>
-		      </c:forEach>
-			  </tbody>
-			</table>
+		<div class="d-flex">
+			<div class="p-3">
+				<table class="table table-striped table-bordered" style="table-layout: fixed;">
+				  <thead>
+				    <tr>
+				      <th scope="col" style="width: 50px">#</th>
+				      <th scope="col">圖片</th>
+				      <th scope="col">商品名稱</th>
+				      <th scope="col">價格</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  <c:forEach var="product" items="${productList}" varStatus="status">
+				    <tr>
+				    	<td>${status.index + 1}</td>
+				        <td>${product.cover}</td>
+					    <td>
+					    	<a href="<c:url value='/ProductService/showProduct'>
+							<c:param name="productId" value="${product.id}"/>
+							</c:url>">${product.name}
+							</a></td>
+						<td>${product.price}</td>
+				    </tr>
+			      </c:forEach>
+				  </tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
