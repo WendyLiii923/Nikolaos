@@ -26,7 +26,7 @@
 		</table>
 	</div>
 	<hr>
-	<h4>商品們</h4>
+	<h4>購物車內的商品們</h4>
 	<div>
 		<table border="1">
 			<c:forEach var="cartDetail" items="${cartDetailList}">
@@ -38,9 +38,12 @@
 		</table>
 	</div>
 	
-	<div>
-	 	<a href="<c:url value='/OrderService/showOrder' />">結帳</a>
-	</div>
+	<form action="<c:url value='/OrderService/showOrder' />">
+				<input type="hidden" name="cartId" value="${cartId}" >
+				<input type="hidden" name="orderId" value="${orderId}" >
+				<input type='hidden' name='memberId'  value='1' >
+				<input type="submit" value="結帳"><P/>
+	</form>
 
 </body>
 </html>

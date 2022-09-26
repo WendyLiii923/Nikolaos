@@ -26,20 +26,27 @@
 		</table>
 	</div>
 	<hr>
-	<h4>商品們</h4>
+	<h4>訂單</h4>
 	<div>
 		<table border="1">
 			<c:forEach var="orderDetail" items="${orderDetailList}">
 				<tr>
 					<td>productId: ${orderDetail.productId}</td>
 					<td>productQty: ${orderDetail.productQty}</td>
+					<td>price: ${orderDetail.productId.price}</td>
 				</tr>
 			</c:forEach>
+			
 		</table>
 	</div>
 	
 	<div>
-	 	<a href="<c:url value='/ProductService/showOrderList' />">確認並送出</a>
+		<form action="<c:url value='/OrderService/showOrderList' />">
+				<input type="hidden" name="productId" value="${product.id}" >
+				<input type="hidden" name="productQty" value="1" >
+				<input type='hidden' name='memberId'  value='1' >
+				<input type="submit" value="確認並送出"><P/>
+		</form>
 	</div>
 
 </body>

@@ -51,11 +51,11 @@
 				<td>${product.price}</td>
 			</tr>
 		</table>
-
+		<br>
 			<form action="<c:url value='/CartService/showCart' />">
 				<input type="hidden" name="productId" value="${product.id}" >
 				<input type="hidden" name="productQty" value="1" >
-				memberId:<input type='text' name='memberId'  value='${memberId}' >
+				<input type='hidden' name='memberId'  value='1' >
 				<input type="submit" value="加入購物車"><P/>
 			</form>
 	</div>

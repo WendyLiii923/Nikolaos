@@ -24,6 +24,7 @@
     <mapping class="com.java18.nikolaos.used.model.UsedOrder"/>
     <mapping class="com.java18.nikolaos.used.model.UsedOrderDetail"/>
     <mapping class="com.java18.nikolaos.used.model.UsedProduct"/>
+    <mapping class="com.java18.nikolaos.used.model.OrderDetailView"/>
 
 
 

@@ -9,7 +9,7 @@ import com.java18.nikolaos.used.model.UsedProduct;
 
 public interface ProductDao {
 	// 新增商品
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId);
+	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status);
 	
 	// 查單項商品資料
 	public UsedProduct getProduct(Integer id);

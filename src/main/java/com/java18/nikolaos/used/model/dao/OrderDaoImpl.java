@@ -16,7 +16,8 @@ public class OrderDaoImpl implements OrderDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String selectOrderByMemberId = "FROM com.java18.nikolaos.used.model.UsedOrder WHERE memberId=:MEMBERID";
+	private final String selectOrderByMemberId = "FROM com.java18.nikolaos.used.model.UsedOrder WHERE memberId=:memberId";
+	private String selectOrderByOrderId = "FROM com.java18.nikolaos.used.model.UsedOrder WHERE id=:orderId";
 	
 	public OrderDaoImpl() {
 		
@@ -44,9 +45,22 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public List<UsedOrder> getOrderList(Integer memberId) {
 		Query<UsedOrder> check = getSession().createQuery(selectOrderByMemberId, UsedOrder.class);
-		check.setParameter("MEMBERID", memberId);
+		check.setParameter("memberId", memberId);
 		List<UsedOrder> list = check.list();
 		return list;
+	}
+
+	@Override
+	public UsedOrder getOrderInfoById(Integer orderId) {
+		Query<UsedOrder> query = getSession().createQuery(selectOrderByOrderId, UsedOrder.class);
+		query.setParameter("orderId", orderId);
+		try {
+			System.out.println("getOrderInfoById的orderId: " + orderId);
+			return query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

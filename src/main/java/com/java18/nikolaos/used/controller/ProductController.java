@@ -37,12 +37,6 @@ public class ProductController {
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
             @RequestParam(defaultValue = "") String status) {
-		System.out.println(productId);
-		System.out.println(categoryId);
-		System.out.println(parentId);
-		System.out.println(start);
-		System.out.println(end);
-		System.out.println(status);
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
 		model.addAttribute("category", categoryService.getCategoryById(categoryId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
@@ -51,8 +45,8 @@ public class ProductController {
 	
 	@RequestMapping("/showProduct")
 	public String product(Model model, 
-			@RequestParam(required = false) Integer productId,
 			@RequestParam(required = false) Integer categoryId, 
+			@RequestParam(required = false) Integer productId,
 			@RequestParam(required = false) Integer parentId,
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
@@ -80,7 +74,7 @@ public class ProductController {
 	@PostMapping
 	@ResponseBody
 	public UsedProduct createProduct(@RequestBody UsedProduct body) {
-		return productService.createProduct(body.getName(),body.getPrice(), body.getContent(), body.getMember(), body.getCategory());
+		return productService.createProduct(body.getName(),body.getPrice(), body.getContent(), body.getMember(), body.getCategory(), body.getCover(), body.getStatus());
 	}
 	
 	@DeleteMapping

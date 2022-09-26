@@ -26,14 +26,12 @@ public class CartController {
 	@RequestMapping("/showCart")
 	public String order(Model model,
 						@RequestParam(required = false) Integer memberId,
-						@RequestParam(required = false) Integer categoryId,
 						@RequestParam(required = false) Integer productId,
 						@RequestParam(required = false) Integer productQty
 	) {
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
 		model.addAttribute("cartDetail",cartService.createCartDetail(getCart.getId(), productId, productQty));
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
-		model.addAttribute("category", categoryService.getCategoryById(categoryId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Cart";
 	}
@@ -67,7 +65,7 @@ public class CartController {
 		UsedCart uncheckOutCart = cartService.getUncheckOutCart(memberId);
 		cartService.getCartDetailList(uncheckOutCart.getId());
 		cartService.updateCartStatus(uncheckOutCart.getId());
-		return null;
+		return uncheckOutCart;
 	}
 
 }

@@ -18,12 +18,15 @@ public class OrderDetailView {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-
-	@Column(name = "productName") // from product
-	private String productName;
+	
+	@Column(name = "orderId")
+	private Integer orderId;
 	
 	@Column(name = "productQty")
 	private Integer productQty;
+
+	@Column(name = "name") // from product
+	private String name;
 	
 	@Column(name = "price") // from product
 	private Integer price;
@@ -36,12 +39,12 @@ public class OrderDetailView {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public Integer getOrderId() {
+		return orderId;
 	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
+	
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 	public Integer getProductQty() {
@@ -52,6 +55,14 @@ public class OrderDetailView {
 		this.productQty = productQty;
 	}
 
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public Integer getPrice() {
 		return price;
 	}
@@ -59,5 +70,9 @@ public class OrderDetailView {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+
+	
+	
 	
 }

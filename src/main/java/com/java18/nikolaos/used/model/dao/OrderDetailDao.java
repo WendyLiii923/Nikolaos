@@ -8,7 +8,7 @@ import com.java18.nikolaos.used.model.UsedOrderDetail;
 public interface OrderDetailDao {
 //	產生一筆訂單細項
 	UsedOrderDetail createOrderDetail(Integer orderId, UsedCartDetail usedCartDetail);
-//	檢視所有訂單
+//	檢視某訂單的訂單細項List
 	List<UsedOrderDetail> getOrderDetailList(Integer orderId);
 	
 }

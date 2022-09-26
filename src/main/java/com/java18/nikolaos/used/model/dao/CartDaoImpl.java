@@ -16,8 +16,8 @@ public class CartDaoImpl implements CartDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String selectCartByMemberId ="FROM com.java18.nikolaos.used.model.UsedCart WHERE MEMBERID=:MEMBERID AND STATUS=TRUE";
-	private final String selectCartById="FROM com.java18.nikolaos.used.model.UsedCart WHERE CARTID=:CARTID AND STATUS=TRUE";
+	private final String selectCartByMemberId ="FROM com.java18.nikolaos.used.model.UsedCart WHERE memberId=:memberId AND status=TRUE";
+	private final String selectCartById="FROM com.java18.nikolaos.used.model.UsedCart WHERE cartId=:cartId AND status=TRUE";
 	
 	private Session getsession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -44,7 +44,7 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public UsedCart getUncheckOutCart(Integer memberId) {
 		Query<UsedCart> check = getsession().createQuery(selectCartByMemberId, UsedCart.class);
-		check.setParameter("MEMBERID", memberId);
+		check.setParameter("memberId", memberId);
 		UsedCart aCart = check.setMaxResults(1)
 				              .getResultList()
 				              .stream()
@@ -68,7 +68,7 @@ public class CartDaoImpl implements CartDao{
 	public UsedCart updateStatus(Integer id) {
 		try {
 			Query<UsedCart> check = getsession().createQuery(selectCartById, UsedCart.class);
-			check.setParameter("CARTId", id);
+			check.setParameter("cartId", id);
 			List<UsedCart> list = check.list();
 			UsedCart updateItem = list.get(0);
 			updateItem.setStatus(false);

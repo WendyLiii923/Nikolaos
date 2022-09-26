@@ -18,8 +18,8 @@ public class CategoryDaoImpl implements CategoryDao {
 	private SessionFactory sessionFactory;
 	
 	private String selectAllCategory = "FROM com.java18.nikolaos.used.model.UsedCategory";
-	private String selectCategoryById = "FROM com.java18.nikolaos.used.model.UsedCategory WHERE ID=:CATEGORYID";
-	private String selectCategoryByParentId = "FROM com.java18.nikolaos.used.model.UsedCategory WHERE ID=:parentId";
+	private String selectCategoryById = "FROM com.java18.nikolaos.used.model.UsedCategory WHERE id=:CATEGORYID";
+	private String selectCategoryByParentId = "FROM com.java18.nikolaos.used.model.UsedCategory WHERE id=:parentId";
 	
 	public CategoryDaoImpl() {
 

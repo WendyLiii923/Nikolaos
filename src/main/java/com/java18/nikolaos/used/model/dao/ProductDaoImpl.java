@@ -16,13 +16,13 @@ import com.java18.nikolaos.used.model.UsedProduct;
 @Repository
 public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDao {
 
-	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE ID=:PRODUCTID";
+	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE id=:PRODUCTID";
 	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.UsedProduct";
 	private String selectProductByParentId = "Select p From com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c WHERE c.parentId = :categoryId";
 	private String selectProductByQuery = "Select p FROM com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c";
 
 	@Override
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId) {
+	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status) {
 		UsedProduct usedProduct = new UsedProduct();
 		try {
 			usedProduct.setName(name);
@@ -30,6 +30,8 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDa
 			usedProduct.setContent(content);
 			usedProduct.setMember(memberId);
 			usedProduct.setCategory(categoryId);
+			usedProduct.setCover(cover);
+			usedProduct.setStatus(status);
 			getSession().save(usedProduct);
 		} catch (Exception e) {
 			e.printStackTrace();

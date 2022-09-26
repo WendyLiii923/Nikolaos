@@ -31,8 +31,8 @@ public class ProductService {
 	public static final String PRODUCT_STATUS_DELETE = "delete";
 	public static final String PRODUCT_STATUS_ARCHIVE = "archive";
 
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId) {
-		return productDao.createProduct(name, price, content, memberId, categoryId);
+	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status) {
+		return productDao.createProduct(name, price, content, memberId, categoryId, cover, status);
 	}
 
 	public UsedProduct getProduct(Integer id) {

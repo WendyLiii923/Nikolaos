@@ -1,6 +1,7 @@
 package com.java18.nikolaos.used.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -44,6 +46,9 @@ public class UsedOrder {
 	
 	@Column(name = "phone")
 	String phone;
+	
+	@Transient
+	private List<OrderDetailView> orderDetailViewList;
 	
 	public UsedOrder() {
 		
@@ -124,6 +129,14 @@ public class UsedOrder {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public List<OrderDetailView> getOrderDetailViewList() {
+		return orderDetailViewList;
+	}
+
+	public void setOrderDetailViewList(List<OrderDetailView> orderDetailviewList) {
+		this.orderDetailViewList = orderDetailviewList;
 	}
 
 	@Override

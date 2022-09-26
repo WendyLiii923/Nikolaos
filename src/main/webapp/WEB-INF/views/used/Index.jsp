@@ -11,6 +11,10 @@
 	<div>
 		<a href="<c:url value='/ProductService/showProducts' />">二手商品頁</a><br>
 	</div>
+	
+	<div>
+		<a href="<c:url value='/ProductService/showUpload' />">上架商品</a><br>
+	</div>
 
 </body>
 </html>

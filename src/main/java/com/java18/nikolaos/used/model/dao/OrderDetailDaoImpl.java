@@ -17,7 +17,7 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String selectOrderDetailListByOrderId = "FROM com.java18.nikolaos.used.model.UsedOrderDetail WHERE ORDERID=:ORDERID";
+	private final String selectOrderDetailListByOrderId = "FROM com.java18.nikolaos.used.model.UsedOrderDetail WHERE orderId=:orderId";
 	
 	public OrderDetailDaoImpl() {
 		
@@ -31,16 +31,21 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	@Override
 	public UsedOrderDetail createOrderDetail(Integer orderId, UsedCartDetail usedCartDetail) {
 		UsedOrderDetail detail = new UsedOrderDetail();
-		detail.setOrderId(orderId);
-		detail.setProductId(usedCartDetail.getProductId());
-		detail.setProductQty(usedCartDetail.getProductQty());
+		try {
+			detail.setOrderId(orderId);
+			detail.setProductId(usedCartDetail.getProductId());
+			detail.setProductQty(usedCartDetail.getProductQty());
+			getSession().save(detail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return detail;
 	}
 
 	@Override
 	public List<UsedOrderDetail> getOrderDetailList(Integer orderId) {
 		Query<UsedOrderDetail> check = getSession().createQuery(selectOrderDetailListByOrderId, UsedOrderDetail.class);
-		check.setParameter("ORDERID", orderId);
+		check.setParameter("orderId", orderId);
 		List<UsedOrderDetail> list = check.list();
 		return list;
 	}

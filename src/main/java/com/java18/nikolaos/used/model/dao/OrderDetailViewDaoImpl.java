@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.java18.nikolaos.used.model.OrderDetailView;
 
 @Repository
-public class OrderInfoViewDaoImpl implements OrderInfoViewDao{
+public class OrderDetailViewDaoImpl implements OrderDetailViewDao{
 	
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	private String hql = "";
+	private String selectOrderDetailByOrderId = "FROM com.java18.nikolaos.used.model.OrderDetailView WHERE orderId=:orderId";
 	
 	private Session getSession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -24,11 +24,11 @@ public class OrderInfoViewDaoImpl implements OrderInfoViewDao{
 	}
 
 	@Override
-	public OrderDetailView getOrderInfoById(Integer orderId) {
-//		Query<OrderDetailView> check = getSession().createQuery(hql, OrderDetailView.class);
-//		check.setParameter("orderId", orderId);
-//		List<OrderDetailView> list = check.list();
-		return null;
+	public List<OrderDetailView> getOrderDetailInfoById(Integer orderId) {
+		Query<OrderDetailView> check = getSession().createQuery(selectOrderDetailByOrderId, OrderDetailView.class);
+		check.setParameter("orderId", orderId);
+		List<OrderDetailView> list = check.list();
+		return list;
 	}
 
 }
