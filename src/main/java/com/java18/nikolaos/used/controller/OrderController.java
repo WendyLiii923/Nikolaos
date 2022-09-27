@@ -3,7 +3,6 @@ package com.java18.nikolaos.used.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,16 +24,21 @@ public class OrderController {
 	@Autowired
 	CategoryService categoryService;
 
-	@GetMapping
+	@PostMapping
 	@RequestMapping("/showOrder")
 	public String order(Model model,
 			@RequestParam(required = false) Integer memberId,
-	   		@RequestParam(required = false) Integer orderId
+			@RequestParam Integer cartId,
+	   		@RequestParam(required = false) Integer orderId,
+	   		@RequestParam(required = false) Integer totalPrice,
+			@RequestParam(required = false) Integer shippingFee
 						) {
+		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee);
+		orderService.addOrderDetail(order.getId(), cartId);
 		model.addAttribute("orderList", orderService.getOrderList(memberId));
-		model.addAttribute("order", orderService.getOrder(orderId));
-		model.addAttribute("orderDetailView", orderService.getOrderDetailView(orderId));
-		model.addAttribute("orderDetailList", orderService.getOrderDetailList(orderId));
+		model.addAttribute("order", orderService.getOrder(order.getId()));
+		model.addAttribute("orderDetailView", orderService.getOrderDetailView(order.getId()));
+		model.addAttribute("orderDetailList", orderService.getOrderDetailList(order.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Order";
 	}
@@ -45,7 +49,6 @@ public class OrderController {
 	public UsedOrder createOrder(
 			@RequestParam Integer cartId,
 			@RequestParam Integer memberId, 
-			@RequestParam Integer orderId, 
 			@RequestParam(required = false) Integer totalPrice,
 			@RequestParam(required = false) Integer shippingFee) {
 		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee);

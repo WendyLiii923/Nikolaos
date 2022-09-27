@@ -23,8 +23,8 @@ public class CartController {
 	@Autowired
 	CategoryService categoryService;
 
-	@RequestMapping("/showCart")
-	public String order(Model model,
+	@RequestMapping("/addCart")
+	public String add(Model model,
 						@RequestParam(required = false) Integer memberId,
 						@RequestParam(required = false) Integer productId,
 						@RequestParam(required = false) Integer productQty
@@ -34,6 +34,26 @@ public class CartController {
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Cart";
+	}
+	
+	@RequestMapping("/showCart")
+	public String cart(Model model,
+						@RequestParam(required = false) Integer memberId
+	) {
+		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/Cart";
+	}
+	
+	@RequestMapping("/showCheckOut")
+	public String checkOut(Model model,
+						@RequestParam(required = false) Integer memberId
+	) {
+		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/CheckOut";
 	}
 	
 	@PostMapping

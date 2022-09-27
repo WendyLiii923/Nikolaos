@@ -5,45 +5,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Product</title>
+<%@ include file="../include/Header.jsp"%>
 </head>
 <body>
+	<%@ include file="../include/TopBar.jsp"%>
 
-	<div align="left">
-		<h4>
-			<a href="<c:url value='/ProductService/showProducts' />">全部商品</a>
-		</h4>
-		<table border="1">
-			<c:forEach var="category" items="${categoryList}">
-				<tr>
-					<td><a href="<c:url value='/ProductService/showProducts'>
- 					<c:param name="categoryId" value="${category.id}"/>
- 					<c:param name="parentId" value="${category.parentId}"/>
-					</c:url>">
-							${category.name} </a></td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
-	<hr>
-	<h4>購物車內的商品們</h4>
-	<div>
-		<table border="1">
-			<c:forEach var="cartDetail" items="${cartDetailList}">
-				<tr>
-					<td>productId: ${cartDetail.productId}</td>
-					<td>productQty: ${cartDetail.productQty}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
-	
-	<form action="<c:url value='/OrderService/showOrder' />">
-				<input type="hidden" name="cartId" value="${cartId}" >
-				<input type="hidden" name="orderId" value="${orderId}" >
-				<input type='hidden' name='memberId'  value='1' >
-				<input type="submit" value="結帳"><P/>
-	</form>
+	<div class="d-flex" style="height: calc(100vh - 56px)">
 
+		<div class="h-100 p-3 border-right" style="width: 200px">
+			<div class="list-group list-group-flush">
+				<c:forEach var="category" items="${categoryList}">
+					<tr>
+						<td><a class="list-group-item list-group-item-action"
+							href="<c:url value='/ProductService/showProducts'>
+								<c:param name="categoryId" value="${category.id}"/>
+								<c:param name="parentId" value="${category.parentId}"/>
+							</c:url>">
+								${category.name} </a></td>
+					</tr>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+			<div
+				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
+				style="height: 50px; background-color: #515151">
+				<h4>購物車內的商品們</h4>
+			</div>
+			<div class="d-flex">
+				<div class="p-3">
+					<table class="table table-striped table-bordered"
+						style="table-layout: fixed;">
+						<c:forEach var="cartDetail" items="${cartDetailList}">
+						<tr>
+							<td>productId: ${cartDetail.productId}</td>
+							<td>productQty: ${cartDetail.productQty}</td>
+						</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+			<div align = 'center'>
+				<form action="<c:url value='/CartService/showCheckOut' />">
+					<input type='hidden' name='memberId' value='1'> <input
+						type="submit" value="前往結帳">
+					<P />
+				</form>
+			</div>
+			
+		</div>
+	</div>
 </body>
 </html>
