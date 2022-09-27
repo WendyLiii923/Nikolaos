@@ -1,4 +1,4 @@
-package com.java18.nikolaos.used.model.dao;
+package com.java18.nikolaos.used.model.dao.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.UsedCartDetail;
 import com.java18.nikolaos.used.model.UsedOrderDetail;
+import com.java18.nikolaos.used.model.dao.OrderDetailDao;
 
 @Repository
 public class OrderDetailDaoImpl implements OrderDetailDao{

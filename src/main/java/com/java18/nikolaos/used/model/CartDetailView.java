@@ -8,16 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_detail_view")
-public class OrderDetailView {
+@Table(name = "cart_detail_view")
+public class CartDetailView {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "orderId")
-	private Integer orderId;
+	@Column(name = "cartId")
+	private Integer cartId;
 	
 	@Column(name = "productQty")
 	private Integer productQty;
@@ -36,12 +36,12 @@ public class OrderDetailView {
 		this.id = id;
 	}
 
-	public Integer getOrderId() {
-		return orderId;
+	public Integer getCartId() {
+		return cartId;
 	}
-	
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
+
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
 	}
 
 	public Integer getProductQty() {
@@ -55,11 +55,11 @@ public class OrderDetailView {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Integer getPrice() {
 		return price;
 	}
@@ -68,8 +68,4 @@ public class OrderDetailView {
 		this.price = price;
 	}
 
-
-	
-	
-	
 }

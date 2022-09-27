@@ -1,4 +1,4 @@
-package com.java18.nikolaos.used.model.dao;
+package com.java18.nikolaos.used.model.dao.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.UsedCart;
+import com.java18.nikolaos.used.model.dao.CartDao;
 
 @Repository
 public class CartDaoImpl implements CartDao{

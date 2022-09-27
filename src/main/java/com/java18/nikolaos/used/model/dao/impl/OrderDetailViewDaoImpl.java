@@ -1,4 +1,4 @@
-package com.java18.nikolaos.used.model.dao;
+package com.java18.nikolaos.used.model.dao.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.OrderDetailView;
+import com.java18.nikolaos.used.model.dao.OrderDetailViewDao;
 
 @Repository
 public class OrderDetailViewDaoImpl implements OrderDetailViewDao{

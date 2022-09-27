@@ -38,11 +38,11 @@
 				<div class="p-3">
 					<table class="table table-striped table-bordered"
 						style="table-layout: fixed;">
-						<c:forEach var="cartDetail" items="${cartDetailList}">
+						<c:forEach var="cartInfo" items="${cartInfoList}">
 							<tr>
-								<td>productId: ${cartDetail.productId}</td>
-								<td>productQty: ${cartDetail.productQty}</td>
-								<td>price: ${product.price}</td>
+								<td>productId: ${cartInfo.productId}</td>
+								<td>productQty: ${cartInfo.productQty}</td>
+								<td>price: ${cartInfo.price}</td>
 							</tr>
 						</c:forEach>
 					</table>

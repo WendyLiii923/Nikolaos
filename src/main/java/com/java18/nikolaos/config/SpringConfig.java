@@ -1,71 +1,56 @@
 package com.java18.nikolaos.config;
 
+import java.util.Properties;
+
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.dialect.MySQL8Dialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.java18.nikolaos")
+@ComponentScan(basePackages = "com.java18.nikolaos.*.model.*.impl")
 public class SpringConfig {
+	
+	@Bean
+	public DataSource dataSource() throws IllegalArgumentException, NamingException {
+		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
+		factory.setResourceRef(true);
+		factory.setJndiName("jdbc/18_project_db");
+		factory.setProxyInterface(DataSource.class);
+		factory.afterPropertiesSet();
+		return (DataSource) factory.getObject();
+	}
 
-//    @Bean
-//	public DataSource dataSource() {
-//		DriverManagerDataSource dmds = new DriverManagerDataSource();
-//
-//		// set properties
-//		dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-////		dmds.setUrl("jdbc:mysql://localhost:3306/18_project_db");
-////		dmds.setUsername("root");
-////		dmds.setPassword("lwl220420");
-//        dmds.setUrl("jdbc:mysql://database-1.c6ruvk8urms0.us-east-2.rds.amazonaws.com:3306/18_project_db");
-//		dmds.setUsername("aws_admin");
-//		dmds.setPassword("00000000");
-//
-//		return dmds;
-//	}
+	@Bean
+	public SessionFactory sessionFactory() throws IllegalArgumentException, NamingException {
+		return new LocalSessionFactoryBuilder(dataSource())
+				.scanPackages("com.java18.nikolaos.*.model")
+				.addProperties(getHibernateProperties())
+				.buildSessionFactory();
+	}
 
-    @Bean
-    public DataSource dataSource() {
-        JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
-        factory.setJndiName("java:comp/env/jdbc/18_project_db");
-        factory.setProxyInterface(DataSource.class);
+	private Properties getHibernateProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.dialect", MySQL8Dialect.class.getName());
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.current_session_context_class", SpringSessionContext.class.getName());
+		return properties;
+	}
 
-        try {
-
-            // look up
-            factory.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NamingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return (DataSource) factory.getObject();
-
-    }
-
-    @Bean
-    public SessionFactory sessionFactory() {
-        return new LocalSessionFactoryBuilder(dataSource())
-                .configure("hibernate.cfg.xml").buildSessionFactory();
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManagement() {
-        return new HibernateTransactionManager(sessionFactory());
-
-    }
+	@Bean
+	public PlatformTransactionManager transactionManagement() throws IllegalArgumentException, NamingException {
+		return new HibernateTransactionManager(sessionFactory());
+	}
 }

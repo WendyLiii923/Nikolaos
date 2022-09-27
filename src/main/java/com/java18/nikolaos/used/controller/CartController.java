@@ -1,6 +1,5 @@
 package com.java18.nikolaos.used.controller;
 
-import com.java18.nikolaos.used.model.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.service.CartService;
+import com.java18.nikolaos.used.model.service.CategoryService;
 
 @Controller
 @RequestMapping("/CartService")
@@ -32,6 +32,7 @@ public class CartController {
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
 		model.addAttribute("cartDetail",cartService.createCartDetail(getCart.getId(), productId, productQty));
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Cart";
 	}
@@ -42,41 +43,42 @@ public class CartController {
 	) {
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Cart";
 	}
-	
+
 	@RequestMapping("/showCheckOut")
-	public String checkOut(Model model,
-						@RequestParam(required = false) Integer memberId
-	) {
+	public String checkOut(Model model, 
+			@RequestParam(required = false) Integer memberId) {
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
-		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("cartDetailList", cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
+		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		return "/used/CheckOut";
 	}
-	
+
 	@PostMapping
 	@ResponseBody
 	public UsedCart addProductToCart(
 			@RequestParam Integer memberId, 
-			@RequestParam Integer productId, 
+			@RequestParam Integer productId,
 			@RequestParam Integer productQty) {
 		UsedCart uncheckOutCart = cartService.getUncheckOutCart(memberId);
 		cartService.createCartDetail(uncheckOutCart.getId(), productId, productQty);
 		return uncheckOutCart;
 	}
-	
+
 	@DeleteMapping
 	@ResponseBody
 	public UsedCart deleteProductFromCart(
-			@RequestParam Integer memberId,
+			@RequestParam Integer memberId, 
 			@RequestParam Integer productId) {
 		UsedCart uncheckOutCart = cartService.getUncheckOutCart(memberId);
 		cartService.deleteProductFromCart(uncheckOutCart.getMemberId(), uncheckOutCart.getId(), productId);
 		return uncheckOutCart;
 	}
-	
+
 	@PutMapping
 	public UsedCart checkOutAndUpdateStatus(
 			@RequestParam Integer memberId,

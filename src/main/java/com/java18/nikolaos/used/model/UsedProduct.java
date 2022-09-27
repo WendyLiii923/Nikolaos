@@ -12,11 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Component
 @Entity
 @Table(name = "used_product")
 public class UsedProduct {

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.java18.nikolaos.used.model.service.ProductService.PRODUCT_STATUS_PUBLISHED;
+import static com.java18.nikolaos.used.model.service.impl.ProductServiceImpl.PRODUCT_STATUS_PUBLISHED;
 
 @Controller
 @RequestMapping("/CollectService")

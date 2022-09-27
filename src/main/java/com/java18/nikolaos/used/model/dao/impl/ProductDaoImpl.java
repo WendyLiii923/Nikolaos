@@ -1,17 +1,18 @@
-package com.java18.nikolaos.used.model.dao;
+package com.java18.nikolaos.used.model.dao.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.Members;
 import com.java18.nikolaos.used.model.UsedCategory;
 import com.java18.nikolaos.used.model.UsedProduct;
+import com.java18.nikolaos.used.model.dao.ProductDao;
+import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 
 @Repository
 public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDao {

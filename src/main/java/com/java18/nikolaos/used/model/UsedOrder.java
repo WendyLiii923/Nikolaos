@@ -11,11 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Component
 @Entity
 @Table(name = "used_order")
 public class UsedOrder {

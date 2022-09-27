@@ -37,10 +37,11 @@
 				<div class="p-3">
 					<table class="table table-striped table-bordered"
 						style="table-layout: fixed;">
-						<c:forEach var="cartDetail" items="${cartDetailList}">
+						<c:forEach var="cartInfo" items="${cartInfoList}">
 						<tr>
-							<td>productId: ${cartDetail.productId}</td>
-							<td>productQty: ${cartDetail.productQty}</td>
+							<td>productId: ${cartInfo.productId}</td>
+<%-- 							<td>productName:${cartDetail.name}</td> --%>
+							<td>productQty: ${cartInfo.productQty}</td>
 						</tr>
 						</c:forEach>
 					</table>
@@ -48,9 +49,8 @@
 			</div>
 			<div align = 'center'>
 				<form action="<c:url value='/CartService/showCheckOut' />">
-					<input type='hidden' name='memberId' value='1'> <input
-						type="submit" value="前往結帳">
-					<P />
+					<input type='hidden' name='memberId' value='1'> 
+					<input type="submit" value="前往結帳">
 				</form>
 			</div>
 			
