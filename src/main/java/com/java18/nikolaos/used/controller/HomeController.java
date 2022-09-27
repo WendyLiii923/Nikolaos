@@ -1,4 +1,4 @@
- package com.java18.nikolaos.used.controller;
+package com.java18.nikolaos.used.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +9,4 @@ public class HomeController {
 	public String home() {
 		return "used/Index";
 	}
-	
-
 }

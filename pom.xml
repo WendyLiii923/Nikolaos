@@ -73,11 +73,11 @@
             <version>2.2.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Servlet 3.0 API -->
+        <!-- Servlet 4.0 API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
+            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
 

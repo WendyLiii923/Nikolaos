@@ -1,4 +1,4 @@
-package com.java18.nikolaos.used.model.dao;
+package com.java18.nikolaos.used.model.dao.impl;
 
 import java.util.List;
 
@@ -8,7 +8,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.java18.nikolaos.used.model.CartDetailView;
 import com.java18.nikolaos.used.model.UsedCartDetail;
+import com.java18.nikolaos.used.model.dao.CartDetailDao;
 
 @Repository
 public class CartDetailDaoImpl implements CartDetailDao {
@@ -20,6 +22,7 @@ public class CartDetailDaoImpl implements CartDetailDao {
 			+ "WHERE cartId=:CARTID AND productId=:PRODUCTID";
 	private final String selectProductsByCartId = "FROM com.java18.nikolaos.used.model.UsedCartDetail "
 			+ "WHERE cartId=:CARTID";
+	private final String selectCartDetailByCartId="FROM com.java18.nikolaos.used.model.CartDetailView WHERE cartId=:cartId";
 	
 	private Session getSession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -67,6 +70,21 @@ public class CartDetailDaoImpl implements CartDetailDao {
 		}else {
 			System.out.println("NO PRODUCT");
 		}
+	}
+
+	@Override
+	public UsedCartDetail getCartDetail(Integer cartId) {
+		Query<UsedCartDetail> check = getSession().createQuery(selectProductsByCartId, UsedCartDetail.class);
+		check.setParameter("CARTID", cartId);
+		return check.getSingleResult();
+	}
+
+	@Override
+	public List<CartDetailView> getCartDetailInfoById(Integer cartId) {
+		Query<CartDetailView> check = getSession().createQuery(selectCartDetailByCartId, CartDetailView.class);
+		check.setParameter("cartId", cartId);
+		List<CartDetailView> list = check.list();
+		return list;
 	}
 	
 

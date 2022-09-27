@@ -1,14 +1,14 @@
 package com.java18.nikolaos.used.model.dao.util;
 
-import com.java18.nikolaos.used.model.util.Page;
-import com.java18.nikolaos.used.model.util.PageInfo;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.java18.nikolaos.used.model.util.PageInfo;
 
 @Repository
 public abstract class BaseQuery<T> {
