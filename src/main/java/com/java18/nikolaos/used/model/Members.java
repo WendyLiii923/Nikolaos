@@ -18,6 +18,12 @@ public class Members {
 
 	@Column(name="name")
     private String name;
+	
+	@Column(name="memberId")
+	private String memberId;
+	
+	@Column(name="password")
+	private String password;
 
     public Members(){
     	
@@ -37,13 +43,29 @@ public class Members {
         this.id = id;
     }
 
-    public String getUserName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setUserName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {
