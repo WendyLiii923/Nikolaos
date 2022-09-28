@@ -43,6 +43,13 @@
 							<td>${cartInfo.name}</td>
 							<td>productQty: ${cartInfo.productQty}</td>
 							<td>price: ${cartInfo.price}</td>
+							<td><a 
+							href="<c:url value='/CartService/removeFromCart'>
+							<c:param name="memberId" value='1'/>
+							<c:param name="productId" value="${cartInfo.productId}"/>
+							</c:url>">
+							移除
+							</a></td>
 						</tr>
 						</c:forEach>
 					</table>

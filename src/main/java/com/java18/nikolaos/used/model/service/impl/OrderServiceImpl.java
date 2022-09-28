@@ -42,9 +42,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public void addOrderDetail(Integer orderId, Integer cartId) {
-		List<UsedCartDetail> cartDetails = cartDetailDao.getCartDetailList(cartId);//		System.out.println("訂單ID:" + orderId);
-//		System.out.println("車ID:" + cartId);
-		for (UsedCartDetail cartDetail: cartDetails) {
+		List<UsedCartDetail> cartDetails = cartDetailDao.getCartDetailList(cartId);		for (UsedCartDetail cartDetail: cartDetails) {
 			orderDetailDao.createOrderDetail(orderId, cartDetail);
 		}
 	}

@@ -63,8 +63,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public UsedCart updateCartStatus(Integer cartId) {
-			return cartDao.updateStatus(cartId);
+	public UsedCart updateCartStatus(Integer id) {
+			return cartDao.updateStatus(id);
 	}
 	
 	@Override

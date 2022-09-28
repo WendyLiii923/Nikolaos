@@ -25,10 +25,10 @@ public class OrderController {
 	@Autowired
 	CategoryService categoryService;
 
-	@PostMapping
 	@RequestMapping("/showOrderList")
 	public String order(Model model,
 			@RequestParam(required = false) Integer memberId,
+			Integer cartId,
 	   		@RequestParam(required = false) Integer orderId,
 	   		@RequestParam(required = false) Integer totalPrice,
 			@RequestParam(required = false) Integer shippingFee,
@@ -37,9 +37,10 @@ public class OrderController {
 			@RequestParam(required = false) String phone
 						) {
 		
-		UsedCart cart = cartService.getUncheckOutCart(memberId);
 		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee, email, address, phone);
-		orderService.addOrderDetail(order.getId(), cart.getId());
+		orderService.addOrderDetail(order.getId(), cartId);
+		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		model.addAttribute("cart", cartService.updateCartStatus(getCart.getId()));
 		model.addAttribute("orderList", orderService.getOrderList(memberId));
 		model.addAttribute("order", orderService.getOrder(order.getId()));
 		model.addAttribute("orderInfoList", orderService.getOrderDetailView(order.getId()));
