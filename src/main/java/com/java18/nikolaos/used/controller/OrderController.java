@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.UsedOrder;
 import com.java18.nikolaos.used.model.service.CartService;
 import com.java18.nikolaos.used.model.service.CategoryService;
@@ -25,22 +26,26 @@ public class OrderController {
 	CategoryService categoryService;
 
 	@PostMapping
-	@RequestMapping("/showOrder")
+	@RequestMapping("/showOrderList")
 	public String order(Model model,
 			@RequestParam(required = false) Integer memberId,
-			@RequestParam Integer cartId,
 	   		@RequestParam(required = false) Integer orderId,
 	   		@RequestParam(required = false) Integer totalPrice,
-			@RequestParam(required = false) Integer shippingFee
+			@RequestParam(required = false) Integer shippingFee,
+			@RequestParam(required = false) String email,
+			@RequestParam(required = false) String address,
+			@RequestParam(required = false) String phone
 						) {
-		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee);
-		orderService.addOrderDetail(order.getId(), cartId);
+		
+		UsedCart cart = cartService.getUncheckOutCart(memberId);
+		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee, email, address, phone);
+		orderService.addOrderDetail(order.getId(), cart.getId());
 		model.addAttribute("orderList", orderService.getOrderList(memberId));
 		model.addAttribute("order", orderService.getOrder(order.getId()));
-		model.addAttribute("orderDetailView", orderService.getOrderDetailView(order.getId()));
+		model.addAttribute("orderInfoList", orderService.getOrderDetailView(order.getId()));
 		model.addAttribute("orderDetailList", orderService.getOrderDetailList(order.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Order";
+		return "/used/OrderDetail";
 	}
 	
 	
@@ -50,8 +55,12 @@ public class OrderController {
 			@RequestParam Integer cartId,
 			@RequestParam Integer memberId, 
 			@RequestParam(required = false) Integer totalPrice,
-			@RequestParam(required = false) Integer shippingFee) {
-		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee);
+			@RequestParam(required = false) Integer shippingFee,
+			@RequestParam(required = false) String email,
+			@RequestParam(required = false) String address,
+			@RequestParam(required = false) String phone
+			) {
+		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee, email, address, phone);
 		orderService.addOrderDetail(order.getId(), cartId);
 		return order;
 	}

@@ -21,5 +21,7 @@ public interface CartService {
 	UsedCartDetail getCartDetail(Integer cartId);
 
 	UsedCart updateCartStatus(Integer cartId);
+	
+	Integer getCartTotal(Integer cartId);
 
 }

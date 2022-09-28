@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Product</title>
+<title>OrderDetail</title>
 <%@ include file="../include/Header.jsp"%>
 </head>
 <body>
@@ -31,29 +31,42 @@
 			<div
 				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
 				style="height: 50px; background-color: #515151">
-				<h4>購物車內的商品們</h4>
+				<h4>訂單詳情</h4>
 			</div>
 			<div class="d-flex">
 				<div class="p-3">
 					<table class="table table-striped table-bordered"
 						style="table-layout: fixed;">
-						<c:forEach var="cartInfo" items="${cartInfoList}">
+						<c:forEach var="orderInfo" items="${orderInfoList}">
 						<tr>
-							<td>productId: ${cartInfo.productId}</td>
-							<td>${cartInfo.name}</td>
-							<td>productQty: ${cartInfo.productQty}</td>
-							<td>price: ${cartInfo.price}</td>
+							<td>productId: ${orderInfo.productId}</td>
+							<td>${orderInfo.name}</td>
+							<td>productQty: ${orderInfo.productQty}</td>
+							<td>price: ${orderInfo.price}</td>
 						</tr>
 						</c:forEach>
 					</table>
+					<div align='left'>
+						<h5>訂單金額: ${totalPrice}</h5><br>
+						<p>
+						訂單號碼: ${order.id}<br>
+						訂單時間: ${order.createTime}<br>
+						付款方式: 信用卡<br>
+						</p>
+						<hr>
+						<p>
+						收件人: <br>
+						手機號碼: ${order.phone}<br>
+						收件地址: ${order.address}<br>
+						電子郵件: ${order.email}<br>
+						</p>
+											
+					</div>
 				</div>
 			</div>
-			<div align = 'center'>
-				<form action="<c:url value='/CartService/showCheckOut' />">
-					<input type='hidden' name='memberId' value='1'> 
-					<input type="submit" value="前往結帳">
-				</form>
-			</div>
+<!-- 			<div align = 'center'> -->
+<%-- 				<a href="<c:url value='/ProductService/showProducts' />">繼續選購</a> --%>
+<!-- 			</div> -->
 			
 		</div>
 	</div>

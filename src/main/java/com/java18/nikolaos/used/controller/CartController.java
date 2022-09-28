@@ -55,6 +55,7 @@ public class CartController {
 		model.addAttribute("cartDetailList", cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
+		model.addAttribute("totalPrice", cartService.getCartTotal(getCart.getId()));
 		return "/used/CheckOut";
 	}
 
