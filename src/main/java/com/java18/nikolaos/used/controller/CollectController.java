@@ -1,6 +1,6 @@
 package com.java18.nikolaos.used.controller;
 
-import com.java18.nikolaos.used.model.UsedCollect;
+import com.java18.nikolaos.used.model.UsedCollectView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.ProductService;
 import com.java18.nikolaos.used.model.service.CollectService;
@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -30,8 +31,22 @@ public class CollectController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/showCollectList")
+    public String showCollectList(
+            Model model,
+            @RequestParam(defaultValue = "1") Integer currentPage,
+            @RequestParam(defaultValue = "10") Integer limit,
+            @RequestParam Integer memberId
+    ){
+        Sort sort = new Sort(Direction.DESC, new String[]{"createTime"});
+        PageInfo pageInfo = new PageInfo(limit, currentPage, sort);
+        Page<UsedCollectView> collectPage = collectService.getCurrentPageCollectList(memberId, pageInfo);
+        model.addAttribute("collectPage", collectPage);
+        return "used/Collect";
+    }
+
     @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<UsedCollect>> getCollectList(
+    public ResponseEntity<Page<UsedCollectView>> getCollectList(
             @RequestParam(defaultValue = "1") Integer currentPage,
             @RequestParam(defaultValue = "10") Integer limit,
             @RequestParam Integer memberId
