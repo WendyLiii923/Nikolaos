@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.java18.nikolaos.general.model.service.ImageService;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.CategoryService;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -27,6 +29,8 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private ImageService imageService;
 	
 	@RequestMapping("/deleteProduct")
 	public String deleteProduct(Model model,
@@ -55,10 +59,11 @@ public class ProductController {
 			@RequestParam(required = false) String content,
 			@RequestParam(required = false) Integer memberId,
 			@RequestParam(required = false) Integer categoryId,
-			@RequestParam(required = false) String cover,
+			@RequestParam(required = false) MultipartFile cover,
 			@RequestParam(required = false) String status
 			) {
-		model.addAttribute("product", productService.createProduct(name, price, content, memberId, categoryId, cover, status));
+		String coverLink = imageService.upload(cover);
+		model.addAttribute("product", productService.createProduct(name, price, content, memberId, categoryId, coverLink, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/ProductLaunch";
 	}

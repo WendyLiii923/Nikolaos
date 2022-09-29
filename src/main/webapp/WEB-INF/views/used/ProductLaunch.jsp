@@ -35,33 +35,46 @@
 			</div>
 
 
-			<div class="d-flex">
-				<div class="p-3">
-					<form action="<c:url value='/ProductService/uploadForm' />">
+			<div class="d-flex justify-content-center pt-5">
+				<div class="card shadow">
+				  <div class="card-body">
+				  	<form action="<c:url value='/ProductService/uploadForm' />" method="POST" enctype="multipart/form-data">
 						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-						<label>商品名稱: </label> 
-						<input type='text' name='name' value='${name}' placeholder="商品名稱">
-						<br><br>
-						<label>價格: </label> 
-						<input type='number' name='price' value='${price}' placeholder="">
-						<br><br> 
-						<label>詳細資訊: </label> <input type='text' name='content' value='${content}' placeholder="......">
-						<br><br> 
-						<label>分類: </label> 
-						<select name='categoryId'>
-							<option value='4'>T恤</option>
+						<input type='hidden' name='status' value='published'>
+						<div class="form-group">
+						    <label for="name">商品名稱</label>
+						    <input type="text" class="form-control" id="name" name="name">
+						</div>
+						<div class="form-group">
+						    <label for="price">價格</label>
+						    <input type="number" class="form-control" id="price" name="price">
+						</div>
+						<div class="mb-3">
+						    <label for="content">詳細資訊</label>
+						    <textarea class="form-control" id="content" name="content" placeholder="......"></textarea>
+					  	</div>
+					  	<div class="form-group">
+					      <label for="categoryId">State</label>
+					      <select id="categoryId" name="categoryId" class="form-control">
+					        <option selected>請選擇</option>
+					        <option value='4'>T恤</option>
 							<option value='5'>襯衫</option>
 							<option value='6'>褲子</option>
 							<option value='7'>裙子</option>
 							<option value='8'>帽子</option>
 							<option value='9'>耳環</option>
-						</select><br><br> 
-						<label>照片 </label> 
-						<input type='text' name='cover' value='${cover}' placeholder="cover">
-						<br><br> 
-						<input type='hidden' name='status' value='published'>
-						<button type="submit">上架</button>
+					      </select>
+					    </div>
+					    <div class="form-group">
+						    <label for="cover">照片</label>
+						    <div class="custom-file">
+							    <input type="file" name="cover" class="custom-file-input" id="cover">
+							    <label class="custom-file-label" for="cover">Choose file...</label>
+						  	</div>
+					    </div>
+						<button class="btn btn-block btn-primary mt-3" type="submit">上架</button>
 					</form>
+				  </div>
 				</div>
 				
 			</div>
