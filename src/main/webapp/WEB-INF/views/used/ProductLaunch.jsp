@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ProductLaunch</title>
+<%@ include file="../include/Header.jsp"%>
+</head>
+<body>
+	<%@ include file="../include/TopBar.jsp"%>
+
+	<div class="d-flex" style="height: calc(100vh - 56px)">
+		<div class="h-100 p-3 border-right" style="width: 200px">
+			<div class="list-group list-group-flush">
+				<c:forEach var="category" items="${categoryList}">
+					<tr>
+						<td>
+							<a class="list-group-item list-group-item-action"
+							href="<c:url value='/ProductService/showProducts'>
+								<c:param name="categoryId" value="${category.id}"/>
+								<c:param name="parentId" value="${category.parentId}"/>
+							</c:url>">${category.name} </a>
+						</td>
+					</tr>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
+			<div
+				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
+				style="height: 50px; background-color: #515151">
+				<h4>上架二手商品</h4>
+			</div>
+
+
+			<div class="d-flex">
+				<div class="p-3">
+					<form action="<c:url value='/ProductService/uploadForm' />">
+						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+						<label>商品名稱: </label> 
+						<input type='text' name='name' value='${name}' placeholder="商品名稱">
+						<br><br>
+						<label>價格: </label> 
+						<input type='number' name='price' value='${price}' placeholder="">
+						<br><br> 
+						<label>詳細資訊: </label> <input type='text' name='content' value='${content}' placeholder="......">
+						<br><br> 
+						<label>分類: </label> 
+						<select name='categoryId'>
+							<option value='4'>T恤</option>
+							<option value='5'>襯衫</option>
+							<option value='6'>褲子</option>
+							<option value='7'>裙子</option>
+							<option value='8'>帽子</option>
+							<option value='9'>耳環</option>
+						</select><br><br> 
+						<label>照片 </label> 
+						<input type='text' name='cover' value='${cover}' placeholder="cover">
+						<br><br> 
+						<input type='hidden' name='status' value='published'>
+						<button type="submit">上架</button>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java18.nikolaos.used.model.Members;
-import com.java18.nikolaos.used.model.UsedCategory;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.dao.ProductDao;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -23,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	/**
 	 *  商品狀態
 	 *  暫存 - temp
-	 *  發布 - published
+	 *  發佈 - published
 	 *  刪除 - delete
 	 *  下架 - archive
 	 */
@@ -33,13 +31,18 @@ public class ProductServiceImpl implements ProductService {
 	public static final String PRODUCT_STATUS_ARCHIVE = "archive";
 
 	@Override
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status) {
+	public UsedProduct createProduct(String name, Integer price, String content, Integer memberId, Integer categoryId, String cover, String status) {
 		return productDao.createProduct(name, price, content, memberId, categoryId, cover, status);
 	}
 
 	@Override
 	public UsedProduct getProduct(Integer id) {
 		return productDao.getProduct(id);
+	}
+	
+	@Override
+	public List<UsedProduct> getProductListByMemberId(Integer memberId) {
+		return productDao.getProductListByMemberId(memberId);
 	}
 	
 	@Override
@@ -100,5 +103,6 @@ public class ProductServiceImpl implements ProductService {
 	public UsedProduct updateProduct(UsedProduct usedProduct) {
 		return productDao.updateProduct(usedProduct);
 	}
+
 
 }

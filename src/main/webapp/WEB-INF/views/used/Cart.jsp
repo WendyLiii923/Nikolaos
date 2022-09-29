@@ -39,10 +39,10 @@
 						style="table-layout: fixed;">
 						<c:forEach var="cartInfo" items="${cartInfoList}">
 						<tr>
-							<td>productId: ${cartInfo.productId}</td>
+							<td>商品ID: ${cartInfo.productId}</td>
 							<td>${cartInfo.name}</td>
-							<td>productQty: ${cartInfo.productQty}</td>
-							<td>price: ${cartInfo.price}</td>
+							<td>數量: ${cartInfo.productQty}</td>
+							<td>價格: ${cartInfo.price}</td>
 							<td><a 
 							href="<c:url value='/CartService/removeFromCart'>
 							<c:param name="memberId" value='1'/>
@@ -57,7 +57,7 @@
 			</div>
 			<div align = 'center'>
 				<form action="<c:url value='/CartService/showCheckOut' />">
-					<input type='hidden' name='memberId' value='1'> 
+					<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'> 
 					<input type="submit" value="前往結帳">
 				</form>
 			</div>

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Nikolaos</a>
+  <a class="navbar-brand" href="/nikolaos/">Nikolaos</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,6 +19,22 @@
   </div>
 
       <ul class="navbar-nav ms-3 me-5 mb-2 mb-lg-0">
+      		<li>
+      		<c:choose>
+      			<c:when test="${empty sessionScope.loginMember}">
+	      			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">
+					  	登入
+				    </button>
+      			</c:when>
+				<c:otherwise>
+					<a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>">
+						${sessionScope.loginMember.name} 登出
+					</a>
+				</c:otherwise>      		
+      		</c:choose>
+      			
+      			
+      		</li>
             <li class="nav-item mx-2">
               <a
                 class="position-relative"
