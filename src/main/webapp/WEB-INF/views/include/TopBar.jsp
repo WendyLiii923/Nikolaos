@@ -27,7 +27,7 @@
 				    </button>
       			</c:when>
 				<c:otherwise>
-					<a class="btn btn-danger" href="<c:url value='/Auth/Logout'/>">
+					<a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>">
 						${sessionScope.loginMember.name} 登出
 					</a>
 				</c:otherwise>      		

@@ -19,8 +19,9 @@ public class Members {
 	@Column(name="name")
     private String name;
 	
-	@Column(name="memberId")
-	private String memberId;
+	// 帳號
+	@Column(name="email")
+	private String email;
 	
 	@Column(name="password")
 	private String password;
@@ -28,20 +29,22 @@ public class Members {
     public Members(){
     	
     }
-    
-    public Members(Integer id, String name) {
+
+	public Members(Integer id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.email = email;
+		this.password = password;
 	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -51,12 +54,12 @@ public class Members {
 		this.name = name;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -69,8 +72,7 @@ public class Members {
 
 	@Override
 	public String toString() {
-		return "Members [id=" + id + ", name=" + name + "]";
+		return "Members [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
-    
     
 }

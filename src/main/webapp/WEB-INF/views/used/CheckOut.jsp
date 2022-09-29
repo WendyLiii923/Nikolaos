@@ -65,10 +65,10 @@
 			</div>
 			<div class="d-flex">
 				<div class="p-3">
-					<p>收件人名: ${memberId}</p>
+					<p>收件人名: ${sessionScope.loginMember.name}</p>
 
 					<form action="<c:url value='/OrderService/showOrderList' />">
-					<input type='hidden' name='memberId' value='1'>
+					<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 					<input type='hidden' name='cartId' value='${cartInfo.cartId}'>
 						<label>address: </label> 
 						<input type='text' name='address' value='${address}' placeholder="地址">
@@ -79,10 +79,6 @@
 						<label>phone: </label> <input type='text' name='phone' value='${phone}' placeholder="09xx-xxx-xxx">
 						<br><br> 
 						<label>付款方式: 信用卡</label> 
-<!-- 						<select name='payment'> -->
-<!-- 							<option value='credit'>信用卡</option> -->
-<!-- 							<option value='cod'>貨到付款</option> -->
-<!-- 						</select><br><br>  -->
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
 						<button type="submit">確認並送出</button>

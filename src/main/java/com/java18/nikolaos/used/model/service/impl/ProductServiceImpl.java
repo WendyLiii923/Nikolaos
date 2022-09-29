@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java18.nikolaos.used.model.Members;
-import com.java18.nikolaos.used.model.UsedCategory;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.dao.ProductDao;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -23,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	/**
 	 *  商品狀態
 	 *  暫存 - temp
-	 *  發布 - published
+	 *  發佈 - published
 	 *  刪除 - delete
 	 *  下架 - archive
 	 */

@@ -30,18 +30,26 @@ public class ProductController {
 	
 	@RequestMapping("/showMemberProducts")
 	public String manageProducts(Model model,
-			@RequestParam(required = false) Integer memberId,
+			@RequestParam(required = false) Integer memberId
+			) {
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
+	@RequestMapping("/uploadForm")
+	public String uploadProduct(Model model,
 			@RequestParam(required = false) String name,
 			@RequestParam(required = false) Integer price,
 			@RequestParam(required = false) String content,
+			@RequestParam(required = false) Integer memberId,
 			@RequestParam(required = false) Integer categoryId,
 			@RequestParam(required = false) String cover,
 			@RequestParam(required = false) String status
 			) {
-		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("product", productService.createProduct(name, price, content, memberId, categoryId, cover, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/MemberProducts";
+		return "/used/ProductLaunch";
 	}
 	
 	@RequestMapping("/showUploadForm")

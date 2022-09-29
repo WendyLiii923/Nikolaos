@@ -14,7 +14,7 @@ public class MembersDaoImpl implements MembersDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private final String selectMemberByMemberIdAndPassword = "From com.java18.nikolaos.used.model.Members WHERE memberId=:memberId AND password=:password";
+	private final String selectMemberByMemberIdAndPassword = "From com.java18.nikolaos.used.model.Members WHERE email=:email AND password=:password";
 	
 	private Session getSession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -22,11 +22,11 @@ public class MembersDaoImpl implements MembersDao {
 	}
 	
 	@Override
-	public Members getMember(String memberId, String password) {
+	public Members getMember(String email, String password) {
 		Members result = null;
 		
 		Query<Members> check = getSession().createQuery(selectMemberByMemberIdAndPassword, Members.class);
-		check.setParameter("memberId", memberId);
+		check.setParameter("email", email);
 		check.setParameter("password", password);
 		
 		try {

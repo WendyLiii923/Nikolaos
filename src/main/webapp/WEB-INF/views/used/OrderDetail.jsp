@@ -47,7 +47,7 @@
 						</c:forEach>
 					</table>
 					<div align='left'>
-						<h5>訂單金額: ${totalPrice}</h5><br>
+						<h5>訂單金額: ${order.totalPrice}</h5><br>
 						<p>
 						訂單號碼: ${order.id}<br>
 						訂單時間: ${order.createTime}<br>
@@ -55,7 +55,7 @@
 						</p>
 						<hr>
 						<p>
-						收件人: <br>
+						收件人: ${sessionScope.loginMember.name}<br>
 						手機號碼: ${order.phone}<br>
 						收件地址: ${order.address}<br>
 						電子郵件: ${order.email}<br>

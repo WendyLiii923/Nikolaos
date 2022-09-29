@@ -37,9 +37,8 @@
 
 			<div class="d-flex">
 				<div class="p-3">
-					<form action="<c:url value='/OrderService/showMemberProducts' />">
-						<input type='hidden' name='memberId' value='1'>
-<%-- 					<input type='hidden' name='cartId' value='${cartInfo.cartId}'> --%>
+					<form action="<c:url value='/ProductService/uploadForm' />">
+						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<label>商品名稱: </label> 
 						<input type='text' name='name' value='${name}' placeholder="商品名稱">
 						<br><br>
@@ -60,7 +59,7 @@
 						<label>照片 </label> 
 						<input type='text' name='cover' value='${cover}' placeholder="cover">
 						<br><br> 
-						<input type='hidden' name='shippingFee' value='60'>
+						<input type='hidden' name='status' value='published'>
 						<button type="submit">上架</button>
 					</form>
 				</div>

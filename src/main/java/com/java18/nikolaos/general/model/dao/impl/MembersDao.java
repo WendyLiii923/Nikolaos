@@ -4,6 +4,6 @@ import com.java18.nikolaos.used.model.Members;
 
 public interface MembersDao {
 
-	public Members getMember(String memberId,String password);
+	public Members getMember(String email,String password);
 	
 }

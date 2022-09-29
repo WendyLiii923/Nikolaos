@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.java18.nikolaos.general.model.dao.impl.MembersDao;
 import com.java18.nikolaos.used.model.CartDetailView;
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.UsedCartDetail;
@@ -21,9 +22,11 @@ public class CartServiceImpl implements CartService {
 	CartDao cartDao;
 	@Autowired
 	CartDetailDao cartDetailDao;
+	@Autowired
+	MembersDao membersDao;
 	
 	private Integer totalPrice = 0;
-
+	
 	@Override
 	public UsedCart getUncheckOutCart(Integer memberId) {
 		UsedCart uncheckOutCart = cartDao.getUncheckOutCart(memberId);

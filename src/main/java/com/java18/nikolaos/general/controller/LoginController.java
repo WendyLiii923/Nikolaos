@@ -22,11 +22,11 @@ public class LoginController {
 	private MembersService membersService;
 	
 	@PostMapping("/Login")
-	public String login(@RequestParam String memberId,
+	public String login(@RequestParam String email,
 						@RequestParam String password,
 						Model model) {
 		
-		Members member = membersService.login(memberId, password);
+		Members member = membersService.login(email, password);
 		
 		model.addAttribute("loginMember", member);
 		

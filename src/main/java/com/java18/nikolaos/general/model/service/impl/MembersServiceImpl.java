@@ -16,8 +16,8 @@ public class MembersServiceImpl implements MembersService {
 	private MembersDao membersDao;
 	
 	@Override
-	public Members login(String memberId, String password) {
-		return membersDao.getMember(memberId, password);
+	public Members login(String email, String password) {
+		return membersDao.getMember(email, password);
 	}
 
 }

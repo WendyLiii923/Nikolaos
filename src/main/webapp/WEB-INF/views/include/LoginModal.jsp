@@ -14,8 +14,8 @@
       <div class="modal-body">
       	<form method="POST" action="<c:url value='/Auth/Login'/>">
 		  <div class="form-group">
-		    <label for="memberId">帳號</label>
-		    <input type="text" id="memberId" name="memberId" class="form-control" placeholder="Member ID">
+		    <label for="email">帳號</label>
+		    <input type="text" id="email" name="email" class="form-control" placeholder="email">
 		  </div>
 		  <div class="form-group">
 		    <label for="password">Password</label>

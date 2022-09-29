@@ -4,6 +4,6 @@ import com.java18.nikolaos.used.model.Members;
 
 public interface MembersService {
 
-	public Members login(String memberId,String password);
+	public Members login(String email,String password);
 	
 }
