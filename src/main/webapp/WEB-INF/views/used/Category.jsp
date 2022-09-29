@@ -18,7 +18,7 @@
 		<c:forEach var="category" items="${categoryList}">
 			<tr>
 				<td>
-					<a class="list-group-item list-group-item-action"
+					<a class="list-group-item list-group-item-action <c:if test='${param.categoryId == category.id}'>active</c:if>"
 						href="<c:url value='/ProductService/showProducts'>
 								<c:param name="categoryId" value="${category.id}"/>
 								<c:param name="parentId" value="${category.parentId}"/>
