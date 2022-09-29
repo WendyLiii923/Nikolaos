@@ -27,7 +27,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+		<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 			<div
 				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
 				style="height: 50px; background-color: #515151">
@@ -41,15 +41,18 @@
 						<c:forEach var="cartInfo" items="${cartInfoList}">
 							<tr>
 								<td>productId: ${cartInfo.productId}</td>
+								<td>${cartInfo.name}</td>
 								<td>productQty: ${cartInfo.productQty}</td>
 								<td>price: ${cartInfo.price}</td>
 							</tr>
 						</c:forEach>
 					</table>
 					<div align='right'>
+<!-- 						<p>商品總金額: </p> -->
+<!-- 						<hr> -->
 						<h5>
 						運費: 60<br>
-						總金額: ${totalPrice}
+						應付金額總計: ${totalPrice}
 						</h5>
 					</div>
 				</div>
@@ -65,6 +68,8 @@
 					<p>收件人名: ${memberId}</p>
 
 					<form action="<c:url value='/OrderService/showOrderList' />">
+					<input type='hidden' name='memberId' value='1'>
+					<input type='hidden' name='cartId' value='${cartInfo.cartId}'>
 						<label>address: </label> 
 						<input type='text' name='address' value='${address}' placeholder="地址">
 						<br><br>
@@ -73,11 +78,11 @@
 						<br><br> 
 						<label>phone: </label> <input type='text' name='phone' value='${phone}' placeholder="09xx-xxx-xxx">
 						<br><br> 
-						<label>付款方式: </label> 
-						<select name='payment'>
-							<option value='credit'>信用卡</option>
-							<option value='cod'>貨到付款</option>
-						</select><br><br> 
+						<label>付款方式: 信用卡</label> 
+<!-- 						<select name='payment'> -->
+<!-- 							<option value='credit'>信用卡</option> -->
+<!-- 							<option value='cod'>貨到付款</option> -->
+<!-- 						</select><br><br>  -->
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
 						<button type="submit">確認並送出</button>

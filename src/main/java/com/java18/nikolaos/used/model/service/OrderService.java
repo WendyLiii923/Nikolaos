@@ -8,7 +8,7 @@ import com.java18.nikolaos.used.model.UsedOrderDetail;
 
 public interface OrderService {
 
-	UsedOrder createOrder(Integer memberId, Integer totalPrice, Integer shippingFee);
+	UsedOrder createOrder(Integer memberId, Integer totalPrice, Integer shippingFee, String email, String address, String phone);
 
 	List<UsedOrder> getOrderList(Integer memberId);
 

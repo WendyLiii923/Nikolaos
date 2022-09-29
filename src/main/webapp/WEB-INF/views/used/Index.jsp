@@ -10,10 +10,12 @@
 <body>
 	<div>
 		<a href="<c:url value='/ProductService/showProducts' />">二手商品頁</a><br>
-	</div>
-	
-	<div>
-		<a href="<c:url value='/ProductService/showUpload' />">上架商品</a><br>
+
+		<a href="<c:url value='/ProductService/showUploadForm' />">上架商品</a><br>
+		
+		<a href="<c:url value='/ProductService/showMemberProducts' >
+			<c:param name='memberId' value='1' />
+		</c:url>">會員商品管理區</a><br>
 	</div>
 
 </body>

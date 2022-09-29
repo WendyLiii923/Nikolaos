@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@ include file="../include/TopBar.jsp" %>
+<%@ include file="../include/LoginModal.jsp" %>
 
 <div class="d-flex" style="height: calc(100vh - 56px)">
 	<div class="h-100 p-3 border-right" style="width: 200px">

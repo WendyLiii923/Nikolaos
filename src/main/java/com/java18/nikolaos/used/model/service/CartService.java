@@ -20,6 +20,8 @@ public interface CartService {
 
 	UsedCartDetail getCartDetail(Integer cartId);
 
-	UsedCart updateCartStatus(Integer cartId);
+	UsedCart updateCartStatus(Integer id);
+	
+	Integer getCartTotal(Integer cartId);
 
 }

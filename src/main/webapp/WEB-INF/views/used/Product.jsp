@@ -70,12 +70,6 @@
 					<input type="submit" value="加入購物車">
 				</form>
 			</div>
-			<div align="right">
-			<form action="<c:url value='/CartService/showCart' />"> 
-					<input type='hidden' name='memberId' value='1'> 
-					<input type="submit" value="查看購物車">
-				</form>
-			</div>
 		</div>
 	</div>
 </body>

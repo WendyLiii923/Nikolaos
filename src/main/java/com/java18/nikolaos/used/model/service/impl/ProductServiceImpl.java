@@ -33,13 +33,18 @@ public class ProductServiceImpl implements ProductService {
 	public static final String PRODUCT_STATUS_ARCHIVE = "archive";
 
 	@Override
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status) {
+	public UsedProduct createProduct(String name, Integer price, String content, Integer memberId, Integer categoryId, String cover, String status) {
 		return productDao.createProduct(name, price, content, memberId, categoryId, cover, status);
 	}
 
 	@Override
 	public UsedProduct getProduct(Integer id) {
 		return productDao.getProduct(id);
+	}
+	
+	@Override
+	public List<UsedProduct> getProductListByMemberId(Integer memberId) {
+		return productDao.getProductListByMemberId(memberId);
 	}
 	
 	@Override
@@ -100,5 +105,6 @@ public class ProductServiceImpl implements ProductService {
 	public UsedProduct updateProduct(UsedProduct usedProduct) {
 		return productDao.updateProduct(usedProduct);
 	}
+
 
 }
