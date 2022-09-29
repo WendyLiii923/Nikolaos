@@ -28,6 +28,17 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@RequestMapping("/deleteProduct")
+	public String deleteProduct(Model model,
+			@RequestParam(required = false) Integer memberId,
+			@RequestParam(required = false) Integer id
+			) {
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("product", productService.deleteProduct(id));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
 	@RequestMapping("/showMemberProducts")
 	public String manageProducts(Model model,
 			@RequestParam(required = false) Integer memberId

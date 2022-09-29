@@ -56,6 +56,13 @@
 							</c:url>">${product.name}
 							</a></td>
 						<td>${product.price}</td>
+						<td><a 
+							href="<c:url value='/ProductService/deleteProduct'>
+							<c:param name="memberId" value='${sessionScope.loginMember.id}'/>
+							<c:param name="id" value="${product.id}"/>
+							</c:url>">
+							下架
+							</a></td>
 				    </tr>
 			      </c:forEach>
 				  </tbody>
