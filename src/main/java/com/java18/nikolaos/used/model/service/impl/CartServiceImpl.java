@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java18.nikolaos.general.model.dao.impl.MembersDao;
+import com.java18.nikolaos.general.model.dao.MembersDao;
 import com.java18.nikolaos.used.model.CartDetailView;
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.UsedCartDetail;

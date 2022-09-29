@@ -1,4 +1,4 @@
-package com.java18.nikolaos.general.model.dao.impl;
+package com.java18.nikolaos.general.model.dao;
 
 import com.java18.nikolaos.used.model.Members;
 
