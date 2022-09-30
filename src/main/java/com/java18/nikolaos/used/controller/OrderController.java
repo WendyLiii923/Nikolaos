@@ -25,10 +25,32 @@ public class OrderController {
 	@Autowired
 	CategoryService categoryService;
 
+	@RequestMapping("/showOrderInfo")
+	public String orderInfo(Model model,
+	   		@RequestParam(required = false) Integer orderId
+						) {
+		model.addAttribute("order", orderService.getOrder(orderId));
+		model.addAttribute("orderInfoList", orderService.getOrderDetailView(orderId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/OrderDetail";
+	}
+	
 	@RequestMapping("/showOrderList")
 	public String order(Model model,
 			@RequestParam(required = false) Integer memberId,
-			Integer cartId,
+	   		@RequestParam(required = false) Integer orderId
+						) {
+		model.addAttribute("orderList", orderService.getOrderList(memberId));
+		model.addAttribute("order", orderService.getOrder(orderId));
+		model.addAttribute("orderInfoList", orderService.getOrderDetailView(orderId));
+		model.addAttribute("orderDetailList", orderService.getOrderDetailList(orderId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/OrderList";
+	}
+	
+	@RequestMapping("/showOrderDetail")
+	public String orderDetail(Model model,
+			@RequestParam(required = false) Integer memberId,
 	   		@RequestParam(required = false) Integer orderId,
 	   		@RequestParam(required = false) Integer totalPrice,
 			@RequestParam(required = false) Integer shippingFee,
@@ -38,13 +60,11 @@ public class OrderController {
 						) {
 		
 		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee, email, address, phone);
-		orderService.addOrderDetail(order.getId(), cartId);
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		orderService.addOrderDetail(order.getId(), getCart.getId());
 		model.addAttribute("cart", cartService.updateCartStatus(getCart.getId()));
-		model.addAttribute("orderList", orderService.getOrderList(memberId));
 		model.addAttribute("order", orderService.getOrder(order.getId()));
 		model.addAttribute("orderInfoList", orderService.getOrderDetailView(order.getId()));
-		model.addAttribute("orderDetailList", orderService.getOrderDetailList(order.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/OrderDetail";
 	}

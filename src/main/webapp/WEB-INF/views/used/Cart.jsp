@@ -45,7 +45,7 @@
 							<td>價格: ${cartInfo.price}</td>
 							<td><a 
 							href="<c:url value='/CartService/removeFromCart'>
-							<c:param name="memberId" value='1'/>
+							<c:param name="memberId" value='${sessionScope.loginMember.id}'/>
 							<c:param name="productId" value="${cartInfo.productId}"/>
 							</c:url>">
 							移除

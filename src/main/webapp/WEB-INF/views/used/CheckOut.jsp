@@ -67,9 +67,8 @@
 				<div class="p-3">
 					<p>收件人名: ${sessionScope.loginMember.name}</p>
 
-					<form action="<c:url value='/OrderService/showOrderList' />">
+					<form action="<c:url value='/OrderService/showOrderDetail' />">
 					<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-					<input type='hidden' name='cartId' value='${cartInfo.cartId}'>
 						<label>address: </label> 
 						<input type='text' name='address' value='${address}' placeholder="地址">
 						<br><br>

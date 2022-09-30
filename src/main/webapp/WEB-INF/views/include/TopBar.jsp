@@ -59,7 +59,7 @@
             <!-- cart -->
             <li class="nav-item mx-2">
               <a class="position-relative" href="<c:url value='/CartService/showCart' >
-              <c:param name="memberId" value="1"/>
+              <c:param name="memberId" value="${sessionScope.loginMember.id}"/>
               </c:url>">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
