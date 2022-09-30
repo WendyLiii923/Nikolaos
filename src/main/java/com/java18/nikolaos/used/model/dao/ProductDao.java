@@ -12,9 +12,9 @@ public interface ProductDao {
 	
 	// 查會員的二手商品清單
 	public List<UsedProduct> getProductListByMemberId(Integer memberId);
-	// 查單項商品資料
-	public UsedProduct getProduct(Integer id);
 	
+	// 查單項商品資料
+	public ProductInfoView getProduct(Integer id);
 	// 查所有商品清單
 	public List<ProductInfoView> getProductList();
 	// 查父層分類商品清單

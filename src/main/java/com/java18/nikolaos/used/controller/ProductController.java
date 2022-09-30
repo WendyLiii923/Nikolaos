@@ -38,8 +38,8 @@ public class ProductController {
 			@RequestParam(required = false) Integer memberId,
 			@RequestParam(required = false) Integer id
 			) {
-		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("product", productService.deleteProduct(id));
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/MemberProducts";
 	}
@@ -91,15 +91,15 @@ public class ProductController {
 	
 	@RequestMapping("/showProduct")
 	public String product(Model model, 
-			@RequestParam(required = false) Integer id,
+			@RequestParam(required = false) Integer productId,
 			@RequestParam(required = false) Integer categoryId, 
 			@RequestParam(required = false) Integer parentId,
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
             @RequestParam(defaultValue = "") String status) {
-		UsedProduct getProduct = productService.getProduct(id);
+		ProductInfoView getProduct = productService.getProduct(productId);
 		model.addAttribute("product", getProduct);
-		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(categoryId));
+		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(getProduct.getParentId()));
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Product";

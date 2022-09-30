@@ -16,7 +16,7 @@ import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 @Repository
 public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao {
 
-	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE id=:productId";
+	private String selectProductById = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE id=:productId";
 	private String selectProductByMemberId = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE memberId=:memberId";
 	
 	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.ProductInfoView";
@@ -50,10 +50,10 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao
 	}
 	
 	@Override
-	public UsedProduct getProduct(Integer id) {
-		Query<UsedProduct> query = getSession().createQuery(selectProductById, UsedProduct.class);
+	public ProductInfoView getProduct(Integer id) {
+		Query<ProductInfoView> query = getSession().createQuery(selectProductById, ProductInfoView.class);
 		query.setParameter("productId", id);
-		return getOne(query);
+		return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
 	}
 
 	@Override

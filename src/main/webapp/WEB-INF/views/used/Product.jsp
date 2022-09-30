@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@ include file="../include/TopBar.jsp"%>
-
+	<%@ include file="../include/LoginModal.jsp" %>
 	<div class="d-flex" style="height: calc(100vh - 56px)">
 		<div class="h-100 p-3 border-right" style="width: 200px">
 			<div class="list-group list-group-flush">
@@ -31,16 +31,16 @@
 				style="height: 50px; background-color: #515151">
 				<h4>
 					<a class="text-white"
-						href="<c:url value='/ProductService/showProducts' />">二手拍賣</a> > <a
-						class="text-white"
+						href="<c:url value='/ProductService/showProducts' />">二手拍賣</a> > 
+					<a class="text-white"
 						href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${parentCategory.id}"/>
-					</c:url>">${parentCategory.name}</a>
-					> <a class="text-white"
+ 								<c:param name="categoryId" value="${parentCategory.id}"/>  
+ 								</c:url>">${parentCategory.name}</a> >  
+ 					<a class="text-white"  
 						href="<c:url value='/ProductService/showProducts'>
-					<c:param name="categoryId" value="${product.category.id}"/>
-					<c:param name="parentId" value="${product.category.parentId}"/>
-					</c:url>">${product.category.name}</a>
+								<c:param name="categoryId" value="${product.categoryId}"/>
+ 								<c:param name="parentId" value="${product.parentId}"/>
+ 								</c:url>">${product.categoryName}</a>
 					> ${product.name}
 				</h4>
 			</div>
@@ -54,7 +54,7 @@
 							<td>${product.name}</td>
 							<td>${product.createTime}</td>
 							<td>${product.content}</td>
-							<td>賣家ID:${product.member.id}</td>
+							<td>賣家ID:${product.memberId}</td>
 							<td>圖片：${product.cover}</td>
 							<td>價格:${product.price}</td>
 						</tr>

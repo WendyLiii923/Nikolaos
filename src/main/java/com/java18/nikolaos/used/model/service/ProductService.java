@@ -11,7 +11,7 @@ public interface ProductService {
 	UsedProduct createProduct(String name, Integer price, String content, Integer memberId, Integer categoryId,
 			String cover, String status);
 
-	UsedProduct getProduct(Integer id);
+	ProductInfoView getProduct(Integer id);
 	
 	List<UsedProduct> getProductListByMemberId(Integer memberId);
 
