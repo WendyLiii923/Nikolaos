@@ -22,6 +22,9 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	CartDetailDao cartDetailDao;
 
+	
+	private Integer totalPrice = 0;
+	
 	@Override
 	public UsedCart getUncheckOutCart(Integer memberId) {
 		UsedCart uncheckOutCart = cartDao.getUncheckOutCart(memberId);
@@ -61,7 +64,19 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public UsedCart updateCartStatus(Integer cartId) {
-			return cartDao.updateStatus(cartId);
+	public UsedCart updateCartStatus(Integer id) {
+			return cartDao.updateStatus(id);
+	}
+	
+	@Override
+	public Integer getCartTotal(Integer cartId) {
+		List<CartDetailView> cartList = cartDetailDao.getCartDetailInfoById(cartId);
+
+		cartList.stream().forEach(c -> {
+			totalPrice = totalPrice + c.getPrice() * c.getProductQty();
+			
+		});
+		totalPrice = totalPrice + 60;
+		return totalPrice;
 	}
 }

@@ -30,12 +30,16 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public UsedOrder createOrder(Integer memberId, Integer totalPrice, Integer shippingFee) {
+	public UsedOrder createOrder(Integer memberId, Integer totalPrice, Integer shippingFee, String email, 
+								String address, String phone) {
 		UsedOrder usedOrder = new UsedOrder();
 		try {
 			usedOrder.setMemberId(memberId);
 			usedOrder.setTotalPrice(totalPrice);
-			usedOrder.setShippingFee(shippingFee);
+			usedOrder.setShippingFee(60);
+			usedOrder.setEmail(email);
+			usedOrder.setAddress(address);
+			usedOrder.setPhone(phone);
 			getSession().save(usedOrder);
 		} catch (Exception e) {
 			e.printStackTrace();

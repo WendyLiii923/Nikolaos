@@ -19,6 +19,9 @@ public class CartDetailView {
 	@Column(name = "cartId")
 	private Integer cartId;
 	
+	@Column(name = "productId")
+	private Integer productId;
+	
 	@Column(name = "productQty")
 	private Integer productQty;
 
@@ -42,6 +45,14 @@ public class CartDetailView {
 
 	public void setCartId(Integer cartId) {
 		this.cartId = cartId;
+	}
+	
+	public Integer getProductId() {
+		return productId;
+	}
+	
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public Integer getProductQty() {
@@ -67,5 +78,6 @@ public class CartDetailView {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
 
 }

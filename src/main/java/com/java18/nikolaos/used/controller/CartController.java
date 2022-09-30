@@ -22,6 +22,19 @@ public class CartController {
 	CartService cartService;
 	@Autowired
 	CategoryService categoryService;
+	
+	@RequestMapping("/removeFromCart")
+	public String add(Model model,
+						@RequestParam(required = false) Integer memberId,
+						@RequestParam(required = false) Integer productId
+	) {
+		UsedCart getCart = cartService.getUncheckOutCart(memberId);
+		cartService.deleteProductFromCart(memberId, getCart.getId(), productId);
+		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
+		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/Cart";
+	}
 
 	@RequestMapping("/addCart")
 	public String add(Model model,
@@ -55,6 +68,7 @@ public class CartController {
 		model.addAttribute("cartDetailList", cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
+		model.addAttribute("totalPrice", cartService.getCartTotal(getCart.getId()));
 		return "/used/CheckOut";
 	}
 

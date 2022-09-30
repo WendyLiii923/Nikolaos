@@ -1,7 +1,5 @@
 package com.java18.nikolaos.used.model.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -18,7 +16,7 @@ public class CartDaoImpl implements CartDao{
 	private SessionFactory sessionFactory;
 	
 	private final String selectCartByMemberId ="FROM com.java18.nikolaos.used.model.UsedCart WHERE memberId=:memberId AND status=TRUE";
-	private final String selectCartById="FROM com.java18.nikolaos.used.model.UsedCart WHERE cartId=:cartId AND status=TRUE";
+	private final String selectCartById="FROM com.java18.nikolaos.used.model.UsedCart WHERE id=:cartId AND status=TRUE";
 	
 	private Session getsession() {
 		Session session = sessionFactory.getCurrentSession();
@@ -67,17 +65,16 @@ public class CartDaoImpl implements CartDao{
 
 	@Override
 	public UsedCart updateStatus(Integer id) {
-		try {
-			Query<UsedCart> check = getsession().createQuery(selectCartById, UsedCart.class);
-			check.setParameter("cartId", id);
-			List<UsedCart> list = check.list();
-			UsedCart updateItem = list.get(0);
-			updateItem.setStatus(false);
-			getsession().save(updateItem);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return updateStatus(id);
+		Query<UsedCart> check = getsession().createQuery(selectCartById, UsedCart.class);
+		check.setParameter("cartId", id);
+		UsedCart updateItem = check.setMaxResults(1)
+								.getResultList()
+								.stream()
+								.findFirst()
+								.orElse(null);
+		updateItem.setStatus(false);
+		getsession().save(updateItem);
+		return updateItem;
 	}
 
 

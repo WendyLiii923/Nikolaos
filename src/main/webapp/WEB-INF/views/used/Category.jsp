@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@ include file="../include/TopBar.jsp" %>
+<%@ include file="../include/LoginModal.jsp" %>
 
 <div class="d-flex" style="height: calc(100vh - 56px)">
 	<div class="h-100 p-3 border-right" style="width: 200px">
@@ -17,7 +18,7 @@
 		<c:forEach var="category" items="${categoryList}">
 			<tr>
 				<td>
-					<a class="list-group-item list-group-item-action"
+					<a class="list-group-item list-group-item-action <c:if test='${param.categoryId == category.id}'>active</c:if>"
 						href="<c:url value='/ProductService/showProducts'>
 								<c:param name="categoryId" value="${category.id}"/>
 								<c:param name="parentId" value="${category.parentId}"/>

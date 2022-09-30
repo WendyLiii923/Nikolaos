@@ -36,13 +36,13 @@ public class UsedOrder {
 	private Integer shippingFee;
 	
 	@Column(name = "email")
-	String email;
+	private String email;
 	
 	@Column(name = "address")
-	String address;
+	private String address;
 	
 	@Column(name = "phone")
-	String phone;
+	private String phone;
 	
 	@Transient
 	private List<OrderDetailView> orderDetailViewList;
