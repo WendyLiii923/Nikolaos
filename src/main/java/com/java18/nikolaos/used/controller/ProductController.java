@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java18.nikolaos.general.model.service.ImageService;
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.CategoryService;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -77,7 +78,6 @@ public class ProductController {
 	
 	@RequestMapping("/showProducts")
 	public String list(Model model, 
-			@RequestParam(required = false) Integer productId,
 			@RequestParam(required = false) Integer categoryId, 
 			@RequestParam(required = false) Integer parentId,
             @RequestParam(required = false) Integer start, 
@@ -91,15 +91,15 @@ public class ProductController {
 	
 	@RequestMapping("/showProduct")
 	public String product(Model model, 
+			@RequestParam(required = false) Integer id,
 			@RequestParam(required = false) Integer categoryId, 
-			@RequestParam(required = false) Integer productId,
 			@RequestParam(required = false) Integer parentId,
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
             @RequestParam(defaultValue = "") String status) {
-		UsedProduct getProduct = productService.getProduct(productId);
+		UsedProduct getProduct = productService.getProduct(id);
 		model.addAttribute("product", getProduct);
-		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(getProduct.getCategory().getParentId()));
+		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(categoryId));
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Product";
@@ -107,7 +107,7 @@ public class ProductController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<UsedProduct> getProducts(@RequestParam(required = false) Integer categoryId,
+	public List<ProductInfoView> getProducts(@RequestParam(required = false) Integer categoryId,
   										 @RequestParam(required = false) Integer parentId,
 			                             @RequestParam(required = false) Integer start, 
 			                             @RequestParam(required = false) Integer end, 

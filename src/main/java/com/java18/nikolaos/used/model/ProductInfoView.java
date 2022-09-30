@@ -12,9 +12,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "used_product")
-public class UsedProduct {
-
+@Table(name = "product_info_view")
+public class ProductInfoView {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -22,54 +22,34 @@ public class UsedProduct {
 	
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm")
 	@Column(name = "createTime")
-	private Timestamp createTime = new Timestamp(System.currentTimeMillis());
+	private Timestamp createTime;
 	
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "price")
 	private Integer price;
-
+	
 	@Column(name = "content")
 	private String content;
-
+	
 	@Column(name = "memberId")
 	private Integer memberId;
 	
 	@Column(name = "categoryId")
 	private Integer categoryId;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "memberId")
-//	private Members member;
-
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "categoryId")
-//	private UsedCategory category;
-
 	@Column(name = "cover")
 	private String cover;
-
+	
 	@Column(name = "status")
 	private String status;
 
-	public UsedProduct() {
-
-	}
-
-	public UsedProduct(Integer id, Timestamp createTime, String name, Integer price, String content, Integer memberId,
-			Integer categoryId, String cover, String status) {
-		super();
-		this.id = id;
-		this.createTime = createTime;
-		this.name = name;
-		this.price = price;
-		this.content = content;
-		this.memberId = memberId;
-		this.categoryId = categoryId;
-		this.cover = cover;
-		this.status = status;
-	}
+	@Column(name = "categoryName") // from category // name
+	private String categoryName;
+	
+	@Column(name = "parentId") // from category
+	private Integer parentId;
 
 	public Integer getId() {
 		return id;
@@ -143,15 +123,22 @@ public class UsedProduct {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "UsedProduct [id=" + id + ", createTime=" + createTime + ", name=" + name + ", price=" + price
-				+ ", content=" + content + ", memberId=" + memberId + ", categoryId=" + categoryId + ", cover=" + cover
-				+ ", status=" + status + "]";
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	
-	
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
 
 
 
