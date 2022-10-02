@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.java18.nikolaos.general.model.dao.MembersDao;
 import com.java18.nikolaos.used.model.Members;
 
 @Repository

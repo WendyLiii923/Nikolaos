@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.dao.ProductDao;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -36,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public UsedProduct getProduct(Integer id) {
+	public ProductInfoView getProduct(Integer id) {
 		return productDao.getProduct(id);
 	}
 	
@@ -46,14 +47,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<UsedProduct> getProductsByParentId(Integer categoryId) {
+	public List<ProductInfoView> getProductsByParentId(Integer categoryId) {
 		return productDao.getProductListByParentId(categoryId);
 	}
 
 	@Override
-	public List<UsedProduct> getProducts(Integer categoryId, Integer parentId, Integer start, Integer end, String status) {
-		String sortField1 = "p.price";
-		String sortField2 = "p.createTime";
+	public List<ProductInfoView> getProducts(Integer categoryId, Integer parentId, Integer start, Integer end, String status) {
+		String sortField1 = "price";
+		String sortField2 = "createTime";
 		String sort1 = "ASC";
 		String sort2 = "DESC";
 

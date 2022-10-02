@@ -31,7 +31,7 @@
 	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
-				<h4>管理二手商品區</h4>
+				<h4>訂單紀錄</h4>
 		</div>
 
 		<div class="d-flex">
@@ -39,30 +39,26 @@
 				<table class="table table-striped table-bordered" style="table-layout: fixed;">
 				  <thead>
 				    <tr>
-				      <th scope="col" style="width: 50px">#</th>
-				      <th scope="col">圖片</th>
-				      <th scope="col">商品名稱</th>
-				      <th scope="col">價格</th>
+				      <th scope="col">訂單編號</th>
+				      <th scope="col">訂單時間</th>
+				      <th scope="col">訂單金額</th>
+				      <th scope="col">付款方式</th>
+				      <th scope="col">明細</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				  <c:forEach var="product" items="${productList}" varStatus="status">
+				  <c:forEach var="order" items="${orderList}" >
 				    <tr>
-				    	<td>${status.index + 1}</td>
-				        <td>${product.cover}</td>
+				    	<td>${order.id}</td>
+				        <td>${order.createTime}</td>
+						<td>$${order.totalPrice}</td>
+						<td>信用卡</td>
 					    <td>
-					    	<a href="<c:url value='/ProductService/showProduct'>
-							<c:param name="productId" value="${product.id}" />
-							</c:url>">${product.name}
+					    	<a href="<c:url value='/OrderService/showOrderInfo'>
+							<c:param name="orderId" value="${order.id}" />
+							</c:url>">檢視明細
 							</a></td>
-						<td>${product.price}</td>
-						<td><a 
-							href="<c:url value='/ProductService/deleteProduct'>
-							<c:param name="memberId" value='${sessionScope.loginMember.id}'/>
-							<c:param name="id" value="${product.id}"/>
-							</c:url>">
-							下架
-							</a></td>
+						
 				    </tr>
 			      </c:forEach>
 				  </tbody>
