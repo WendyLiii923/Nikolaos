@@ -49,9 +49,13 @@
                 headers: {'Content-Type': 'application/json'},
             }
         ).then(res => {
-            if (res.ok) {
-                window.location.reload()
-            }
+            return res.json()
+        }).then(result => {
+            Object.keys(result).forEach(function(key, index) {
+                let msg = result[key];
+                window.alert(msg);
+                window.location.reload();
+            });
         })
     }
 </script>

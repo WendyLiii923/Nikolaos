@@ -1,6 +1,7 @@
 package com.java18.nikolaos.used.controller;
 
 import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedCollectView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -69,7 +70,7 @@ public class CollectController {
         if(map.containsKey("success")){
             return ResponseEntity.ok(collectService.addNewCollect(productId, member.getId()));
         }
-        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }
 
     @DeleteMapping(path = "/remove", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -96,7 +97,7 @@ public class CollectController {
             map.put("fail","未指定商品");
             return map;
         }
-        UsedProduct product = productService.getProduct(productId);
+        ProductInfoView product = productService.getProduct(productId);
         System.out.println("product="+product);
         if(product == null){
             map.put("fail","找不到該項商品");

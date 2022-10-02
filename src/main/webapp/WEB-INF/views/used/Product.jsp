@@ -62,15 +62,37 @@
 				</div>
 			</div>
 			<br>
-			<div align="center">
-				<form action="<c:url value='/CartService/addCart' />">
-					<input type="hidden" name="productId" value="${product.id}">
-					<input type="hidden" name="productQty" value="1"> 
-					<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'> 
-					<input type="submit" value="加入購物車">
-				</form>
+			<div class="d-flex justify-content-center">
+				<div style="width: 100px">
+					<button class="btn btn-info" onclick="addCollect(${product.id})">加入收藏</button>
+				</div>
+				<div style="width: 100px">
+					<form action="<c:url value='/CartService/addCart' />">
+						<input type="hidden" name="productId" value="${product.id}">
+						<input type="hidden" name="productQty" value="1">
+						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+						<input class="btn btn-primary" type="submit" value="加入購物車">
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script>
+	function addCollect(productId){
+		fetch('/nikolaos/CollectService/add?productId='+productId,
+			{
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+			}
+		).then(res => {
+			return res.json()
+		}).then(result => {
+			Object.keys(result).forEach(function(key, index) {
+				let msg = result[key];
+				window.alert(msg);
+			});
+		})
+	}
+</script>
 </html>
