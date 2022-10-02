@@ -1,5 +1,6 @@
 package com.java18.nikolaos.used.controller;
 
+import com.java18.nikolaos.used.model.Members;
 import com.java18.nikolaos.used.model.UsedCollectView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -22,6 +23,7 @@ import java.util.Map;
 import static com.java18.nikolaos.used.model.service.impl.ProductServiceImpl.PRODUCT_STATUS_PUBLISHED;
 
 @Controller
+@SessionAttributes("loginMember")
 @RequestMapping("/CollectService")
 public class CollectController {
 
@@ -36,11 +38,11 @@ public class CollectController {
             Model model,
             @RequestParam(defaultValue = "1") Integer currentPage,
             @RequestParam(defaultValue = "10") Integer limit,
-            @RequestParam Integer memberId
+            @SessionAttribute("loginMember") Members member
     ){
         Sort sort = new Sort(Direction.DESC, new String[]{"createTime"});
         PageInfo pageInfo = new PageInfo(limit, currentPage, sort);
-        Page<UsedCollectView> collectPage = collectService.getCurrentPageCollectList(memberId, pageInfo);
+        Page<UsedCollectView> collectPage = collectService.getCurrentPageCollectList(member.getId(), pageInfo);
         model.addAttribute("collectPage", collectPage);
         return "used/Collect";
     }
@@ -49,24 +51,23 @@ public class CollectController {
     public ResponseEntity<Page<UsedCollectView>> getCollectList(
             @RequestParam(defaultValue = "1") Integer currentPage,
             @RequestParam(defaultValue = "10") Integer limit,
-            @RequestParam Integer memberId
+            @SessionAttribute("loginMember") Members member
     ){
         Sort sort = new Sort(Direction.DESC, new String[]{"createTime"});
         PageInfo pageInfo = new PageInfo(limit, currentPage, sort);
-        return ResponseEntity.ok(collectService.getCurrentPageCollectList(memberId, pageInfo));
+        return ResponseEntity.ok(collectService.getCurrentPageCollectList(member.getId(), pageInfo));
     }
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Map<String,String>> addNewCollect(
-            @RequestBody Map<String, Integer> data
+            @RequestParam Integer productId,
+            @SessionAttribute("loginMember") Members member
     ){
-        Integer productId = data.get("productId");
-        Integer memberId = data.get("memberId");
         Map<String, String> map;
-        map = checkProductAndMemberStatus(productId, memberId);
+        map = checkProductAndMemberStatus(productId, member.getId());
         if(map.containsKey("success")){
-            return ResponseEntity.ok(collectService.addNewCollect(productId, memberId));
+            return ResponseEntity.ok(collectService.addNewCollect(productId, member.getId()));
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }
@@ -74,14 +75,13 @@ public class CollectController {
     @DeleteMapping(path = "/remove", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Map<String,String>> removeCollect(
-            @RequestBody Map<String, Integer> data
+            @RequestParam Integer productId,
+            @SessionAttribute("loginMember") Members member
     ){
-        Integer productId = data.get("productId");
-        Integer memberId = data.get("memberId");
         Map<String, String> map;
-        map = checkProductAndMemberStatus(productId, memberId);
+        map = checkProductAndMemberStatus(productId, member.getId());
         if(map.containsKey("success")){
-            return ResponseEntity.ok(collectService.deleteCollect(productId, memberId));
+            return ResponseEntity.ok(collectService.deleteCollect(productId, member.getId()));
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }

@@ -30,7 +30,7 @@
                                         <button type="button" class="btn btn-sm btn-outline-secondary"
                                                 onclick="window.location.href='/nikolaos/ProductService/showProduct?productId=${collect.productId}'">前往商品頁
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">移除收藏</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="removeCollect(${collect.productId})">移除收藏</button>
                                     </div>
                                 </div>
                             </div>
@@ -41,4 +41,18 @@
         </div>
     </div>
 </body>
+<script>
+    function removeCollect(productId){
+        fetch('/nikolaos/CollectService/remove?productId='+productId,
+            {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+            }
+        ).then(res => {
+            if (res.ok) {
+                window.location.reload()
+            }
+        })
+    }
+</script>
 </html>
