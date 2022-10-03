@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java18.nikolaos.register.model.MemberBean;
 import com.java18.nikolaos.register.model.service.MemberService;
-import com.java18.nikolaos.register.test.GlobalService;
+import com.java18.nikolaos.register.util.GlobalService;
 import com.java18.nikolaos.register.validator.MemberBeanValidator;
 
 @Controller
