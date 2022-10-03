@@ -31,7 +31,7 @@
 			<div
 				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
 				style="height: 50px; background-color: #515151">
-				<h4>上架二手商品</h4>
+				<h4>修改商品資訊</h4>
 			</div>
 
 

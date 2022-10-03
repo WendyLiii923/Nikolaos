@@ -57,7 +57,7 @@ public class ProductController {
 		model.addAttribute("productInfo", productService.getProductInfo(productId));
 		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/MemberProducts";
+		return "/used/ProductUpdate";
 	}
 	
 	@RequestMapping("/showUpdateForm")
@@ -153,24 +153,17 @@ public class ProductController {
 		return productService.getProducts(categoryId, parentId, start, end, status);
 	}
 	
-//	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@PostMapping
-//	@ResponseBody
-//	public UsedProduct createProduct(@RequestBody UsedProduct body) {
-//		return productService.createProduct(body.getName(),body.getPrice(), body.getContent(), body.getMember(), body.getCategory(), body.getCover(), body.getStatus());
-//	}
-	
 	@DeleteMapping
 	@ResponseBody
 	public HashMap<String, String> deleteProduct(@RequestParam Integer id) {
 		return productService.deleteProduct(id);
 	}
 	
-	@PutMapping
-	@ResponseBody
-	public UsedProduct updateProduct(@RequestBody UsedProduct body) {
-		return productService.updateProduct(body);
-	}
+//	@PutMapping
+//	@ResponseBody
+//	public UsedProduct updateProduct(@RequestBody UsedProduct body) {
+//		return productService.updateProduct(body);
+//	}
 	
 
 }
