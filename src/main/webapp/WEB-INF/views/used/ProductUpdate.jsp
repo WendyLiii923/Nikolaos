@@ -38,7 +38,7 @@
 			<div class="d-flex justify-content-center pt-5">
 				<div class="card shadow">
 				  <div class="card-body">
-				  	<form action="<c:url value='/ProductService/updateProduct' />" enctype="multipart/form-data">
+				  	<form action="<c:url value='/ProductService/updateProduct' />" method="POST" enctype="multipart/form-data">
 						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<input type='hidden' name='productId' value='${productInfo.id}'>
 						<div class="form-group">

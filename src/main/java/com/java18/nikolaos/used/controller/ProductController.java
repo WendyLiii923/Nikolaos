@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,12 +50,13 @@ public class ProductController {
 		if (cover != null) {
 			String coverLink = imageService.upload(cover);
 			usedProduct.setCover(coverLink);
+			System.out.println(coverLink);
 		}
 		model.addAttribute("product", productService.updateProduct(usedProduct));
 		model.addAttribute("productInfo", productService.getProductInfo(productId));
 		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/ProductUpdate";
+		return "/used/MemberProducts";
 	}
 	
 	@RequestMapping("/showUpdateForm")
@@ -159,11 +158,4 @@ public class ProductController {
 		return productService.deleteProduct(id);
 	}
 	
-//	@PutMapping
-//	@ResponseBody
-//	public UsedProduct updateProduct(@RequestBody UsedProduct body) {
-//		return productService.updateProduct(body);
-//	}
-	
-
 }
