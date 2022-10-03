@@ -50,12 +50,14 @@
 					<table class="table table-striped table-bordered"
 						style="table-layout: fixed;">
 						<tr>
+							<td><img class="bd-placeholder-img card-img-top" 
+				  			width="100%" height="225"
+				  			src="${product.cover}"></td>
 							<td>商品ID:${product.id}</td>
 							<td>${product.name}</td>
 							<td>${product.createTime}</td>
 							<td>${product.content}</td>
 							<td>賣家ID:${product.memberId}</td>
-							<td>圖片：${product.cover}</td>
 							<td>價格:${product.price}</td>
 						</tr>
 					</table>

@@ -14,7 +14,7 @@ public interface ProductDao {
 	public List<UsedProduct> getProductListByMemberId(Integer memberId);
 	
 	// 查單項商品資料
-	public ProductInfoView getProduct(Integer id);
+	public ProductInfoView getProductInfo(Integer id);
 	// 查所有商品清單
 	public List<ProductInfoView> getProductList();
 	// 查父層分類商品清單
@@ -22,6 +22,8 @@ public interface ProductDao {
 	// 用分類或排序或價格區間 查詢商品清單
 	public List<ProductInfoView> getProductListByQuery(Integer categoryId, Integer start, Integer end, String sortField, String sort);
 	
+	// 查單項商品資料
+	public UsedProduct getProduct(Integer id);
 	// 刪除商品
 	public HashMap<String, String> deleteProduct(Integer id);
 	// 修改商品

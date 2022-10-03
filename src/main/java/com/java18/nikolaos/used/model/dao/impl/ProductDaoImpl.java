@@ -16,9 +16,10 @@ import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 @Repository
 public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao {
 
-	private String selectProductById = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE id=:productId";
+	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE id=:productId";
 	private String selectProductByMemberId = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE memberId=:memberId";
 	
+	private String selectProductInfoById = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE id=:productId";
 	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.ProductInfoView";
 	private String selectProductByParentId = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE parentId=:categoryId";
 	private String selectProductByQuery = "FROM com.java18.nikolaos.used.model.ProductInfoView";
@@ -50,8 +51,15 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao
 	}
 	
 	@Override
-	public ProductInfoView getProduct(Integer id) {
-		Query<ProductInfoView> query = getSession().createQuery(selectProductById, ProductInfoView.class);
+	public ProductInfoView getProductInfo(Integer id) {
+		Query<ProductInfoView> query = getSession().createQuery(selectProductInfoById, ProductInfoView.class);
+		query.setParameter("productId", id);
+		return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
+	}
+	
+	@Override
+	public UsedProduct getProduct(Integer id) {
+		Query<UsedProduct> query = getSession().createQuery(selectProductById, UsedProduct.class);
 		query.setParameter("productId", id);
 		return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
 	}
@@ -137,7 +145,11 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao
 			find.setParameter("productId", usedProduct.getId());
 			List<UsedProduct> list = find.list();
 			UsedProduct updateItem = list.get(0);
+			updateItem.setName(usedProduct.getName());
 			updateItem.setPrice(usedProduct.getPrice());
+			updateItem.setContent(usedProduct.getContent());
+			updateItem.setCategoryId(usedProduct.getCategoryId());
+			updateItem.setCover(usedProduct.getCover());
 			getSession().save(updateItem);
 		} catch (Exception e) {
 			e.printStackTrace();

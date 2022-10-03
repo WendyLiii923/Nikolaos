@@ -33,6 +33,43 @@ public class ProductController {
 	@Autowired
 	private ImageService imageService;
 	
+	@RequestMapping("/updateProduct")
+	public String updateProduct(Model model,
+			@RequestParam(required = false) Integer memberId,
+			@RequestParam(required = false) Integer productId,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) Integer price,
+			@RequestParam(required = false) String content,
+			@RequestParam(required = false) Integer categoryId,
+			@RequestParam(required = false) MultipartFile cover
+			) {
+		UsedProduct usedProduct = productService.getProduct(productId);
+		usedProduct.setId(productId);
+		usedProduct.setName(name);
+		usedProduct.setPrice(price);
+		usedProduct.setContent(content);
+		usedProduct.setCategoryId(categoryId);
+		if (cover != null) {
+			String coverLink = imageService.upload(cover);
+			usedProduct.setCover(coverLink);
+		}
+		model.addAttribute("product", productService.updateProduct(usedProduct));
+		model.addAttribute("productInfo", productService.getProductInfo(productId));
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
+	@RequestMapping("/showUpdateForm")
+	public String newProduct(Model model,
+			@RequestParam(required = false) Integer productId
+			
+			) {
+		model.addAttribute("productInfo", productService.getProductInfo(productId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/ProductUpdate";
+	}
+	
 	@RequestMapping("/deleteProduct")
 	public String deleteProduct(Model model,
 			@RequestParam(required = false) Integer memberId,
@@ -97,7 +134,7 @@ public class ProductController {
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
             @RequestParam(defaultValue = "") String status) {
-		ProductInfoView getProduct = productService.getProduct(productId);
+		ProductInfoView getProduct = productService.getProductInfo(productId);
 		model.addAttribute("product", getProduct);
 		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(getProduct.getParentId()));
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));

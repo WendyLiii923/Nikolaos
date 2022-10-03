@@ -29,7 +29,7 @@
 		</c:forEach>
 		</div>
 	</div>
-	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
 			<div>
@@ -82,7 +82,7 @@
 				<table class="table table-striped table-bordered" style="table-layout: fixed;">
 				  <thead>
 				    <tr>
-				      <th scope="col" style="width: 50px">#</th>
+<!-- 				      <th scope="col" style="width: 50px">#</th> -->
 				      <th scope="col">圖片</th>
 				      <th scope="col">商品名稱</th>
 				      <th scope="col">價格</th>
@@ -90,9 +90,25 @@
 				  </thead>
 				  <tbody>
 				  <c:forEach var="product" items="${productList}" varStatus="status">
+<!-- 				  	<div class="col"> -->
+<!-- 				  		<img class="bd-placeholder-img card-img-top"  -->
+<!-- 				  			width="100%" height="225" -->
+<%-- 				  			src="${product.cover}"> --%>
+				  			
+<!-- 				  		<div class="card-body"> -->
+<!-- 				  			<p class="card-text"> -->
+<%-- 				  				<a href="<c:url value='/ProductService/showProduct'> --%>
+<%-- 								<c:param name="productId" value="${product.id}"/> --%>
+<%-- 								</c:url>">${product.name} --%>
+<!-- 								</a><br> -->
+<%-- 								$ ${collect.price}</p> --%>
+<!-- 				  		</div>	 -->
+<!-- 				  	</div> -->
 				    <tr>
-				    	<td>${status.index + 1}</td>
-				        <td>${product.cover}</td>
+<%-- 				    	<td>${status.index + 1}</td> --%>
+				        <td><img class="bd-placeholder-img card-img-top" 
+				  			width="100%" height="225"
+				  			src="${product.cover}"></td>
 					    <td>
 					    	<a href="<c:url value='/ProductService/showProduct'>
 							<c:param name="productId" value="${product.id}"/>
