@@ -64,19 +64,21 @@
 				</div>
 			</div>
 			<br>
-			<div class="d-flex justify-content-center">
-				<div style="width: 100px">
-					<button class="btn btn-info" onclick="addCollect(${product.id})">加入收藏</button>
+			<c:if test="${not empty sessionScope.loginMember}">
+				<div class="d-flex justify-content-center">
+					<div style="width: 100px">
+						<button class="btn btn-info" onclick="addCollect(${product.id})">加入收藏</button>
+					</div>
+					<div style="width: 100px">
+						<form action="<c:url value='/CartService/addCart' />">
+							<input type="hidden" name="productId" value="${product.id}">
+							<input type="hidden" name="productQty" value="1">
+							<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+							<input class="btn btn-primary" type="submit" value="加入購物車">
+						</form>
+					</div>
 				</div>
-				<div style="width: 100px">
-					<form action="<c:url value='/CartService/addCart' />">
-						<input type="hidden" name="productId" value="${product.id}">
-						<input type="hidden" name="productQty" value="1">
-						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-						<input class="btn btn-primary" type="submit" value="加入購物車">
-					</form>
-				</div>
-			</div>
+			</c:if>
 		</div>
 	</div>
 </body>
