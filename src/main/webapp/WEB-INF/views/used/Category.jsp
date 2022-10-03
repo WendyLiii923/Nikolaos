@@ -144,11 +144,9 @@
 															<c:param name="productId" value="${product.id}"/>
 														</c:url>">${product.name}
 													</a>
+													<span style="font-weight: 400;"> - $${product.price}</span>
 												</h4>
 												<p>${product.content}</p>
-												<h4>
-													價錢：$${product.price}
-												</h4>
 							  				</div>
 							  				<c:if test="${not empty sessionScope.loginMember}">
 								  				<div class="w-100 d-flex mt-2">
