@@ -36,9 +36,9 @@ public class ProductController {
 	@RequestMapping("/deleteProduct")
 	public String deleteProduct(Model model,
 			@RequestParam(required = false) Integer memberId,
-			@RequestParam(required = false) Integer id
+			@RequestParam(required = false) Integer productId
 			) {
-		model.addAttribute("product", productService.deleteProduct(id));
+		model.addAttribute("product", productService.deleteProduct(productId));
 		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/MemberProducts";
