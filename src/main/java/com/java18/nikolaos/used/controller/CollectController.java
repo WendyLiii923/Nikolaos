@@ -1,43 +1,34 @@
 package com.java18.nikolaos.used.controller;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import static com.java18.nikolaos.used.model.service.impl.ProductServiceImpl.PRODUCT_STATUS_PUBLISHED;
 
 import java.util.HashMap;
 import java.util.Map;
 
-=======
-import com.java18.nikolaos.used.model.Members;
-import com.java18.nikolaos.used.model.ProductInfoView;
-import com.java18.nikolaos.used.model.UsedCollectView;
-import com.java18.nikolaos.used.model.UsedProduct;
-import com.java18.nikolaos.used.model.service.ProductService;
-import com.java18.nikolaos.used.model.service.CollectService;
-import com.java18.nikolaos.used.model.util.Page;
-import com.java18.nikolaos.used.model.util.PageInfo;
-import com.java18.nikolaos.used.model.util.PageInfo.Sort;
-import com.java18.nikolaos.used.model.util.PageInfo.Sort.Direction;
->>>>>>> 8295c552b60b5263c4e6c854a43682a8f2b074f6
+//>>>>>>> 8295c552b60b5263c4e6c854a43682a8f2b074f6
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
+//=======
+import org.springframework.ui.Model;
+//>>>>>>> 8295c552b60b5263c4e6c854a43682a8f2b074f6
+//<<<<<<< HEAD
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-=======
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
->>>>>>> 8295c552b60b5263c4e6c854a43682a8f2b074f6
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+//=======
+import com.java18.nikolaos.used.model.Members;
 import com.java18.nikolaos.used.model.ProductInfoView;
-import com.java18.nikolaos.used.model.UsedCollect;
+import com.java18.nikolaos.used.model.UsedCollectView;
 import com.java18.nikolaos.used.model.service.CollectService;
 import com.java18.nikolaos.used.model.service.ProductService;
 import com.java18.nikolaos.used.model.util.Page;
