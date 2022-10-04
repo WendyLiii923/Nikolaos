@@ -8,51 +8,82 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table
 public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-//	@ManyToOne(cascade = CascadeType.ALL)		
+//	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "member_id")
-//	private 	Members member_id;
+//	private Members member_id;
 
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+//	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp 
 	private Date order_date;
 
 	private String shipping_address;
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-	Date shipping_date;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@Column(insertable = false)
+	private Timestamp shipping_date;
 
 	private String recipient;
 
 	@Column(columnDefinition = "decimal(11,1) NOT NULL")
 	private Double total_amount;
 
-	@Column(columnDefinition = "default 0")
-	private Boolean cancel_tag;
+	private boolean cancel_tag;
 
-	@Column(columnDefinition = "default 0")
-	private Boolean ok_tag;
+	private boolean ok_tag;
 	private String recip_phone;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	private Integer shipping_method;
-
+	
 	public Orders() {
 	}
 
-	public Orders(Integer id, Date order_date, String shipping_address, Date shipping_date, String recipient,
-			Double total_amount, Boolean cancel_tag, Boolean ok_tag, String recip_phone) {
+//	public Orders(Integer id, Timestamp order_date, String shipping_address, Timestamp shipping_date, String recipient,
+//			Double total_amount, Boolean cancel_tag, Boolean ok_tag, String recip_phone) {
+//		super();
+//		this.id = id;
+//		this.order_date = order_date;
+//		this.shipping_address = shipping_address;
+//		this.shipping_date = shipping_date;
+//		this.recipient = recipient;
+//		this.total_amount = total_amount;
+//		this.cancel_tag = cancel_tag;
+//		this.ok_tag = ok_tag;
+//		this.recip_phone = recip_phone;
+//	}
+
+	public Orders(String shipping_address, String recipient, Double total_amount, String recip_phone
+//			,Members member_id
+			) {
+		super();
+		this.shipping_address = shipping_address;
+		this.recipient = recipient;
+		this.total_amount = total_amount;
+		this.recip_phone = recip_phone;
+//		this.member_id = member_id;
+	}
+
+
+
+	public Orders(Integer id, 
+//			Members member_id,
+			Date order_date, String shipping_address, Timestamp shipping_date,
+			String recipient, Double total_amount, boolean cancel_tag, boolean ok_tag, String recip_phone) {
 		super();
 		this.id = id;
+//		this.member_id = member_id;
 		this.order_date = order_date;
 		this.shipping_address = shipping_address;
 		this.shipping_date = shipping_date;
@@ -63,14 +94,12 @@ public class Orders {
 		this.recip_phone = recip_phone;
 	}
 
-	
-	public Orders( String shipping_address, String recipient, Double total_amount,
-			 String recip_phone) {
-		super();
-		this.shipping_address = shipping_address;
-		this.recipient = recipient;
-		this.total_amount = total_amount;
-		this.recip_phone = recip_phone;
+	public void setCancel_tag(boolean cancel_tag) {
+		this.cancel_tag = cancel_tag;
+	}
+
+	public void setOk_tag(boolean ok_tag) {
+		this.ok_tag = ok_tag;
 	}
 
 	public Integer getId() {
@@ -87,14 +116,6 @@ public class Orders {
 
 	public void setOk_tag(Boolean ok_tag) {
 		this.ok_tag = ok_tag;
-	}
-
-	public void setOrder_date(Date order_date) {
-		this.order_date = order_date;
-	}
-
-	public void setShipping_date(Date shipping_date) {
-		this.shipping_date = shipping_date;
 	}
 
 	public Integer getOrder_id() {
@@ -117,7 +138,7 @@ public class Orders {
 		return order_date;
 	}
 
-	public void setOrder_date(Timestamp order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
 
@@ -129,7 +150,7 @@ public class Orders {
 		this.shipping_address = shipping_address;
 	}
 
-	public Date getShipping_date() {
+	public Timestamp getShipping_date() {
 		return shipping_date;
 	}
 

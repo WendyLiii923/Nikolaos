@@ -28,7 +28,6 @@ public class OrdersDaoImpl implements OrdersDao {
 
 	@Override
 	public Orders findById(Integer id) {
-		System.out.println("1111");
 		Session session = factory.getCurrentSession();
 		return session.get(Orders.class, id);
 	}
@@ -36,13 +35,18 @@ public class OrdersDaoImpl implements OrdersDao {
 	@Override
 	public void updateOrder(Orders orders) {
 		Session session = factory.getCurrentSession();
-		session.update(orders);
+		Orders oo=session.get(Orders.class, orders.getId());
+		oo.setShipping_address(orders.getShipping_address());
+		oo.setRecip_phone(orders.getRecip_phone());
+		oo.setRecipient(orders.getRecipient());
+		session.evict(oo);
+		session.saveOrUpdate(orders);
 	}
 
 	@Override
 	public List<Orders> findAllOrders() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Orders ";
+		String hql = "FROM Orders";//Entity=java class name
 		List<Orders> orders = session.createQuery(hql, Orders.class).getResultList();
 		return orders;
 	}

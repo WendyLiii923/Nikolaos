@@ -28,8 +28,6 @@ public class OrderServiceImpl implements OrdersService {
 
 	@Override
 	public Orders findById(Integer id) {
-		System.out.println(id);
-		System.out.println("os");
 		return od.findById(id);
 	}
 

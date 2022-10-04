@@ -14,7 +14,6 @@ public interface OrdersDao {
 	// 更新訂單內容
 	void updateOrder(Orders orders);
 
-
 	// 查詢所有訂單
 	List<Orders> findAllOrders();
 
