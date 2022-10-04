@@ -8,10 +8,10 @@
 			<title>Insert title here</title>
 			<script>
 				window.onload = function () {
-					let btn = document.getElementById("btn");
-					let btn2 = document.getElementById("btn2");
-					let btn3 = document.getElementById("btn3");
-					let btn4 = document.getElementById("btn4");
+					let selectOrder = document.getElementById("selectOrder");
+					let orderAll = document.getElementById("orderAll");
+					let orderOk = document.getElementById("orderOk");
+					let orderUnok = document.getElementById("orderUnok");
 					let btnAddOrder = document.getElementById("addOrder");
 
 
@@ -47,7 +47,7 @@
 						xhr.send(requestString);
 
 					}
-					btn4.onclick = function () {
+					orderUnok.onclick = function () {
 						let dataArea = document.getElementById("dataArea");
 						var xhr = new XMLHttpRequest();
 						xhr.onreadystatechange = function () {
@@ -58,7 +58,7 @@
 						xhr.open("GET", "<c:url value='/orders/ordersAll' />");
 						xhr.send();
 					}
-					btn3.onclick = function () {
+					orderOk.onclick = function () {
 						let dataArea = document.getElementById("dataArea");
 						var xhr = new XMLHttpRequest();
 						xhr.onreadystatechange = function () {
@@ -70,7 +70,7 @@
 						xhr.send();
 						false
 					}
-					btn2.onclick = function () {
+					orderAll.onclick = function () {
 						let dataArea = document.getElementById("dataArea");
 						var xhr = new XMLHttpRequest();
 						xhr.onreadystatechange = function () {
@@ -82,7 +82,7 @@
 						xhr.send();
 					}
 
-					btn.onclick = function () {
+					selectOrder.onclick = function () {
 						var orderId = document.getElementById("orderId");
 						if (orderId.value == "") {
 							alert("請輸入數字")
@@ -208,10 +208,10 @@
 				<!-- 			<select id='city'> -->
 				<!-- 			  <option value='Asia/Taipei'>台北</option> -->
 				<!-- 			</select> -->
-				<button id="btn">查詢訂單</button>
-				<button id="btn2">全部訂單</button>
-				<button id='btn3'>完成配送訂單</button>
-				<button id="btn4">未配送訂單</button>
+				<button id="selectOrder">查詢訂單</button>
+				<button id="orderAll">全部訂單</button>
+				<button id='orderOk'>完成配送訂單</button>
+				<button id="orderUnok">未配送訂單</button>
 
 
 
