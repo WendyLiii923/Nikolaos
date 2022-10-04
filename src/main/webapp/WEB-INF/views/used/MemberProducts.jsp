@@ -10,7 +10,7 @@
 </head>
 <body>
 <%@ include file="../include/TopBar.jsp" %>
-
+<%@ include file="../include/LoginModal.jsp" %>
 <div class="d-flex" style="height: calc(100vh - 56px)">
 	<div class="h-100 p-3 border-right" style="width: 200px">
 		<div class="list-group list-group-flush">
@@ -28,7 +28,7 @@
 		</c:forEach>
 		</div>
 	</div>
-	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
 				<h4>管理二手商品區</h4>
@@ -49,7 +49,9 @@
 				  <c:forEach var="product" items="${productList}" varStatus="status">
 				    <tr>
 				    	<td>${status.index + 1}</td>
-				        <td>${product.cover}</td>
+				        <td><img class="bd-placeholder-img card-img-top" 
+				  			style="height:150px;"
+				  			src="${product.cover}"></td>
 					    <td>
 					    	<a href="<c:url value='/ProductService/showProduct'>
 							<c:param name="productId" value="${product.id}" />
@@ -57,9 +59,16 @@
 							</a></td>
 						<td>${product.price}</td>
 						<td><a 
+							href="<c:url value='/ProductService/showUpdateForm'>
+							<c:param name="memberId" value='${sessionScope.loginMember.id}'/>
+							<c:param name="productId" value="${product.id}"/>
+							</c:url>">
+							修改
+							</a></td>
+						<td><a 
 							href="<c:url value='/ProductService/deleteProduct'>
 							<c:param name="memberId" value='${sessionScope.loginMember.id}'/>
-							<c:param name="id" value="${product.id}"/>
+							<c:param name="productId" value="${product.id}"/>
 							</c:url>">
 							下架
 							</a></td>

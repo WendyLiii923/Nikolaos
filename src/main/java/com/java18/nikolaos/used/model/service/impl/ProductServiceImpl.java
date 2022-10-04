@@ -37,6 +37,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public ProductInfoView getProductInfo(Integer id) {
+		return productDao.getProductInfo(id);
+	}
+	
+	@Override
 	public UsedProduct getProduct(Integer id) {
 		return productDao.getProduct(id);
 	}

@@ -23,6 +23,8 @@
 		<a href="<c:url value='/OrderService/showOrderList' >
 			<c:param name='memberId' value='${sessionScope.loginMember.id}' />
 		</c:url>">會員歷史訂單</a><br>
+
+		<a href="<c:url value='/CollectService/showCollectList' />"> 我的收藏</a>
 	</div>
 
 </body>

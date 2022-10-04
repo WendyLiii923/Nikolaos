@@ -39,7 +39,9 @@
 						style="table-layout: fixed;">
 						<c:forEach var="cartInfo" items="${cartInfoList}">
 						<tr>
-							<td>商品ID: ${cartInfo.productId}</td>
+							<td><img class="bd-placeholder-img card-img-top" 
+				  			style="height:150px;" 
+				  			src="${cartInfo.cover}"></td>
 							<td>${cartInfo.name}</td>
 							<td>數量: ${cartInfo.productQty}</td>
 							<td>價格: ${cartInfo.price}</td>

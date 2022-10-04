@@ -10,6 +10,7 @@
 </head>
 <body>
 	<%@ include file="../include/TopBar.jsp"%>
+	<%@ include file="../include/LoginModal.jsp" %>
 
 	<div class="d-flex" style="height: calc(100vh - 56px)">
 		<div class="h-100 p-3 border-right" style="width: 200px">
@@ -40,7 +41,9 @@
 						style="table-layout: fixed;">
 						<c:forEach var="cartInfo" items="${cartInfoList}">
 							<tr>
-								<td>productId: ${cartInfo.productId}</td>
+								<td><img class="bd-placeholder-img card-img-top" 
+				  					style="height:150px;"
+				  					src="${cartInfo.cover}"></td>
 								<td>${cartInfo.name}</td>
 								<td>productQty: ${cartInfo.productQty}</td>
 								<td>price: ${cartInfo.price}</td>

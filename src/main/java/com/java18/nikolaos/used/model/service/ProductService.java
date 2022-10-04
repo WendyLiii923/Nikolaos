@@ -11,7 +11,7 @@ public interface ProductService {
 	UsedProduct createProduct(String name, Integer price, String content, Integer memberId, Integer categoryId,
 			String cover, String status);
 
-	UsedProduct getProduct(Integer id);
+	ProductInfoView getProductInfo(Integer id);
 	
 	List<UsedProduct> getProductListByMemberId(Integer memberId);
 
@@ -19,6 +19,8 @@ public interface ProductService {
 
 	List<ProductInfoView> getProducts(Integer categoryId, Integer parentId, Integer start, Integer end, String status);
 
+	UsedProduct getProduct(Integer id);
+	
 	HashMap<String, String> deleteProduct(Integer id);
 
 	UsedProduct updateProduct(UsedProduct usedProduct);

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.java18.nikolaos.used.model.UsedCollectView;
+import com.java18.nikolaos.used.model.dao.CollectViewDao;
+import com.java18.nikolaos.used.model.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.java18.nikolaos.used.model.UsedCollect;
 import com.java18.nikolaos.used.model.dao.CollectDao;
 import com.java18.nikolaos.used.model.service.CollectService;
-import com.java18.nikolaos.used.model.util.Page;
 import com.java18.nikolaos.used.model.util.PageInfo;
 
 @Service
@@ -20,6 +22,9 @@ public class CollectServiceImpl implements CollectService {
 
     @Autowired
     private CollectDao collectDao;
+
+    @Autowired
+    private CollectViewDao collectViewDao;
 
     @Override
 	public Map<String,String> addNewCollect(Integer productId, Integer memberId){
@@ -54,9 +59,9 @@ public class CollectServiceImpl implements CollectService {
     }
 
     @Override
-	public Page<UsedCollect> getCurrentPageCollectList(Integer memberId, PageInfo pageInfo){
-        List<UsedCollect> data = collectDao.getCollectListWithPage(memberId, pageInfo);
-        int totalElement = collectDao.getAllCollectList(memberId).size();
+	public Page<UsedCollectView> getCurrentPageCollectList(Integer memberId, PageInfo pageInfo){
+        List<UsedCollectView> data = collectViewDao.getCollectListWithPage(memberId, pageInfo);
+        int totalElement = collectViewDao.getUserAllCollectList(memberId).size();
         return new Page<>(data, pageInfo.getCurrentPage(), pageInfo.getLimit(), totalElement);
     }
 

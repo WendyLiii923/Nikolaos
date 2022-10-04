@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProductLaunch</title>
+<title>ProductUpdate</title>
 <%@ include file="../include/Header.jsp"%>
 </head>
 <body>
@@ -31,32 +31,32 @@
 			<div
 				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
 				style="height: 50px; background-color: #515151">
-				<h4>上架二手商品</h4>
+				<h4>修改商品資訊</h4>
 			</div>
 
 
 			<div class="d-flex justify-content-center pt-5">
 				<div class="card shadow">
 				  <div class="card-body">
-				  	<form action="<c:url value='/ProductService/uploadForm' />" method="POST" enctype="multipart/form-data">
+				  	<form action="<c:url value='/ProductService/updateProduct' />" method="POST" enctype="multipart/form-data">
 						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-						<input type='hidden' name='status' value='published'>
+						<input type='hidden' name='productId' value='${productInfo.id}'>
 						<div class="form-group">
 						    <label for="name">商品名稱</label>
-						    <input type="text" class="form-control" id="name" name="name">
+						    <input type="text" class="form-control" id="name" name="name" value="${productInfo.name}">
 						</div>
 						<div class="form-group">
 						    <label for="price">價格</label>
-						    <input type="number" class="form-control" id="price" name="price">
+						    <input type="number" class="form-control" id="price" name="price" value="${productInfo.price}">
 						</div>
 						<div class="mb-3">
 						    <label for="content">詳細資訊</label>
-						    <textarea class="form-control" id="content" name="content" placeholder="......"></textarea>
+						    <textarea class="form-control" id="content" name="content" placeholder="......">${productInfo.content}</textarea>
 					  	</div>
 					  	<div class="form-group">
-					      <label for="categoryId">State</label>
+					      <label for="categoryId">分類</label>
 					      <select id="categoryId" name="categoryId" class="form-control">
-					        <option selected>請選擇</option>
+					        <option selected value="${productInfo.categoryId}">${productInfo.categoryName}</option>
 					        <option value='4'>T恤</option>
 							<option value='5'>襯衫</option>
 							<option value='6'>褲子</option>
@@ -72,7 +72,7 @@
 							    <label class="custom-file-label" for="cover">Choose file...</label>
 						  	</div>
 					    </div>
-						<button class="btn btn-block btn-primary mt-3" type="submit">上架</button>
+						<button class="btn btn-block btn-primary mt-3" type="submit">確認修改</button>
 					</form>
 				  </div>
 				</div>

@@ -49,21 +49,6 @@ public class CollectDaoImpl extends BaseQuery<UsedCollect> implements CollectDao
     }
 
     @Override
-    public List<UsedCollect> getAllCollectList(Integer memberId) {
-        Query<UsedCollect> query = getSession().createQuery(selectCollectByMemberId, UsedCollect.class);
-        query.setParameter("memberId", memberId);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<UsedCollect> getCollectListWithPage(Integer memberId, PageInfo pageInfo) {
-        Query<UsedCollect> query = getSession().createQuery(selectCollectByMemberId, UsedCollect.class);
-        query.setParameter("memberId", memberId);
-        return getListWithPage(query, pageInfo);
-    }
-
-
-    @Override
     public UsedCollect getCollectByProductIdAndMemberId(Integer productId, Integer memberId) {
         Query<UsedCollect> query = getSession().createQuery(selectCollectByMemberIdAndProductId, UsedCollect.class);
         query.setParameter("memberId", memberId);

@@ -29,7 +29,7 @@
 		</c:forEach>
 		</div>
 	</div>
-	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
+	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
 			<div>
@@ -73,39 +73,126 @@
 				</form>
 			</div>
 			<div>
-				<i class="fa fa-2x fa-th-large mr-3 " aria-hidden="true"></i>
-				<i class="fa fa-2x fa-th-list" aria-hidden="true"></i>
+				<c:set var="q" value="${pageContext.request.queryString}" scope="page"/>
+				<a class="text-white" href='<c:url value="/ProductService/showProducts?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=card" />'>
+					<i class="fa fa-2x fa-th-large mr-3 " aria-hidden="true"></i>
+				</a>
+				<a class="text-white" href='<c:url value="/ProductService/showProducts?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=list" />'>
+					<i class="fa fa-2x fa-th-list" aria-hidden="true"></i>
+				</a>
 			</div>
 		</div>
 		<div class="d-flex">
-			<div class="p-3">
-				<table class="table table-striped table-bordered" style="table-layout: fixed;">
-				  <thead>
-				    <tr>
-				      <th scope="col" style="width: 50px">#</th>
-				      <th scope="col">圖片</th>
-				      <th scope="col">商品名稱</th>
-				      <th scope="col">價格</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  <c:forEach var="product" items="${productList}" varStatus="status">
-				    <tr>
-				    	<td>${status.index + 1}</td>
-				        <td>${product.cover}</td>
-					    <td>
-					    	<a href="<c:url value='/ProductService/showProduct'>
-							<c:param name="productId" value="${product.id}"/>
-							</c:url>">${product.name}
-							</a></td>
-						<td>${product.price}</td>
-				    </tr>
-			      </c:forEach>
-				  </tbody>
-				</table>
+			<div class="p-3 w-100">
+				<c:if test="${empty param.type or param.type == 'list'}">
+					<c:forEach var="product" items="${productList}">
+						<div class="d-flex shadow rounded p-2 mb-3" style="background-color: #f8f9fa!important">
+							<div class="overflow-hidden position-relative" style="height: 150px; width: 150px;">
+								<img class="position-absolute" style="height: 150px; left: 0; top: 0;" src="${product.cover}">
+							</div>
+							<div class="pl-3" style="height: 150px; width: calc(100% - 300px);">
+								<h4 style="font-weight: 700">
+									<a href="
+										<c:url value='/ProductService/showProduct'>
+											<c:param name="productId" value="${product.id}"/>
+										</c:url>">${product.name}
+									</a>
+								</h4>
+								<p>${product.content}</p>
+							</div>
+							<div class="pr-5" style="height: 150px; width: 150px;">
+								<div class="row mt-1">
+									<h4>
+										價錢：$${product.price}
+									</h4>
+								</div>
+								<c:if test="${not empty sessionScope.loginMember}">
+									<div class="row mt-2">
+										<button class="btn btn-info w-100" onclick="addCollect(${product.id})">加入收藏</button>
+									</div>
+									<div class="row mt-2">
+										<form class="w-100" action="<c:url value='/CartService/addCart' />">
+											<input type="hidden" name="productId" value="${product.id}">
+											<input type="hidden" name="productQty" value="1">
+											<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+											<input class="btn btn-primary w-100" type="submit" value="加入購物車">
+										</form>
+									</div>
+								</c:if>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${param.type == 'card'}">
+					<c:set var="rowCount" value="${productList.size() / 4}"/>
+					<c:set var="maxIndex" value="${productList.size() - 1}"/>
+					<c:forEach begin="0" step="4" end="${4 * rowCount}" varStatus="loopStatus">
+						<div class="d-flex">
+							<c:forEach begin="${loopStatus.index}" end="${loopStatus.index + 3 > maxIndex ? maxIndex : loopStatus.index + 3}" varStatus="innerLoopStatus">
+								<c:set var="product" value="${productList.get(innerLoopStatus.index)}"/>
+								<div class="w-25 p-3">
+									<div class="card shadow">
+							  			<div class="card-body">
+							  				<div class="w-100 d-flex justify-content-center" style="height: 150px">
+							  					<div class="overflow-hidden position-relative" style="height: 150px; width: 150px;">
+													<img class="position-absolute" style="height: 150px; left: 0; top: 0;" src="${product.cover}">
+												</div>
+							  				</div>
+							  				<div class="w-100 mt-3 px-3">
+							  					<h4 style="font-weight: 700">
+													<a href="
+														<c:url value='/ProductService/showProduct'>
+															<c:param name="productId" value="${product.id}"/>
+														</c:url>">${product.name}
+													</a>
+													<span style="font-weight: 400;"> - $${product.price}</span>
+												</h4>
+												<p>${product.content}</p>
+							  				</div>
+							  				<c:if test="${not empty sessionScope.loginMember}">
+								  				<div class="w-100 d-flex mt-2">
+													<div class="w-50 pr-1">
+														<button class="btn btn-info w-100" onclick="addCollect(${product.id})">加入收藏</button>
+													</div>
+													<div class="w-50 pl-1">
+														<form class="w-100" action="<c:url value='/CartService/addCart' />">
+															<input type="hidden" name="productId" value="${product.id}">
+															<input type="hidden" name="productQty" value="1">
+															<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+															<input class="btn btn-primary w-100" type="submit" value="加入購物車">
+														</form>
+													</div>
+								  				</div>
+											</c:if>
+							  			</div>
+						  			</div>
+								</div>
+							</c:forEach>
+						</div>
+						<br/>
+					</c:forEach>
+					
+				</c:if>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	function addCollect(productId){
+		fetch('/nikolaos/CollectService/add?productId='+productId,
+			{
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+			}
+		).then(res => {
+			return res.json()
+		}).then(result => {
+			Object.keys(result).forEach(function(key, index) {
+				let msg = result[key];
+				window.alert(msg);
+			});
+		})
+	}
+</script>
 </body>
 </html>
