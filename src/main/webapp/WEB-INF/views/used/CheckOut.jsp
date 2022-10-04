@@ -34,29 +34,61 @@
 				style="height: 50px; background-color: #515151">
 				<h4>資料確認</h4>
 			</div>
-
-			<div class="d-flex">
-				<div class="p-3">
-					<table class="table table-striped table-bordered"
-						style="table-layout: fixed;">
-						<c:forEach var="cartInfo" items="${cartInfoList}">
-							<tr>
-								<td><img class="bd-placeholder-img card-img-top" 
-				  					style="height:150px;"
-				  					src="${cartInfo.cover}"></td>
-								<td>${cartInfo.name}</td>
-								<td>productQty: ${cartInfo.productQty}</td>
-								<td>price: ${cartInfo.price}</td>
-							</tr>
+			<div class="d-flex justify-content-center px-5 pt-2">
+				<div class="card shadow w-100">
+					<div class="card-body">
+						<div class="row" style="height: 30px;">
+							<div class="col d-flex justify-content-center align-items-center">
+								<p>商品圖片</p>
+							</div>
+							<div class="col d-flex justify-content-center align-items-center">
+								<p>商品名稱</p>
+							</div>
+							<div class="col d-flex justify-content-center align-items-center">
+								<p>數量</p>
+							</div>
+							<div class="col d-flex justify-content-center align-items-center">
+								<p>價錢</p>
+							</div>
+						</div>
+						<hr/>
+						<c:set var="lastIndex" value="${cartInfoList.size() - 1}"/>
+						<c:forEach var="cartInfo" items="${cartInfoList}" varStatus="loopStatus">
+						<c:set var="isNotLastItem" value="${loopStatus.index != lastIndex}"/>
+							<div class="row my-1" style="height: 150px;">
+								<div class="col d-flex justify-content-center">
+									<div class="overflow-hidden position-relative" style="height: 150px; width: 150px;">
+										<img class="position-absolute" style="height: 150px; left: 0; top: 0;" src="${cartInfo.cover}">
+									</div>
+								</div>
+								<div class="col d-flex justify-content-center align-items-center">
+									<p>${cartInfo.name}</p>
+								</div>
+								<div class="col d-flex justify-content-center align-items-center">
+									<p>${cartInfo.productQty}</p>
+								</div>
+								<div class="col d-flex justify-content-center align-items-center">
+									<p>${cartInfo.price}</p>
+								</div>
+							</div>
+							<c:if test="${isNotLastItem}">
+								<hr/>
+							</c:if>
 						</c:forEach>
-					</table>
-					<div align='right'>
-<!-- 						<p>商品總金額: </p> -->
-<!-- 						<hr> -->
-						<h5>
-						運費: 60<br>
-						應付金額總計: ${totalPrice}
-						</h5>
+						<div class="d-flex justify-content-end align-items-center my-3" style="height: 50px; font-weight: 700;">
+							<table class="table table-borderless" style="width: 400px;">
+								<tbody style="font-weight: 700;">
+									<tr>
+										<td class="h3">運費：</td>
+										<td class="h3">60</td>
+									</tr>
+									<tr>
+										<td class="h3">應付金額總計：</td>
+										<td class="h3">${totalPrice}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
