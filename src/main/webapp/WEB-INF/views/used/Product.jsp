@@ -45,40 +45,45 @@
 				</h4>
 			</div>
 
-			<div class="d-flex">
-				<div class="p-3">
-					<table class="table table-striped table-bordered"
-						style="table-layout: fixed;">
-						<tr>
-							<td><img class="bd-placeholder-img card-img-top" 
-				  			width="100%" height="225"
-				  			src="${product.cover}"></td>
-							<td>商品ID:${product.id}</td>
-							<td>${product.name}</td>
-							<td>${product.createTime}</td>
-							<td>${product.content}</td>
-							<td>賣家ID:${product.memberId}</td>
-							<td>價格:${product.price}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<br>
-			<c:if test="${not empty sessionScope.loginMember}">
-				<div class="d-flex justify-content-center">
-					<div style="width: 100px">
-						<button class="btn btn-info" onclick="addCollect(${product.id})">加入收藏</button>
-					</div>
-					<div style="width: 100px">
-						<form action="<c:url value='/CartService/addCart' />">
-							<input type="hidden" name="productId" value="${product.id}">
-							<input type="hidden" name="productQty" value="1">
-							<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-							<input class="btn btn-primary" type="submit" value="加入購物車">
-						</form>
-					</div>
-				</div>
-			</c:if>
+			<div class="d-flex justify-content-center pt-5 px-5">
+				<div class="card shadow w-100">
+				  <div class="card-body">
+				  	<div class="row" style="height: 300px;">
+				  		<div class="col-4 p-3 px-4">
+				  			<div class="overflow-hidden position-relative" style="height: 100%; width: 100%;">
+								<img class="position-absolute" style="height: 100%; left: 0; top: 0;" src="${product.cover}">
+							</div>
+				  		</div>
+				  		<div class="col-8 p-3 px-4">
+				  			<h3 style="font-weight: 700;">${product.name}</h3>
+				  			<h4>$${product.price}</h4>
+	  						<p>
+	  							上架時間：${product.createTime}
+	  						</p>
+				  		</div>
+				  	</div>
+				  	<hr/>
+				  	<p>
+				  		${product.content}
+				  	</p>
+				  	<c:if test="${not empty sessionScope.loginMember}">
+						<div class="d-flex justify-content-center">
+							<div style="width: 100px">
+								<button class="btn btn-info" onclick="addCollect(${product.id})">加入收藏</button>
+							</div>
+							<div style="width: 100px">
+								<form action="<c:url value='/CartService/addCart' />">
+									<input type="hidden" name="productId" value="${product.id}">
+									<input type="hidden" name="productQty" value="1">
+									<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
+									<input class="btn btn-primary" type="submit" value="加入購物車">
+								</form>
+							</div>
+						</div>
+					</c:if>
+				  </div>
+			  	</div>
+		  	</div>
 		</div>
 	</div>
 </body>

@@ -86,7 +86,7 @@
 			<div class="p-3 w-100">
 				<c:if test="${empty param.type or param.type == 'list'}">
 					<c:forEach var="product" items="${productList}">
-						<div class="d-flex rounded p-2 mb-3" style="background-color: #f8f9fa!important">
+						<div class="d-flex shadow rounded p-2 mb-3" style="background-color: #f8f9fa!important">
 							<div class="overflow-hidden position-relative" style="height: 150px; width: 150px;">
 								<img class="position-absolute" style="height: 150px; left: 0; top: 0;" src="${product.cover}">
 							</div>
@@ -125,9 +125,10 @@
 				</c:if>
 				<c:if test="${param.type == 'card'}">
 					<c:set var="rowCount" value="${productList.size() / 4}"/>
+					<c:set var="maxIndex" value="${productList.size() - 1}"/>
 					<c:forEach begin="0" step="4" end="${4 * rowCount}" varStatus="loopStatus">
 						<div class="d-flex">
-							<c:forEach begin="${loopStatus.index}" end="${loopStatus.index + 3 > (productList.size() - 1) ? (productList.size() - 1) : loopStatus.index + 3}" varStatus="innerLoopStatus">
+							<c:forEach begin="${loopStatus.index}" end="${loopStatus.index + 3 > maxIndex ? maxIndex : loopStatus.index + 3}" varStatus="innerLoopStatus">
 								<c:set var="product" value="${productList.get(innerLoopStatus.index)}"/>
 								<div class="w-25 p-3">
 									<div class="card shadow">
