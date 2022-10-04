@@ -50,7 +50,7 @@
 				    <tr>
 				    	<td>${status.index + 1}</td>
 				        <td><img class="bd-placeholder-img card-img-top" 
-				  			width="100%" height="225"
+				  			style="height:150px;"
 				  			src="${product.cover}"></td>
 					    <td>
 					    	<a href="<c:url value='/ProductService/showProduct'>

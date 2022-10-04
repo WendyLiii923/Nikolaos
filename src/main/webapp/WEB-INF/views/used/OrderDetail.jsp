@@ -39,7 +39,9 @@
 						style="table-layout: fixed;">
 						<c:forEach var="orderInfo" items="${orderInfoList}">
 						<tr>
-							<td>productId: ${orderInfo.productId}</td>
+							<td><img class="bd-placeholder-img card-img-top" 
+				  			style="height:150px;"
+				  			src="${orderInfo.cover}"></td>
 							<td>${orderInfo.name}</td>
 							<td>productQty: ${orderInfo.productQty}</td>
 							<td>price: ${orderInfo.price}</td>

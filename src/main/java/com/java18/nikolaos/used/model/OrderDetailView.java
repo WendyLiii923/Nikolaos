@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_detail_view")
+@Table(name = "used_orderdetail_view")
 public class OrderDetailView {
 	
 	@Id
@@ -30,6 +30,9 @@ public class OrderDetailView {
 	
 	@Column(name = "price") // from product
 	private Integer price;
+	
+	@Column(name = "cover") // from product
+	private String cover;
 
 	public Integer getId() {
 		return id;
@@ -79,9 +82,12 @@ public class OrderDetailView {
 		this.price = price;
 	}
 
+	public String getCover() {
+		return cover;
+	}
 
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 
-	
-	
-	
 }
