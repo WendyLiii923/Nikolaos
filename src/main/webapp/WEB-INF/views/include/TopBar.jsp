@@ -53,8 +53,8 @@
 	                </svg>
 	              </a>
 	            </li>
-	            <li class="nav-item mx-2 ">
-	              <a href="" >
+	            <li class="nav-item mx-2 dropdown">
+	              <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; color: #007BFF">
 	                <svg
 	                  xmlns="http://www.w3.org/2000/svg"
 	                  width="30"
@@ -69,7 +69,18 @@
 	                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
 	                  />
 	                </svg>
-	              </a>
+	              </span>
+	              <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+				    <a class="dropdown-item" href="
+					    <c:url value='/OrderService/showOrderList' >
+							<c:param name='memberId' value='${sessionScope.loginMember.id}' />
+						</c:url>">歷史訂單</a>
+				    <a class="dropdown-item" href="<c:url value='/CollectService/showCollectList' />">我的收藏</a>
+				    <a class="dropdown-item" href="
+					    <c:url value='/ProductService/showMemberProducts' >
+							<c:param name='memberId' value='${sessionScope.loginMember.id}' />
+						</c:url>">我的商品管理</a>
+				  </div>
 	            </li>
             <!-- member -->
             </c:if>
