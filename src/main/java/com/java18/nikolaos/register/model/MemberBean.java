@@ -17,18 +17,18 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name="members")
 public class MemberBean implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column
-	Integer id;
-	String name;
-	String password;
-	String email;
-	String phone;
-	String address;
-	
-	
+    Integer id;
+    String name;
+    String password;
+    String email;
+    String phone;
+    String address;
+
+
 //	String userType;
 //	Timestamp registerTime;
 //	Double totalAmt;
@@ -37,40 +37,40 @@ public class MemberBean implements Serializable {
 //	String mimeType;
 //	Clob comment;
 //	Double unpaid_amount;
-	
+
 //	@Transient
 //	MultipartFile memberMultipartFile;
-	              
-	@Transient
-	String password1;
+
+    @Transient
+    String password1;
 
 
-	public MemberBean(Integer id, String name, String password, String email, String phone,
-			String address) {
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		
+    public MemberBean(Integer id, String name, String password, String email, String phone,
+                      String address) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+
 //		this.userType = userType;
 //		this.registerTime = registerTime;
 //		this.totalAmt = totalAmt;
 //		this.unpaid_amount = unpaid_amount;
-	}
+    }
 
 
-	public MemberBean() {
-	}
+    public MemberBean() {
+    }
 
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 //	public Clob getComment() {
 //		return comment;
@@ -92,49 +92,49 @@ public class MemberBean implements Serializable {
 //		this.totalAmt = totalAmt;
 //	}
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String mail) {
-		email = mail;
-	}
+    public void setEmail(String mail) {
+        email = mail;
+    }
 
 //	public void setRegisterTime(Timestamp registerTime) {
 //		this.registerTime = registerTime;
 //	}
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 //	public String getUserType() {
 //		return userType;
@@ -164,29 +164,29 @@ public class MemberBean implements Serializable {
 //		this.memberMultipartFile = memberMultipartFile;
 //	}
 
-	public String getPassword1() {
-		return password1;
-	}
+    public String getPassword1() {
+        return password1;
+    }
 
-	public void setPassword1(String password1) {
-		this.password1 = password1;
-	}
+    public void setPassword1(String password1) {
+        this.password1 = password1;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MemberBean [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", address=");
-		builder.append(address);
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("MemberBean [id=");
+        builder.append(id);
+        builder.append(", name=");
+        builder.append(name);
+        builder.append(", password=");
+        builder.append(password);
+        builder.append(", email=");
+        builder.append(email);
+        builder.append(", phone=");
+        builder.append(phone);
+        builder.append(", address=");
+        builder.append(address);
 //		builder.append(", userType=");
 //		builder.append(userType);
 //		builder.append(", registerTime=");
@@ -197,10 +197,9 @@ public class MemberBean implements Serializable {
 //		builder.append(comment);
 //		builder.append(", unpaid_amount=");
 //		builder.append(unpaid_amount);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
-}
+        builder.append("]");
+        return builder.toString();
+    }
 
+
+}

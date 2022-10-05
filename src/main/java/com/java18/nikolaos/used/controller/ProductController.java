@@ -47,11 +47,12 @@ public class ProductController {
 		usedProduct.setPrice(price);
 		usedProduct.setContent(content);
 		usedProduct.setCategoryId(categoryId);
-		if (cover != null) {
+
+		if (cover != null && !cover.isEmpty()) {
 			String coverLink = imageService.upload(cover);
 			usedProduct.setCover(coverLink);
-			System.out.println(coverLink);
 		}
+
 		model.addAttribute("product", productService.updateProduct(usedProduct));
 		model.addAttribute("productInfo", productService.getProductInfo(productId));
 		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
@@ -102,7 +103,7 @@ public class ProductController {
 		String coverLink = imageService.upload(cover);
 		model.addAttribute("product", productService.createProduct(name, price, content, memberId, categoryId, coverLink, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/ProductLaunch";
+		return "/used/MemberProducts";
 	}
 	
 	@RequestMapping("/showUploadForm")

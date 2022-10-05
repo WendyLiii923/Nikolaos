@@ -61,7 +61,7 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao
 	public UsedProduct getProduct(Integer id) {
 		Query<UsedProduct> query = getSession().createQuery(selectProductById, UsedProduct.class);
 		query.setParameter("productId", id);
-		return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
+		return getOne(query);
 	}
 
 	@Override

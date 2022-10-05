@@ -27,21 +27,6 @@
 				</td>
 			</tr>
 		</c:forEach>
-			<div>
-			<a href="<c:url value='/used' />">二手商品頁</a><br>
-
-			<a href="<c:url value='/ProductService/showUploadForm' />">上架商品</a><br>
-		
-			<a href="<c:url value='/ProductService/showMemberProducts' >
-			<c:param name='memberId' value='${sessionScope.loginMember.id}' />
-			</c:url>">會員商品管理區</a><br>
-		
-			<a href="<c:url value='/OrderService/showOrderList' >
-			<c:param name='memberId' value='${sessionScope.loginMember.id}' />
-			</c:url>">會員歷史訂單</a><br>
-
-			<a href="<c:url value='/CollectService/showCollectList' />"> 我的收藏</a>
-			</div>
 		</div>
 	</div>
 	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
