@@ -3,11 +3,15 @@ package com.java18.nikolaos.orders.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,15 +22,16 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_id")
 	private Integer id;
 
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "member_id")
-//	private Members member_id;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "member_id")
+	private Members members;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 //	@Temporal(TemporalType.TIMESTAMP)
-	@CreationTimestamp 
+	@CreationTimestamp
 	private Date order_date;
 
 	private String shipping_address;
@@ -40,13 +45,13 @@ public class Orders {
 	private Double total_amount;
 
 	private boolean cancel_tag;
-
+	@Transient
 	private boolean ok_tag;
 	private String recip_phone;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	private Integer shipping_method;
-	
+
 	public Orders() {
 	}
 
@@ -66,7 +71,7 @@ public class Orders {
 
 	public Orders(String shipping_address, String recipient, Double total_amount, String recip_phone
 //			,Members member_id
-			) {
+	) {
 		super();
 		this.shipping_address = shipping_address;
 		this.recipient = recipient;
@@ -75,12 +80,10 @@ public class Orders {
 //		this.member_id = member_id;
 	}
 
-
-
-	public Orders(Integer id, 
-//			Members member_id,
-			Date order_date, String shipping_address, Timestamp shipping_date,
-			String recipient, Double total_amount, boolean cancel_tag, boolean ok_tag, String recip_phone) {
+	public Orders(Integer id,
+//			Integer member_id,
+			Date order_date, String shipping_address, Timestamp shipping_date, String recipient, Double total_amount,
+			boolean cancel_tag, boolean ok_tag, String recip_phone) {
 		super();
 		this.id = id;
 //		this.member_id = member_id;
@@ -126,11 +129,11 @@ public class Orders {
 		this.id = order_id;
 	}
 
-//	public Members getMember_id() {
+//	public Integer getMember_id() {
 //		return member_id;
 //	}
 //
-//	public void setMember_id(Members member_id) {
+//	public void setMember_id(Integer member_id) {
 //		this.member_id = member_id;
 //	}
 
@@ -190,6 +193,14 @@ public class Orders {
 		this.recip_phone = recip_phone;
 	}
 
+	public Members getMembers() {
+		return members;
+	}
+
+	public void setMembers(Members members) {
+		this.members = members;
+	}
+
 //	public Integer getShipping_method() {
 //		return shipping_method;
 //	}
@@ -197,5 +208,4 @@ public class Orders {
 //	public void setShipping_method(Integer shipping_method) {
 //		this.shipping_method = shipping_method;
 //	}
-
 }

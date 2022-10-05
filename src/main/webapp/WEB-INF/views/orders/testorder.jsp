@@ -54,5 +54,6 @@
             </div>
             <a type="button">123</a>
             <button id="updataOrder">確認修改</button>
+            <button id="cancel">取消訂單</button>
         </body>
         </html>

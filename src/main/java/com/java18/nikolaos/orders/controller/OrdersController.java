@@ -24,9 +24,24 @@ public class OrdersController {
 //	MemberService ms;
 
 	@GetMapping("/ordersIndex")
-	public  String homepage() {
+	public String homepage() {
 		return "/orders/ordersIndex";
 	}
+
+	@PostMapping("/cancelOrder")
+	public void cancelOrder(
+			@RequestParam("id")Integer id ) {
+		Orders order= os.findById(id);
+		order.setCancel_tag(true);
+		os.cancelOrder(order);
+	}
+
+//	@GetMapping(path = "/ordersTest",produces = "application/json; charset=UTF-8")
+//	@ResponseBody
+//	public List<Orders> test() {
+//		List<Orders> list = os.findAllOrders() ;
+//		return list;
+//	}
 
 //	@PostMapping(value = "/order", produces = "application/json; charset=UTF-8")
 //	public @ResponseBody Orders findById(@RequestBody Map<Object,Object> id) {
@@ -49,27 +64,30 @@ public class OrdersController {
 //	}
 	@PostMapping(value = "/addOrder")
 	@ResponseBody
-	public String addOrders(
+	public void addOrders(
 			@RequestParam("shipping_address") String shipping_address,
 			@RequestParam("recipient") String recipient, 
 			@RequestParam("total_amount") String total_amount,
 			@RequestParam("recip_phone") String recip_phone
 //			@RequestParam("member_id") String member_id
-			) {
+	) {
 //		Orders orders = new Orders(null,null,shipping_address,null, recipient, Double.valueOf(total_amount),null,null, recip_phone);
 		Orders orders = new Orders(shipping_address, recipient, Double.valueOf(total_amount), recip_phone);
 		os.saveOrder(orders);
-		return "/";
 	}
-	
+
 	@GetMapping(value = "/ordersAlter")
-	public String ordersAlter(Model model,@RequestParam("id") Integer id) {
-		model.addAttribute("order",os.findById(id));
-		return"/orders/testorder";
+	public String ordersAlter(
+			Model model, 
+			@RequestParam("id") Integer id) {
+		model.addAttribute("order", os.findById(id));
+		return "/orders/testorder";
 	}
 
 	@PostMapping(value = "/updataOrders", produces = "text/plain;charset=UTF-8")
-	public @ResponseBody void updataOrders(@RequestParam("id") String id, 
+	@ResponseBody
+	public void updataOrders(
+			@RequestParam("id") String id, 
 			@RequestParam("shipping_address") String shipping_address,
 			@RequestParam("recipient") String recipient, 
 			@RequestParam("recip_phone") String recip_phone) {
@@ -81,13 +99,16 @@ public class OrdersController {
 	}
 
 	@GetMapping(value = "/ordersAll", produces = "application/json; charset=UTF-8")
-	public @ResponseBody List<Orders> ordersAll() {
+	@ResponseBody
+	public List<Orders> ordersAll() {
 		return os.findAllOrders();
 	}
 
 	@GetMapping(value = "/order", produces = "application/json; charset=UTF-8")
-	public @ResponseBody Orders findById(@RequestParam(name = "id") Integer id) {
-		return os.findById(id);
+	@ResponseBody
+	public Orders findById(@RequestParam(name = "id") Integer id) {
+		Orders oo = os.findById(id);
+		return oo;
 	}
 
 	// http://localhost:8080/nikolaos/{abc} PathVAr String abc

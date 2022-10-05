@@ -6,7 +6,7 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Insert title here</title>
-			<script>
+			<script >
 				window.onload = function () {
 					let selectOrder = document.getElementById("selectOrder");
 					let orderAll = document.getElementById("orderAll");
@@ -15,6 +15,7 @@
 					let btnAddOrder = document.getElementById("addOrder");
 
 
+					
 					btnAddOrder.onclick = function () {
 						let shipping_address = document.getElementById("shipping_address").value;
 						let recipient = document.getElementById("recipient").value;
@@ -63,12 +64,13 @@
 						var xhr = new XMLHttpRequest();
 						xhr.onreadystatechange = function () {
 							if (xhr.readyState == 4 && xhr.status == 200) {
+								
 								getOrderOk(xhr.responseText);
 							}
 						}
 						xhr.open("GET", "<c:url value='/orders/ordersAll' />");
 						xhr.send();
-						false
+						
 					}
 					orderAll.onclick = function () {
 						let dataArea = document.getElementById("dataArea");
@@ -81,7 +83,7 @@
 						xhr.open("GET", "<c:url value='/orders/ordersAll' />");
 						xhr.send();
 					}
-
+					
 					selectOrder.onclick = function () {
 						var orderId = document.getElementById("orderId");
 						if (orderId.value == "") {
@@ -90,6 +92,7 @@
 						}
 						var dataArea = document.getElementById("dataArea");
 						var xhr = new XMLHttpRequest();
+
 						// 						var a = {
 						// 							id : orderId
 						// 						}
@@ -100,6 +103,7 @@
 						xhr.onreadystatechange = function () {
 							if (xhr.readyState == 4 && xhr.status == 200) {
 								getOrder(xhr.responseText);
+						
 							}
 						}
 						xhr.open("GET", url);
@@ -107,10 +111,18 @@
 					}
 				}
 
-				function getAddOrder() {
-					history.go(0);
+				function cancelorder() {
+					alert("訂單已取消")
+					history.go(0)
 				}
+				
 				function getOrder(data) {
+					if (data == "") {
+						alert("查無資料");
+						document.getElementById("orderId").value ="";
+						return
+					}
+					
 					var order = JSON.parse(data);
 					// var order = data;
 					var result = addrest();
@@ -118,12 +130,13 @@
 						+ "</td><td>" + order.shipping_address + "</td><td>"
 						+ order.shipping_date + "</td><td>" + order.recipient
 						+ "</td><td>" + order.total_amount
-						// + "</td><td>"
-						// + order.cancel_tag
-						+ "</td><td>" + order.recip_phone
-						// 						+ "</td><td>"
-						// + order.ok_tag
-						// 						+ "</td><td><button id='updateOrders'>修改訂單</button></td></tr>";
+						+ "</td><td>"
+						+ "<a href=<c:url value='/orders/cancelOrder'/>?" + "id="  + order.id + ">取消</a>"
+						+ "</td><td>" 
+						+ order.recip_phone
+						+ "</td><td>"
+						+ order.ok_tag
+						// + "</td><td><button id='updateOrders'>修改訂單</button></td></tr>";
 						+ "</td><td>"
 						+ "<a href=<c:url value='/orders/ordersAlter'/>?" + "id=" + order.id + ">修改</a></td></tr>";
 					result += "</table>";
@@ -200,10 +213,13 @@
 						+ "<th>修改訂單</th>" + "</tr>";
 					return result;
 				}
+
+
 			</script>
 		</head>
 
 		<body>
+
 			<div>
 				<!-- 			<select id='city'> -->
 				<!-- 			  <option value='Asia/Taipei'>台北</option> -->

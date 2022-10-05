@@ -13,5 +13,7 @@ public interface OrdersService {
 	void updateOrder(Orders orders);
 	
 	List<Orders> findAllOrders();
+	
+	public void cancelOrder(Orders order);
 
 }

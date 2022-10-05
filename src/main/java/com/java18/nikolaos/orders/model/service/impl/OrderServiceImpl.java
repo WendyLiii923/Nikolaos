@@ -41,4 +41,11 @@ public class OrderServiceImpl implements OrdersService {
 		return od.findAllOrders();
 	}
 
+	@Override
+	public void cancelOrder(Orders order) {
+		od.cancelOrder(order);
+		
+	}
+	
+
 }

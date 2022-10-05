@@ -50,4 +50,12 @@ public class OrdersDaoImpl implements OrdersDao {
 		List<Orders> orders = session.createQuery(hql, Orders.class).getResultList();
 		return orders;
 	}
+	@Override
+	public void cancelOrder(Orders order) {
+		Session session = factory.getCurrentSession();
+		Orders oo = session.get(Orders.class, order.getId());
+		oo.setCancel_tag(order.getCancel_tag());
+		session.evict(oo);
+		session.saveOrUpdate(order);
+	}
 }
