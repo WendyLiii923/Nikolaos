@@ -30,13 +30,13 @@ public class LoginController {
 		
 		model.addAttribute("loginMember", member);
 		
-		return "used/Index";
+		return "/general/index";
 	}
 	
 	@GetMapping("/Logout")
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		
-		return "used/Index";
+		return "/general/index";
 	}
 }

@@ -14,7 +14,7 @@
       <a class="nav-item nav-link" href="#">系列</a><span style="line-height: 35px">/</span>
       <a class="nav-item nav-link" href="#">所有商品</a><span style="line-height: 35px">/</span>
       <a class="nav-item nav-link" href="#">#分享</a><span style="line-height: 35px">/</span>
-      <a class="nav-item nav-link" href="<c:url value='/ProductService/showProducts' />">二手拍賣</a>
+      <a class="nav-item nav-link" href="<c:url value='/used' />">二手拍賣</a>
     </div>
   </div>
 

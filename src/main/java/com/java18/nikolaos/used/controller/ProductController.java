@@ -112,18 +112,18 @@ public class ProductController {
 		return "/used/ProductLaunch";
 	}
 	
-	@RequestMapping("/showProducts")
-	public String list(Model model, 
-			@RequestParam(required = false) Integer categoryId, 
-			@RequestParam(required = false) Integer parentId,
-            @RequestParam(required = false) Integer start, 
-            @RequestParam(required = false) Integer end, 
-            @RequestParam(defaultValue = "") String status) {
-		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
-		model.addAttribute("category", categoryService.getCategoryById(categoryId));
-		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Category";
-	}
+//	@RequestMapping("/showProducts")
+//	public String list(Model model, 
+//			@RequestParam(required = false) Integer categoryId, 
+//			@RequestParam(required = false) Integer parentId,
+//            @RequestParam(required = false) Integer start, 
+//            @RequestParam(required = false) Integer end, 
+//            @RequestParam(defaultValue = "") String status) {
+//		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
+//		model.addAttribute("category", categoryService.getCategoryById(categoryId));
+//		model.addAttribute("categoryList", categoryService.getCategoryList());
+//		return "/used/Category";
+//	}
 	
 	@RequestMapping("/showProduct")
 	public String product(Model model, 

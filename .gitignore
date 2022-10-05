@@ -229,4 +229,6 @@ buildNumber.properties
 
 .idea/
 
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij,maven
