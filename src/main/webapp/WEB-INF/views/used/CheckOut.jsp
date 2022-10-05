@@ -98,25 +98,36 @@
 			style="height: 50px; background-color: #515151">
 				<h4>收件資料</h4>
 			</div>
-			<div class="d-flex">
-				<div class="p-3">
-					<p>收件人名: ${sessionScope.loginMember.name}</p>
-
-					<form action="<c:url value='/OrderService/showOrderDetail' />">
-					<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
-						<label>address: </label> 
-						<input type='text' name='address' value='${address}' placeholder="地址">
-						<br><br>
-						<label>email: </label> 
-						<input type='text' name='email' value='${email}' placeholder="sample018@gmail.com">
-						<br><br> 
-						<label>phone: </label> <input type='text' name='phone' value='${phone}' placeholder="09xx-xxx-xxx">
-						<br><br> 
-						<label>付款方式: 信用卡</label> 
+			
+			<div class="d-flex justify-content-center py-3">
+				<div class="card shadow" style="width: 500px;">
+				  <div class="card-body">
+				  	<form action="<c:url value='/OrderService/showOrderDetail' />" method="POST" enctype="multipart/form-data">
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
-						<button type="submit">確認並送出</button>
+						<div class="form-group">
+						    <label for="name">收件人名</label>
+						    <input type="text" class="form-control" readonly id="name" name="name" value="${sessionScope.loginMember.name}">
+						</div>
+						<div class="form-group">
+						    <label for="address">地址</label>
+						    <input type="text" class="form-control" id="address" name="address">
+						</div>
+						<div class="form-group">
+						    <label for="email">Email</label>
+						    <input type="text" class="form-control" id="email" name="email" placeholder="sample018@gmail.com">
+						</div>
+						<div class="form-group">
+						    <label for="phone">手機</label>
+						    <input type="text" class="form-control" id="phone" name="phone" placeholder="09xx-xxx-xxx">
+						</div>
+						<div class="form-group">
+						    <label for="payment">付款方式</label>
+						    <input type="text" class="form-control" readonly id="payment" name="payment" value="信用卡">
+						</div>
+						<button class="btn btn-block btn-primary mt-3" type="submit">確認並送出</button>
 					</form>
+				  </div>
 				</div>
 			</div>
 		</div>
