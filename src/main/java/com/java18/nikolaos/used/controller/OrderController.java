@@ -37,13 +37,9 @@ public class OrderController {
 	
 	@RequestMapping("/showOrderList")
 	public String order(Model model,
-			@RequestParam(required = false) Integer memberId,
-	   		@RequestParam(required = false) Integer orderId
+			@RequestParam(required = false) Integer memberId
 						) {
 		model.addAttribute("orderList", orderService.getOrderList(memberId));
-		model.addAttribute("order", orderService.getOrder(orderId));
-		model.addAttribute("orderInfoList", orderService.getOrderDetailView(orderId));
-		model.addAttribute("orderDetailList", orderService.getOrderDetailList(orderId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/OrderList";
 	}

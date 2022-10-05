@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.service.CartService;
@@ -24,7 +25,7 @@ public class CartController {
 	CategoryService categoryService;
 	
 	@RequestMapping("/removeFromCart")
-	public String add(Model model,
+	public RedirectView add(Model model,
 						@RequestParam(required = false) Integer memberId,
 						@RequestParam(required = false) Integer productId
 	) {
@@ -33,11 +34,12 @@ public class CartController {
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Cart";
+		String url = "/nikolaos/CartService/showCart?memberId="+ memberId;
+		return new RedirectView(url);
 	}
 
 	@RequestMapping("/addCart")
-	public String add(Model model,
+	public RedirectView add(Model model,
 						@RequestParam(required = false) Integer memberId,
 						@RequestParam(required = false) Integer productId,
 						@RequestParam(required = false) Integer productQty
@@ -47,7 +49,8 @@ public class CartController {
 		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
 		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Cart";
+		String url = "/nikolaos/CartService/showCart?memberId="+ memberId;
+		return new RedirectView(url);
 	}
 	
 	@RequestMapping("/showCart")
@@ -60,9 +63,9 @@ public class CartController {
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Cart";
 	}
-
+	
 	@RequestMapping("/showCheckOut")
-	public String checkOut(Model model, 
+	public String showcheckOut(Model model, 
 			@RequestParam(required = false) Integer memberId) {
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
 		model.addAttribute("cartDetailList", cartService.getCartDetailList(getCart.getId()));
