@@ -19,7 +19,7 @@
 			<tr>
 				<td>
 					<a class="list-group-item list-group-item-action <c:if test='${param.categoryId == category.id}'>active</c:if>"
-						href="<c:url value='/ProductService/showProducts'>
+						href="<c:url value='/used'>
 								<c:param name="categoryId" value="${category.id}"/>
 								<c:param name="parentId" value="${category.parentId}"/>
 							</c:url>">
@@ -27,33 +27,48 @@
 				</td>
 			</tr>
 		</c:forEach>
+			<div>
+			<a href="<c:url value='/used' />">二手商品頁</a><br>
+
+			<a href="<c:url value='/ProductService/showUploadForm' />">上架商品</a><br>
+		
+			<a href="<c:url value='/ProductService/showMemberProducts' >
+			<c:param name='memberId' value='${sessionScope.loginMember.id}' />
+			</c:url>">會員商品管理區</a><br>
+		
+			<a href="<c:url value='/OrderService/showOrderList' >
+			<c:param name='memberId' value='${sessionScope.loginMember.id}' />
+			</c:url>">會員歷史訂單</a><br>
+
+			<a href="<c:url value='/CollectService/showCollectList' />"> 我的收藏</a>
+			</div>
 		</div>
 	</div>
 	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
 			<div>
-				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+				<a class="text-white" href="<c:url value='/used'>
 					<c:param name="categoryId" value="${category.id}"/>
 					<c:param name="parentId" value="${category.parentId}"/>
 					<c:param name="status" value="新到舊"/>
 				</c:url>">新到舊
 				</a> | 
-				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+				<a class="text-white" href="<c:url value='/used'>
 							<c:param name="categoryId" value="${category.id}"/>
 							<c:param name="parentId" value="${category.parentId}"/>
 							<c:param name="status" value="舊到新"/>
 						</c:url>">舊到新
 				</a> | 
 				
-				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+				<a class="text-white" href="<c:url value='/used'>
 							<c:param name="categoryId" value="${category.id}"/>
 							<c:param name="parentId" value="${category.parentId}"/>
 							<c:param name="status" value="低到高"/>
 						</c:url>">低到高
 				</a> | 
 				
-				<a class="text-white" href="<c:url value='/ProductService/showProducts'>
+				<a class="text-white" href="<c:url value='/used'>
 							<c:param name="categoryId" value="${category.id}"/>
 							<c:param name="parentId" value="${category.parentId}"/>
 							<c:param name="status" value="高到低"/>
@@ -62,7 +77,7 @@
 			</div>
 			<div class="d-flex align-items-center">
 				價格區間：
-				<form class="d-flex" action="<c:url value='/ProductService/showProducts' />" method="GET">
+				<form class="d-flex" action="<c:url value='/used' />" method="GET">
 					<input type="hidden" name="categoryId" value="${category.id}" >
 					<input type="hidden" name="parentId" value="${category.parentId}" >
 					<input type="hidden" name='status'  value='價格區間' >
@@ -74,10 +89,10 @@
 			</div>
 			<div>
 				<c:set var="q" value="${pageContext.request.queryString}" scope="page"/>
-				<a class="text-white" href='<c:url value="/ProductService/showProducts?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=card" />'>
+				<a class="text-white" href='<c:url value="/used?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=card" />'>
 					<i class="fa fa-2x fa-th-large mr-3 " aria-hidden="true"></i>
 				</a>
-				<a class="text-white" href='<c:url value="/ProductService/showProducts?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=list" />'>
+				<a class="text-white" href='<c:url value="/used?${q.contains('&type') ? q.substring(0,q.indexOf('&type')) : q}&type=list" />'>
 					<i class="fa fa-2x fa-th-list" aria-hidden="true"></i>
 				</a>
 			</div>

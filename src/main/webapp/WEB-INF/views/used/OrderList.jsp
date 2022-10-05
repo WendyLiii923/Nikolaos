@@ -18,7 +18,7 @@
 			<tr>
 				<td>
 					<a class="list-group-item list-group-item-action"
-						href="<c:url value='/ProductService/showProducts'>
+						href="<c:url value='/used'>
 								<c:param name="categoryId" value="${category.id}"/>
 								<c:param name="parentId" value="${category.parentId}"/>
 							</c:url>">

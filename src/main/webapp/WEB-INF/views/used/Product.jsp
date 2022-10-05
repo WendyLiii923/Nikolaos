@@ -17,7 +17,7 @@
 				<c:forEach var="category" items="${categoryList}">
 					<tr>
 						<td><a class="list-group-item list-group-item-action"
-							href="<c:url value='/ProductService/showProducts'>
+							href="<c:url value='/used'>
 								<c:param name="categoryId" value="${category.id}"/>
 								<c:param name="parentId" value="${category.parentId}"/>
 							</c:url>">
@@ -31,13 +31,13 @@
 				style="height: 50px; background-color: #515151">
 				<h4>
 					<a class="text-white"
-						href="<c:url value='/ProductService/showProducts' />">二手拍賣</a> > 
+						href="<c:url value='/used' />">二手拍賣</a> > 
 					<a class="text-white"
-						href="<c:url value='/ProductService/showProducts'>
+						href="<c:url value='/used'>
  								<c:param name="categoryId" value="${parentCategory.id}"/>  
  								</c:url>">${parentCategory.name}</a> >  
  					<a class="text-white"  
-						href="<c:url value='/ProductService/showProducts'>
+						href="<c:url value='/used'>
 								<c:param name="categoryId" value="${product.categoryId}"/>
  								<c:param name="parentId" value="${product.parentId}"/>
  								</c:url>">${product.categoryName}</a>
