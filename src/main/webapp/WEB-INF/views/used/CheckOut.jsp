@@ -103,6 +103,7 @@
 				<div class="card shadow" style="width: 500px;">
 				  <div class="card-body">
 				  	<form action="<c:url value='/OrderService/showOrderDetail' />" method="POST" enctype="multipart/form-data">
+				  		<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
 						<div class="form-group">

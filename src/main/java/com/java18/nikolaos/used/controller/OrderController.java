@@ -47,7 +47,6 @@ public class OrderController {
 	@RequestMapping("/showOrderDetail")
 	public String orderDetail(Model model,
 			@RequestParam(required = false) Integer memberId,
-	   		@RequestParam(required = false) Integer orderId,
 	   		@RequestParam(required = false) Integer totalPrice,
 			@RequestParam(required = false) Integer shippingFee,
 			@RequestParam(required = false) String email,
