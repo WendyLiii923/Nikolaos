@@ -23,17 +23,24 @@ public class OrdersController {
 //	@Autowired
 //	MemberService ms;
 
+//	@GetMapping("/ordersIndex")
+//	public String homepage() {
+//		return "/orders/ordersIndex";
+//	}
+	//引導到訂單管理系統頁面
 	@GetMapping("/ordersIndex")
 	public String homepage() {
-		return "/orders/ordersIndex";
+		return "/orders/orderManagement";
 	}
-
-	@PostMapping("/cancelOrder")
-	public void cancelOrder(
+	//取消訂單 取消完導回訂單管理系統
+	@GetMapping("/cancelOrder")
+	public String cancelOrder(
 			@RequestParam("id")Integer id ) {
 		Orders order= os.findById(id);
 		order.setCancel_tag(true);
 		os.cancelOrder(order);
+		return "/orders/orderManagement";
+		
 	}
 
 //	@GetMapping(path = "/ordersTest",produces = "application/json; charset=UTF-8")
@@ -62,6 +69,8 @@ public class OrdersController {
 //		os.saveOrder(orders);
 //		return "新增成功";
 //	}
+	
+	
 	@PostMapping(value = "/addOrder")
 	@ResponseBody
 	public void addOrders(
@@ -76,15 +85,18 @@ public class OrdersController {
 		os.saveOrder(orders);
 	}
 
-	@GetMapping(value = "/ordersAlter")
+	//修改訂單 回傳到特定頁面
+	@GetMapping(value = "/orderAlter")
 	public String ordersAlter(
 			Model model, 
 			@RequestParam("id") Integer id) {
 		model.addAttribute("order", os.findById(id));
 		return "/orders/testorder";
 	}
+	
 
-	@PostMapping(value = "/updataOrders", produces = "text/plain;charset=UTF-8")
+	//修改訂單
+	@PostMapping(value = "/updataOrders")
 	@ResponseBody
 	public void updataOrders(
 			@RequestParam("id") String id, 
@@ -98,17 +110,18 @@ public class OrdersController {
 		os.updateOrder(orders);
 	}
 
+	//取得所有訂單
 	@GetMapping(value = "/ordersAll", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public List<Orders> ordersAll() {
 		return os.findAllOrders();
 	}
 
-	@GetMapping(value = "/order", produces = "application/json; charset=UTF-8")
+	//搜尋訂單 依訂單編號
+	@GetMapping(value = "/getorder", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public Orders findById(@RequestParam(name = "id") Integer id) {
-		Orders oo = os.findById(id);
-		return oo;
+		return os.findById(id);
 	}
 
 	// http://localhost:8080/nikolaos/{abc} PathVAr String abc

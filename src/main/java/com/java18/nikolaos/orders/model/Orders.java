@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,7 +21,6 @@ public class Orders {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
 	private Integer id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -45,8 +43,9 @@ public class Orders {
 	private Double total_amount;
 
 	private boolean cancel_tag;
-	@Transient
+	
 	private boolean ok_tag;
+	
 	private String recip_phone;
 
 //	@ManyToOne(cascade = CascadeType.ALL)
@@ -70,23 +69,19 @@ public class Orders {
 //	}
 
 	public Orders(String shipping_address, String recipient, Double total_amount, String recip_phone
-//			,Members member_id
 	) {
 		super();
 		this.shipping_address = shipping_address;
 		this.recipient = recipient;
 		this.total_amount = total_amount;
 		this.recip_phone = recip_phone;
-//		this.member_id = member_id;
 	}
 
 	public Orders(Integer id,
-//			Integer member_id,
 			Date order_date, String shipping_address, Timestamp shipping_date, String recipient, Double total_amount,
 			boolean cancel_tag, boolean ok_tag, String recip_phone) {
 		super();
 		this.id = id;
-//		this.member_id = member_id;
 		this.order_date = order_date;
 		this.shipping_address = shipping_address;
 		this.shipping_date = shipping_date;
@@ -97,14 +92,6 @@ public class Orders {
 		this.recip_phone = recip_phone;
 	}
 
-	public void setCancel_tag(boolean cancel_tag) {
-		this.cancel_tag = cancel_tag;
-	}
-
-	public void setOk_tag(boolean ok_tag) {
-		this.ok_tag = ok_tag;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -113,29 +100,13 @@ public class Orders {
 		this.id = id;
 	}
 
-	public Boolean getOk_tag() {
-		return ok_tag;
+	public Members getMembers() {
+		return members;
 	}
 
-	public void setOk_tag(Boolean ok_tag) {
-		this.ok_tag = ok_tag;
+	public void setMembers(Members members) {
+		this.members = members;
 	}
-
-	public Integer getOrder_id() {
-		return id;
-	}
-
-	public void setOrder_id(Integer order_id) {
-		this.id = order_id;
-	}
-
-//	public Integer getMember_id() {
-//		return member_id;
-//	}
-//
-//	public void setMember_id(Integer member_id) {
-//		this.member_id = member_id;
-//	}
 
 	public Date getOrder_date() {
 		return order_date;
@@ -177,12 +148,20 @@ public class Orders {
 		this.total_amount = total_amount;
 	}
 
-	public Boolean getCancel_tag() {
+	public boolean getCancel_tag() {
 		return cancel_tag;
 	}
 
-	public void setCancel_tag(Boolean cancel_tag) {
+	public void setCancel_tag(boolean cancel_tag) {
 		this.cancel_tag = cancel_tag;
+	}
+
+	public boolean getOk_tag() {
+		return ok_tag;
+	}
+
+	public void setOk_tag(boolean ok_tag) {
+		this.ok_tag = ok_tag;
 	}
 
 	public String getRecip_phone() {
@@ -193,13 +172,7 @@ public class Orders {
 		this.recip_phone = recip_phone;
 	}
 
-	public Members getMembers() {
-		return members;
-	}
-
-	public void setMembers(Members members) {
-		this.members = members;
-	}
+	
 
 //	public Integer getShipping_method() {
 //		return shipping_method;
