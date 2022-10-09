@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.java18.nikolaos.register.model.MemberBean;
 
 @Entity
 public class Orders {
@@ -25,7 +26,7 @@ public class Orders {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "member_id")
-	private Members member;
+	private MemberBean member;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 //	@Temporal(TemporalType.TIMESTAMP)
@@ -100,11 +101,11 @@ public class Orders {
 		this.id = id;
 	}
 
-	public Members getMembers() {
+	public MemberBean getMembers() {
 		return member;
 	}
 
-	public void setMembers(Members members) {
+	public void setMembers(MemberBean members) {
 		this.member = members;
 	}
 
