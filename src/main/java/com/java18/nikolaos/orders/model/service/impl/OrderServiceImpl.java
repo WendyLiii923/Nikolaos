@@ -10,7 +10,7 @@ import com.java18.nikolaos.orders.model.Orders;
 import com.java18.nikolaos.orders.model.dao.OrdersDao;
 import com.java18.nikolaos.orders.model.service.OrdersService;
 
-@Service
+@Service("OrdersServuceImpl")
 @Transactional
 public class OrderServiceImpl implements OrdersService {
 
