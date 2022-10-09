@@ -8,7 +8,7 @@ window.onload = function () {
             getOrder(xhr.responseText);
         }
     }
-    xhr.open("GET", "<c:url value='/orders/ordersAll' />");
+    xhr.open("GET", "&lt;c:url value='/orders/ordersAll' /&gt;");
     xhr.send();
 }
 function addTableHead() {
