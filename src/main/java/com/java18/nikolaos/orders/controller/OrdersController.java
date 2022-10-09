@@ -91,7 +91,7 @@ public class OrdersController {
 			Model model, 
 			@RequestParam("id") Integer id) {
 		model.addAttribute("order", os.findById(id));
-		return "/orders/testorder";
+		return "/orders/Order_Cust_To_Modify";
 	}
 	
 

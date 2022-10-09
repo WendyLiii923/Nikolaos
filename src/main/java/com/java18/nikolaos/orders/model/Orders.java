@@ -25,7 +25,7 @@ public class Orders {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "member_id")
-	private Members members;
+	private Members member;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 //	@Temporal(TemporalType.TIMESTAMP)
@@ -101,11 +101,11 @@ public class Orders {
 	}
 
 	public Members getMembers() {
-		return members;
+		return member;
 	}
 
 	public void setMembers(Members members) {
-		this.members = members;
+		this.member = members;
 	}
 
 	public Date getOrder_date() {
