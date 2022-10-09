@@ -1,14 +1,14 @@
 package com.java18.nikolaos.used.model.dao.impl;
 
-import com.java18.nikolaos.used.model.UsedCollectView;
-import com.java18.nikolaos.used.model.dao.CollectViewDao;
-import com.java18.nikolaos.used.model.dao.util.BaseQuery;
-import com.java18.nikolaos.used.model.util.Page;
-import com.java18.nikolaos.used.model.util.PageInfo;
+import java.util.List;
+
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.java18.nikolaos.used.model.UsedCollectView;
+import com.java18.nikolaos.used.model.dao.CollectViewDao;
+import com.java18.nikolaos.used.model.dao.util.BaseQuery;
+import com.java18.nikolaos.used.model.util.PageInfo;
 
 @Repository
 public class CollectViewDaoImpl extends BaseQuery<UsedCollectView> implements CollectViewDao {
