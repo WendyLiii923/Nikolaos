@@ -1,6 +1,14 @@
 package com.java18.nikolaos.used.controller;
 
+import static com.java18.nikolaos.used.model.service.impl.ProductServiceImpl.PRODUCT_STATUS_PUBLISHED;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,13 +17,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.service.CartService;
 import com.java18.nikolaos.used.model.service.CategoryService;
+import com.java18.nikolaos.used.model.service.ProductService;
 
 @Controller
+@SessionAttributes("loginMember")
 @RequestMapping("/CartService")
 public class CartController {
 	
@@ -23,6 +37,8 @@ public class CartController {
 	CartService cartService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping("/removeFromCart")
 	public RedirectView add(Model model,
@@ -37,21 +53,44 @@ public class CartController {
 		String url = "/nikolaos/CartService/showCart?memberId="+ memberId;
 		return new RedirectView(url);
 	}
-
-	@RequestMapping("/addCart")
-	public RedirectView add(Model model,
-						@RequestParam(required = false) Integer memberId,
-						@RequestParam(required = false) Integer productId,
-						@RequestParam(required = false) Integer productQty
-	) {
-		UsedCart getCart = cartService.getUncheckOutCart(memberId);
-		model.addAttribute("cartDetail",cartService.createCartDetail(getCart.getId(), productId, productQty));
-		model.addAttribute("cartDetailList",cartService.getCartDetailList(getCart.getId()));
-		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
-		model.addAttribute("categoryList", categoryService.getCategoryList());
-		String url = "/nikolaos/CartService/showCart?memberId="+ memberId;
-		return new RedirectView(url);
+	
+	@PostMapping(path = "/addCart", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Map<String, String>> addProductToCart(
+			@RequestParam Integer productId,
+			@RequestParam(defaultValue = "1") Integer productQty,
+			@SessionAttribute("loginMember") Members member
+			) {
+		Map<String, String> map;
+		map = checkProductAndMemberStatus(productId, member.getId());
+		if (map.containsKey("success")) {
+			UsedCart uncheckOutCart = cartService.getUncheckOutCart(member.getId());
+			return ResponseEntity.ok(cartService.addToCart(uncheckOutCart.getId(), productId, productQty));
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
 	}
+	
+    private Map<String, String> checkProductAndMemberStatus(Integer productId, Integer memberId){
+        HashMap<String, String> map = new HashMap<>();
+        if(memberId == null){
+            map.put("fail","使用者未登入");
+            return map;
+        }
+        if(productId == null){
+            map.put("fail","未指定商品");
+            return map;
+        }
+        ProductInfoView product = productService.getProductInfo(productId);
+        System.out.println("product="+product);
+        if(product == null){
+            map.put("fail","找不到該項商品");
+        }else if(!PRODUCT_STATUS_PUBLISHED.equals(product.getStatus())){
+            map.put("fail","找不到該項商品");
+        }else {
+            map.put("success","");
+        }
+        return map;
+    }
 	
 	@RequestMapping("/showCart")
 	public String cart(Model model,
@@ -76,16 +115,7 @@ public class CartController {
 		return "/used/CheckOut";
 	}
 
-	@PostMapping
-	@ResponseBody
-	public UsedCart addProductToCart(
-			@RequestParam Integer memberId, 
-			@RequestParam Integer productId,
-			@RequestParam Integer productQty) {
-		UsedCart uncheckOutCart = cartService.getUncheckOutCart(memberId);
-		cartService.createCartDetail(uncheckOutCart.getId(), productId, productQty);
-		return uncheckOutCart;
-	}
+
 
 	@DeleteMapping
 	@ResponseBody

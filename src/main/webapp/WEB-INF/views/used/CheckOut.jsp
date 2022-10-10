@@ -104,6 +104,7 @@
 				  <div class="card-body">
 				  	<form action="<c:url value='/OrderService/showOrderDetail' />" method="POST" enctype="multipart/form-data">
 				  	<div>
+				  		<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
 						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>

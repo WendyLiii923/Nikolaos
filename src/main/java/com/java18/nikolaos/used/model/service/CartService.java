@@ -1,6 +1,7 @@
 package com.java18.nikolaos.used.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.java18.nikolaos.used.model.CartDetailView;
 import com.java18.nikolaos.used.model.UsedCart;
@@ -11,6 +12,8 @@ public interface CartService {
 	UsedCart getUncheckOutCart(Integer memberId);
 
 	UsedCartDetail createCartDetail(Integer cartId, Integer productId, Integer productQty);
+	
+	Map<String, String> addToCart(Integer cartId, Integer productId, Integer productQty);
 
 	void deleteProductFromCart(Integer memberId, Integer cartId, Integer productId);
 

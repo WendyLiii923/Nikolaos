@@ -1,20 +1,16 @@
 package com.java18.nikolaos.used.model.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.used.model.UsedCollect;
 import com.java18.nikolaos.used.model.dao.CollectDao;
 import com.java18.nikolaos.used.model.dao.util.BaseQuery;
-import com.java18.nikolaos.used.model.util.PageInfo;
 
 @Repository
 public class CollectDaoImpl extends BaseQuery<UsedCollect> implements CollectDao {
 
     private String selectCollectByMemberIdAndProductId = "FROM com.java18.nikolaos.used.model.UsedCollect WHERE memberId=:memberId AND productId=:productId";
-    private String selectCollectByMemberId = "FROM com.java18.nikolaos.used.model.UsedCollect WHERE memberId=:memberId";
 
     @Override
     public UsedCollect createCollect(Integer productId, Integer memberId) {
