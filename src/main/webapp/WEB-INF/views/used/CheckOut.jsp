@@ -103,8 +103,10 @@
 				<div class="card shadow" style="width: 500px;">
 				  <div class="card-body">
 				  	<form action="<c:url value='/OrderService/showOrderDetail' />" method="POST" enctype="multipart/form-data">
+				  	<div>
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
+						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<div class="form-group">
 						    <label for="name">收件人名</label>
 						    <input type="text" class="form-control" readonly id="name" name="name" value="${sessionScope.loginMember.name}">
@@ -125,7 +127,8 @@
 						    <label for="payment">付款方式</label>
 						    <input type="text" class="form-control" readonly id="payment" name="payment" value="信用卡">
 						</div>
-						<button class="btn btn-block btn-primary mt-3" type="submit">確認並送出</button>
+						<button type="submit" class="btn btn-block btn-primary mt-3">確認並送出</button>
+					</div>
 					</form>
 				  </div>
 				</div>

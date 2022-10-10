@@ -3,10 +3,7 @@ package com.java18.nikolaos.used.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.UsedOrder;
@@ -44,7 +41,7 @@ public class OrderController {
 		return "/used/OrderList";
 	}
 	
-	@RequestMapping("/showOrderDetail")
+	@PostMapping("/showOrderDetail")
 	public String orderDetail(Model model,
 			@RequestParam(required = false) Integer memberId,
 	   		@RequestParam(required = false) Integer orderId,
@@ -58,12 +55,21 @@ public class OrderController {
 		UsedOrder order = orderService.createOrder(memberId, totalPrice, shippingFee, email, address, phone);
 		UsedCart getCart = cartService.getUncheckOutCart(memberId);
 		orderService.addOrderDetail(order.getId(), getCart.getId());
-		model.addAttribute("cart", cartService.updateCartStatus(getCart.getId()));
-		model.addAttribute("order", orderService.getOrder(order.getId()));
-		model.addAttribute("orderInfoList", orderService.getOrderDetailView(order.getId()));
+		cartService.updateCartStatus(getCart.getId());
+		return "forward:/EcPay/request?orderId=" + order.getId();
+	}
+
+
+	@GetMapping("/showOrderDetail")
+	public String showOrderDetail(Model model,
+							  @RequestParam Integer orderId
+	) {
+		model.addAttribute("order", orderService.getOrder(orderId));
+		model.addAttribute("orderInfoList", orderService.getOrderDetailView(orderId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/OrderDetail";
 	}
+
 	
 	
 	@PostMapping
