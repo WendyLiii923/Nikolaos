@@ -1,32 +1,40 @@
 package com.java18.nikolaos.general.controller;
 
-import com.java18.nikolaos.used.model.UsedCollectView;
+import com.java18.nikolaos.used.model.*;
+import com.java18.nikolaos.used.model.service.CartService;
+import com.java18.nikolaos.used.model.service.OrderService;
 import com.java18.nikolaos.used.model.service.ProductService;
 import com.java18.nikolaos.used.model.util.Page;
 import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
 import ecpay.payment.integration.domain.InvoiceObj;
 import ecpay.payment.integration.exception.EcpayException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.web.client.HttpClientErrorException;
+
+
 @Controller
+@SessionAttributes("loginMember")
 @RequestMapping("/EcPay")
 public class EcPayController {
 
@@ -34,6 +42,12 @@ public class EcPayController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    OrderService orderService;
 
 //平台商測試資料：
 //特店編號(MerchantID)：3002599
@@ -45,9 +59,17 @@ public class EcPayController {
 //一般信用卡測試卡號 : 4311-9522-2222-2222 安全碼 : 222
 //信用卡測試有效月/年：輸入的 MM/YYYY 值請大於現在當下時間的月年
 
-    @GetMapping(value = "/request", produces = MediaType.TEXT_HTML_VALUE)
+    @PostMapping(value = "/request", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
-    public String request(HttpServletRequest req){
+    public String request(
+            @SessionAttribute("loginMember") Members member,
+            @RequestParam Integer orderId,
+            HttpServletRequest req){
+        Integer memberId = member.getId();
+        if(memberId == null){
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+        }
+
         String baseURL = req.getScheme() + "://"
                 + req.getServerName() + ":"
                 + req.getServerPort()
@@ -61,13 +83,24 @@ public class EcPayController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
         obj.setMerchantTradeDate(sdf.format(date));
 
-        //TODO 實際金額 跟 商品名稱
-        obj.setTotalAmount("150");
-        obj.setItemName("productOne#productTwo#productThree#");
-
-        obj.setTradeDesc("test Description");
-
+        // build string for multiple items
+        StringBuilder stb = new StringBuilder();
+        System.out.println("order id = " + orderId);
+        Integer totalPrice = 0;
+        for(OrderDetailView detail : orderService.getOrderDetailView(orderId)) {
+//            stb.append(URLEncoder.encode(detail.getName(), StandardCharsets.UTF_8)+"#");
+//            stb.append(detail.getName()+"#");
+            stb.append("Item#");
+            totalPrice += detail.getPrice() * detail.getProductQty();
+        }
+        // remove last # mark
+        stb.deleteCharAt(stb.length() - 1);
+        System.out.println("name = " + stb);
+        obj.setTotalAmount(totalPrice.toString());
+        obj.setItemName(stb.toString());
+        obj.setTradeDesc("Nikolaos");
         obj.setReturnURL(baseURL);
+        obj.setClientBackURL(baseURL + "/OrderService/showOrderDetail?orderId=" + orderId);
         obj.setNeedExtraPaidInfo("N");
         obj.setRedeem("Y");
         try {
