@@ -38,12 +38,6 @@ public class CategoryController {
 		return categoryService.getCategoryList();
 	}
 	
-//	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public List<UsedCategory> getCategoryByIdList(@RequestBody Integer id) {
-//		return categoryService.getCategoryByIdList(id);
-//	}
-	
 	@DeleteMapping
 	@ResponseBody
 	public HashMap<String, String> deleteCategory(@RequestParam Integer id) {
