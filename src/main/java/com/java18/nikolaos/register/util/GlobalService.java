@@ -1,4 +1,4 @@
-package com.java18.nikolaos.register.test;
+package com.java18.nikolaos.register.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,16 +37,16 @@ public class GlobalService {
 
 	private static Map<String, String> mimeRepo ;
 	
-	public static final int RECORDS_PER_PAGE = 2;
-	public static final String SYSTEM_NAME = "雅君網路購物商城";
+	public static final int RECORDS_PER_PAGE = 12;
+//	public static final String SYSTEM_NAME = "雅君網路購物商城";
 	public static final int IMAGE_FILENAME_LENGTH = 20;
 
 	public static final String KEY = "KittySnoopyGarfieldMicky"; // 16, 24, 32
 	public static final int ORDER_AMOUNT_LIMIT = 10000;
 	
-	public String getSystemName() { // systemName  ${SYSTEM.systemName}
-		return SYSTEM_NAME;
-	}
+//	public String getSystemName() { // systemName  ${SYSTEM.systemName}
+//		return SYSTEM_NAME;
+//	}
 	
 	public Date getUtilDate() { // utilDate  ${SYSTEM.utilDate}
 		return new Date(); 
