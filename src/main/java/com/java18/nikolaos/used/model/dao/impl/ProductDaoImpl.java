@@ -8,29 +8,31 @@ import java.util.Map;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.java18.nikolaos.used.model.Members;
-import com.java18.nikolaos.used.model.UsedCategory;
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.dao.ProductDao;
 import com.java18.nikolaos.used.model.dao.util.BaseQuery;
 
 @Repository
-public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDao {
+public class ProductDaoImpl extends BaseQuery<UsedProduct> implements ProductDao {
 
-	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE id=:PRODUCTID";
-	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.UsedProduct";
-	private String selectProductByParentId = "Select p From com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c WHERE c.parentId = :categoryId";
-	private String selectProductByQuery = "Select p FROM com.java18.nikolaos.used.model.UsedProduct p LEFT JOIN p.category c";
+	private String selectProductById = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE id=:productId";
+	private String selectProductByMemberId = "FROM com.java18.nikolaos.used.model.UsedProduct WHERE memberId=:memberId";
+	
+	private String selectProductInfoById = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE id=:productId";
+	private String selectAllProduct = "FROM com.java18.nikolaos.used.model.ProductInfoView";
+	private String selectProductByParentId = "FROM com.java18.nikolaos.used.model.ProductInfoView WHERE parentId=:categoryId";
+	private String selectProductByQuery = "FROM com.java18.nikolaos.used.model.ProductInfoView";
 
 	@Override
-	public UsedProduct createProduct(String name, Integer price, String content, Members memberId, UsedCategory categoryId, String cover, String status) {
+	public UsedProduct createProduct(String name, Integer price, String content, Integer memberId, Integer categoryId, String cover, String status) {
 		UsedProduct usedProduct = new UsedProduct();
 		try {
 			usedProduct.setName(name);
 			usedProduct.setPrice(price);
 			usedProduct.setContent(content);
-			usedProduct.setMember(memberId);
-			usedProduct.setCategory(categoryId);
+			usedProduct.setMemberId(memberId);
+			usedProduct.setCategoryId(categoryId);
 			usedProduct.setCover(cover);
 			usedProduct.setStatus(status);
 			getSession().save(usedProduct);
@@ -42,40 +44,53 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDa
 	}
 
 	@Override
+	public List<UsedProduct> getProductListByMemberId(Integer memberId) {
+		Query<UsedProduct> query = getSession().createQuery(selectProductByMemberId, UsedProduct.class);
+		query.setParameter("memberId", memberId);
+		return query.getResultList();
+	}
+	
+	@Override
+	public ProductInfoView getProductInfo(Integer id) {
+		Query<ProductInfoView> query = getSession().createQuery(selectProductInfoById, ProductInfoView.class);
+		query.setParameter("productId", id);
+		return query.setMaxResults(1).getResultList().stream().findFirst().orElse(null);
+	}
+	
+	@Override
 	public UsedProduct getProduct(Integer id) {
 		Query<UsedProduct> query = getSession().createQuery(selectProductById, UsedProduct.class);
-		query.setParameter("PRODUCTID", id);
+		query.setParameter("productId", id);
 		return getOne(query);
 	}
 
 	@Override
-	public List<UsedProduct> getProductList() {
-		Query<UsedProduct> query = getSession().createQuery(selectAllProduct, UsedProduct.class);
+	public List<ProductInfoView> getProductList() {
+		Query<ProductInfoView> query = getSession().createQuery(selectAllProduct, ProductInfoView.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<UsedProduct> getProductListByParentId(Integer categoryId) {
-		Query<UsedProduct> query = getSession().createQuery(selectProductByParentId, UsedProduct.class);
+	public List<ProductInfoView> getProductListByParentId(Integer categoryId) {
+		Query<ProductInfoView> query = getSession().createQuery(selectProductByParentId, ProductInfoView.class);
 		query.setParameter("categoryId", categoryId);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<UsedProduct> getProductListByQuery(Integer categoryId, Integer start, Integer end,
+	public List<ProductInfoView> getProductListByQuery(Integer categoryId, Integer start, Integer end,
 			String sortField, String sort) {
 		String sql = selectProductByQuery;
 		List<String> querySqlList = new ArrayList<>();
 		Map<String, Object> queryMap = new HashMap<>();
 		String order = "";
-//		System.out.println("Controller傳過來的:"productId + categoryId + parentId +start + end + status);
 
 		if (categoryId != null) {
-			querySqlList.add("c.id=:categoryId");
+			querySqlList.add("categoryId=:categoryId");
 			queryMap.put("categoryId", categoryId);
 		}
 		if (start != null && end != null) {
-			querySqlList.add("p.price BETWEEN :start AND :end");
+			querySqlList.add("price BETWEEN :start AND :end");
 			queryMap.put("start", start);
 			queryMap.put("end", end);
 		}
@@ -92,7 +107,7 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDa
 			sql = sql + " " + order;
 		}
 
-		Query<UsedProduct> query = getSession().createQuery(sql, UsedProduct.class);
+		Query<ProductInfoView> query = getSession().createQuery(sql, ProductInfoView.class);
 		queryMap.forEach((key, value) -> {
 			query.setParameter(key, value);
 		});
@@ -104,7 +119,7 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDa
 		HashMap<String, String> status = new HashMap<String, String>();
 		try {
 			Query<UsedProduct> result = getSession().createQuery(selectProductById, UsedProduct.class);
-			result.setParameter("PRODUCTID", id);
+			result.setParameter("productId", id);
 			List<UsedProduct> list = result.list();
 			if (list.isEmpty() == false) {
 				UsedProduct deleteItem = list.get(0);
@@ -127,10 +142,14 @@ public class ProductDaoImpl extends BaseQuery<UsedProduct>  implements ProductDa
 	public UsedProduct updateProduct(UsedProduct usedProduct) {
 		try {
 			Query<UsedProduct> find = getSession().createQuery(selectProductById, UsedProduct.class);
-			find.setParameter("PRODUCTID", usedProduct.getId());
+			find.setParameter("productId", usedProduct.getId());
 			List<UsedProduct> list = find.list();
 			UsedProduct updateItem = list.get(0);
+			updateItem.setName(usedProduct.getName());
 			updateItem.setPrice(usedProduct.getPrice());
+			updateItem.setContent(usedProduct.getContent());
+			updateItem.setCategoryId(usedProduct.getCategoryId());
+			updateItem.setCover(usedProduct.getCover());
 			getSession().save(updateItem);
 		} catch (Exception e) {
 			e.printStackTrace();

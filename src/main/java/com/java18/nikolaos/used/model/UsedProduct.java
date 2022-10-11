@@ -2,14 +2,11 @@ package com.java18.nikolaos.used.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -36,13 +33,11 @@ public class UsedProduct {
 	@Column(name = "content")
 	private String content;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "memberId")
-	private Members member;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "categoryId")
-	private UsedCategory category;
+	@Column(name = "memberId")
+	private Integer memberId;
+	
+	@Column(name = "categoryId")
+	private Integer categoryId;
 
 	@Column(name = "cover")
 	private String cover;
@@ -54,15 +49,16 @@ public class UsedProduct {
 
 	}
 
-	public UsedProduct(Integer id, Timestamp createTime, String name, Integer price, String content, Members member,
-			UsedCategory category, String cover, String status) {
+	public UsedProduct(Integer id, Timestamp createTime, String name, Integer price, String content, Integer memberId,
+			Integer categoryId, String cover, String status) {
+		super();
 		this.id = id;
 		this.createTime = createTime;
 		this.name = name;
 		this.price = price;
 		this.content = content;
-		this.member = member;
-		this.category = category;
+		this.memberId = memberId;
+		this.categoryId = categoryId;
 		this.cover = cover;
 		this.status = status;
 	}
@@ -83,7 +79,6 @@ public class UsedProduct {
 		this.createTime = createTime;
 	}
 
-	
 	public String getName() {
 		return name;
 	}
@@ -92,7 +87,6 @@ public class UsedProduct {
 		this.name = name;
 	}
 
-	
 	public Integer getPrice() {
 		return price;
 	}
@@ -101,7 +95,6 @@ public class UsedProduct {
 		this.price = price;
 	}
 
-	
 	public String getContent() {
 		return content;
 	}
@@ -110,25 +103,22 @@ public class UsedProduct {
 		this.content = content;
 	}
 
-	
-	public Members getMember() {
-		return member;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMember(Members member) {
-		this.member = member;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	
-	public UsedCategory getCategory() {
-		return category;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(UsedCategory category) {
-		this.category = category;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
-	
 	public String getCover() {
 		return cover;
 	}
@@ -137,7 +127,6 @@ public class UsedProduct {
 		this.cover = cover;
 	}
 
-	
 	public String getStatus() {
 		return status;
 	}
@@ -149,9 +138,12 @@ public class UsedProduct {
 	@Override
 	public String toString() {
 		return "UsedProduct [id=" + id + ", createTime=" + createTime + ", name=" + name + ", price=" + price
-				+ ", content=" + content + ", member=" + member + ", category=" + category + ", cover=" + cover
+				+ ", content=" + content + ", memberId=" + memberId + ", categoryId=" + categoryId + ", cover=" + cover
 				+ ", status=" + status + "]";
 	}
+
+	
+	
 
 
 

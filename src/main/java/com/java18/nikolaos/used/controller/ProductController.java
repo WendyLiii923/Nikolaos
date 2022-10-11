@@ -9,13 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.java18.nikolaos.general.model.service.ImageService;
+import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedProduct;
 import com.java18.nikolaos.used.model.service.CategoryService;
 import com.java18.nikolaos.used.model.service.ProductService;
@@ -28,32 +28,104 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private ImageService imageService;
 	
-	@GetMapping("/showProducts")
-	public String list(Model model, 
+	@RequestMapping("/updateProduct")
+	public String updateProduct(Model model,
+			@RequestParam(required = false) Integer memberId,
 			@RequestParam(required = false) Integer productId,
-			@RequestParam(required = false) Integer categoryId, 
-			@RequestParam(required = false) Integer parentId,
-            @RequestParam(required = false) Integer start, 
-            @RequestParam(required = false) Integer end, 
-            @RequestParam(defaultValue = "") String status) {
-		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
-		model.addAttribute("category", categoryService.getCategoryById(categoryId));
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) Integer price,
+			@RequestParam(required = false) String content,
+			@RequestParam(required = false) Integer categoryId,
+			@RequestParam(required = false) MultipartFile cover
+			) {
+		UsedProduct usedProduct = productService.getProduct(productId);
+		usedProduct.setId(productId);
+		usedProduct.setName(name);
+		usedProduct.setPrice(price);
+		usedProduct.setContent(content);
+		usedProduct.setCategoryId(categoryId);
+
+		if (cover != null && !cover.isEmpty()) {
+			String coverLink = imageService.upload(cover);
+			usedProduct.setCover(coverLink);
+		}
+
+		model.addAttribute("product", productService.updateProduct(usedProduct));
+		model.addAttribute("productInfo", productService.getProductInfo(productId));
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Category";
+		return "/used/MemberProducts";
 	}
+	
+	@RequestMapping("/showUpdateForm")
+	public String newProduct(Model model,
+			@RequestParam(required = false) Integer productId
+			
+			) {
+		model.addAttribute("productInfo", productService.getProductInfo(productId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/ProductUpdate";
+	}
+	
+	@RequestMapping("/deleteProduct")
+	public String deleteProduct(Model model,
+			@RequestParam(required = false) Integer memberId,
+			@RequestParam(required = false) Integer productId
+			) {
+		model.addAttribute("product", productService.deleteProduct(productId));
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
+	@RequestMapping("/showMemberProducts")
+	public String manageProducts(Model model,
+			@RequestParam(required = false) Integer memberId
+			) {
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
+	@RequestMapping("/uploadForm")
+	public String uploadProduct(Model model,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) Integer price,
+			@RequestParam(required = false) String content,
+			@RequestParam(required = false) Integer memberId,
+			@RequestParam(required = false) Integer categoryId,
+			@RequestParam(required = false) MultipartFile cover,
+			@RequestParam(required = false) String status
+			) {
+		String coverLink = imageService.upload(cover);
+		model.addAttribute("product", productService.createProduct(name, price, content, memberId, categoryId, coverLink, status));
+		model.addAttribute("productList", productService.getProductListByMemberId(memberId));
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/MemberProducts";
+	}
+	
+	@RequestMapping("/showUploadForm")
+	public String newProduct(Model model
+			) {
+		model.addAttribute("categoryList", categoryService.getCategoryList());
+		return "/used/ProductLaunch";
+	}
+	
 	
 	@RequestMapping("/showProduct")
 	public String product(Model model, 
-			@RequestParam(required = false) Integer categoryId, 
 			@RequestParam(required = false) Integer productId,
+			@RequestParam(required = false) Integer categoryId, 
 			@RequestParam(required = false) Integer parentId,
             @RequestParam(required = false) Integer start, 
             @RequestParam(required = false) Integer end, 
             @RequestParam(defaultValue = "") String status) {
-		UsedProduct getProduct = productService.getProduct(productId);
+		ProductInfoView getProduct = productService.getProductInfo(productId);
 		model.addAttribute("product", getProduct);
-		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(getProduct.getCategory().getParentId()));
+		model.addAttribute("parentCategory", categoryService.getCategoryByParentId(getProduct.getParentId()));
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		return "/used/Product";
@@ -61,7 +133,7 @@ public class ProductController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<UsedProduct> getProducts(@RequestParam(required = false) Integer categoryId,
+	public List<ProductInfoView> getProducts(@RequestParam(required = false) Integer categoryId,
   										 @RequestParam(required = false) Integer parentId,
 			                             @RequestParam(required = false) Integer start, 
 			                             @RequestParam(required = false) Integer end, 
@@ -70,24 +142,10 @@ public class ProductController {
 		return productService.getProducts(categoryId, parentId, start, end, status);
 	}
 	
-//	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PostMapping
-	@ResponseBody
-	public UsedProduct createProduct(@RequestBody UsedProduct body) {
-		return productService.createProduct(body.getName(),body.getPrice(), body.getContent(), body.getMember(), body.getCategory(), body.getCover(), body.getStatus());
-	}
-	
 	@DeleteMapping
 	@ResponseBody
 	public HashMap<String, String> deleteProduct(@RequestParam Integer id) {
 		return productService.deleteProduct(id);
 	}
 	
-	@PutMapping
-	@ResponseBody
-	public UsedProduct updateProduct(@RequestBody UsedProduct body) {
-		return productService.updateProduct(body);
-	}
-	
-
 }
