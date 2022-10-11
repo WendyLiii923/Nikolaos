@@ -80,7 +80,7 @@ public class CheckLoginInterceptor extends HandlerInterceptorAdapter  {
 	private boolean checkLogin(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		
-		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		MemberBean loginToken = (MemberBean) session.getAttribute("loginMember");
 		if (loginToken == null) {
 			return false;
 		} else {

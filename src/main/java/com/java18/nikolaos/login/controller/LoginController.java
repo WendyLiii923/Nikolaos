@@ -26,7 +26,7 @@ import com.java18.nikolaos.login.validator.LoginBeanValidator;
 
 @Controller("loginController2")
 @RequestMapping("/login")
-@SessionAttributes({"LoginOK", "111", "222"}) 
+@SessionAttributes({"loginMember", "111", "222"}) 
 public class LoginController {
 	
 //	private static Logger log = LoggerFactory.getLogger(LoginController.class);
@@ -87,7 +87,7 @@ public class LoginController {
 			
 			if (mb != null) {
 				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
-				model.addAttribute("LoginOK", mb);
+				model.addAttribute("loginMember", mb);
 //				log.info("登入成功，MemberBean=" + mb);
 			} else {
 				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內

@@ -36,7 +36,7 @@
         <div class="offcanvas__option">
             <div class="offcanvas__links">
             <c:choose>
-            	<c:when test="${empty LoginOK}">
+            	<c:when test="${empty loginMember}">
                 <a href="<c:url value='/login/login' />">Sign in</a>
                 </c:when>
                 <c:otherwise>
@@ -81,7 +81,7 @@
                         <div class="header__top__right">
                             <div class="header__top__links">
                                 <c:choose>
-            	<c:when test="${empty LoginOK}">
+            	<c:when test="${empty loginMember}">
                 <a href="<c:url value='/login/login' />">Sign in</a>
                 </c:when>
                 <c:otherwise>
@@ -125,7 +125,7 @@
                 			</c:otherwise>
               				</c:choose>
                             <li><a href="<c:url value='/used' />">Used</a></li>
-                            <li><a href="./memberCenter.html">Member Center</a></li>
+                            <li><a href="<c:url value='memberMaintain/MemberUpdate' />">Member Center</a></li>
                             <li><a href="./about.html">About us</a></li>
                         </ul>
                     </nav>

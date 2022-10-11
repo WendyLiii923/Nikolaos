@@ -31,7 +31,7 @@ public class LogoutBean {
 	}
 
 	public Integer getLogout() {
-		MemberBean mb = (MemberBean)session.getAttribute("LoginOK");
+		MemberBean mb = (MemberBean)session.getAttribute("loginMember");
 		String email = "";
 		if (mb != null) {
 			email = mb.getEmail();

@@ -16,14 +16,14 @@ import com.java18.nikolaos.register.model.MemberBean;
 
 @Controller
 @RequestMapping("/login")   // 
-@SessionAttributes({"LoginOK"}) 
+@SessionAttributes({"loginMember"}) 
 public class LogoutController {
 	
 //	private static Logger log = LoggerFactory.getLogger(LogoutController.class);
 	
 	@GetMapping("/showSessionData")
 	public String retrieveSessionObject(Model model) {
-		MemberBean memberBean = (MemberBean)model.getAttribute("LoginOK");
+		MemberBean memberBean = (MemberBean)model.getAttribute("loginMember");
 		model.addAttribute("memberName", memberBean.getName());
 //		model.addAttribute("memberId", memberBean.getMemberId());
 		model.addAttribute("memberEmail", memberBean.getEmail());
@@ -35,7 +35,7 @@ public class LogoutController {
 			RedirectAttributes redirectAtt
 			) {
 		String name = "";
-		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		MemberBean memberBean = (MemberBean) model.getAttribute("loginMember");
 		if (memberBean != null) {
 			name = memberBean.getName();
 		} else {

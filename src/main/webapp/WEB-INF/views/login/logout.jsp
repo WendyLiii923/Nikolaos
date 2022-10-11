@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- 先將使用者名稱取出 -->
-<c:set var="memberName" value="${ LoginOK.name }" scope='request'/>
+<c:set var="memberName" value="${ loginMember.name }" scope='request'/>
 <!-- 移除放在session物件內的屬性物件 -->
 
 <!-- 下列敘述設定變數funcName的值為OUT，top.jsp 會用到此變數 -->
