@@ -44,7 +44,8 @@
                     data-target="#login-modal">登入</button>
                 </c:when>
                 <c:otherwise>
-                  <a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>">
+<%--                   <a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>"> --%>
+                  <a class="btn btn-secondary" href="<c:url value='/login/logout'/>">
                     ${sessionScope.loginMember.name} 登出 </a>
                 </c:otherwise>
               </c:choose>

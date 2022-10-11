@@ -168,12 +168,8 @@
 </div>
 <script>
 	function addCollect(productId) {
-		fetch('/nikolaos/CollectService/add?productId=' + productId,
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-			}
-		).then(res => {
+		fetch(`/nikolaos/CollectService/add?productId=\${productId}`)
+		.then(res => {
 			return res.json()
 		}).then(result => {
 			Object.keys(result).forEach(function (key, index) {
@@ -185,12 +181,8 @@
 
 	function addToCart(productId) {
 		console.log('this is log' + productId);
-		fetch('/nikolaos/CartService/addCart?productId=' + productId,
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-			}
-		).then(res => {
+		fetch(`/nikolaos/CartService/addCart?productId=\${productId}`)
+		.then(res => {
 			return res.json()
 		}).then(result => {
 			Object.keys(result).forEach(function (key, index) {

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java18.nikolaos.general.model.dao.MembersDao;
 import com.java18.nikolaos.general.model.service.MembersService;
-import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.register.model.MemberBean;
 
 @Service
 @Transactional
@@ -16,7 +16,7 @@ public class MembersServiceImpl implements MembersService {
 	private MembersDao membersDao;
 	
 	@Override
-	public Members login(String email, String password) {
+	public MemberBean login(String email, String password) {
 		return membersDao.getMember(email, password);
 	}
 

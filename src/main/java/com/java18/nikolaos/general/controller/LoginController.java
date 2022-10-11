@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.java18.nikolaos.general.model.service.MembersService;
-import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.register.model.MemberBean;
 
 @Controller
 @RequestMapping("/Auth")
@@ -26,7 +26,7 @@ public class LoginController {
 						@RequestParam String password,
 						Model model) {
 		
-		Members member = membersService.login(email, password);
+		MemberBean member = membersService.login(email, password);
 		
 		model.addAttribute("loginMember", member);
 		

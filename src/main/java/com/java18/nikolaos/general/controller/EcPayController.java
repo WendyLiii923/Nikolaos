@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.HttpClientErrorException;
 import org.xml.sax.SAXException;
 
-import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.register.model.MemberBean;
 import com.java18.nikolaos.used.model.OrderDetailView;
 import com.java18.nikolaos.used.model.UsedOrder;
 import com.java18.nikolaos.used.model.service.OrderService;
@@ -57,7 +57,7 @@ public class EcPayController {
     @PostMapping(value = "/request", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
     public String request(
-            @SessionAttribute("loginMember") Members member,
+            @SessionAttribute("loginMember") MemberBean member,
             @RequestParam Integer orderId,
             HttpServletRequest req){
         Integer memberId = member.getId();
