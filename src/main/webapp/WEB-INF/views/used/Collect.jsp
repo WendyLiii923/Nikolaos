@@ -18,7 +18,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <c:forEach var="collect" items="${collectPage.data}">
                     <div class="col">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" style="width: 225px">
                             <img class="bd-placeholder-img card-img-top"
                                  width="100%" height="225"
                                  src="${collect.cover}">
