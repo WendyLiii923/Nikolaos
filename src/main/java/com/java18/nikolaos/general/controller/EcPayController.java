@@ -1,36 +1,37 @@
 package com.java18.nikolaos.general.controller;
 
-import com.java18.nikolaos.used.model.*;
-import com.java18.nikolaos.used.model.service.CartService;
-import com.java18.nikolaos.used.model.service.OrderService;
-import com.java18.nikolaos.used.model.service.ProductService;
-import com.java18.nikolaos.used.model.util.Page;
-import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutALL;
-import ecpay.payment.integration.domain.AioCheckOutOneTime;
-import ecpay.payment.integration.domain.InvoiceObj;
-import ecpay.payment.integration.exception.EcpayException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.client.HttpClientErrorException;
 import org.xml.sax.SAXException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.used.model.OrderDetailView;
+import com.java18.nikolaos.used.model.UsedOrder;
+import com.java18.nikolaos.used.model.service.OrderService;
 
-import org.springframework.web.client.HttpClientErrorException;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutOneTime;
+import ecpay.payment.integration.domain.InvoiceObj;
+import ecpay.payment.integration.exception.EcpayException;
 
 
 @Controller
@@ -39,12 +40,6 @@ import org.springframework.web.client.HttpClientErrorException;
 public class EcPayController {
 
     public static final Logger log = LogManager.getLogger(EcPayController.class);
-
-    @Autowired
-    private ProductService productService;
-
-    @Autowired
-    private CartService cartService;
 
     @Autowired
     OrderService orderService;
@@ -93,6 +88,8 @@ public class EcPayController {
             stb.append("Item#");
             totalPrice += detail.getPrice() * detail.getProductQty();
         }
+        UsedOrder order = orderService.getOrder(orderId);
+        totalPrice += order.getShippingFee();
         // remove last # mark
         stb.deleteCharAt(stb.length() - 1);
         System.out.println("name = " + stb);

@@ -114,7 +114,7 @@
                     			Shop
                 			</c:otherwise>
               				</c:choose>
-                            <li><a href="#">Used</a></li>
+                            <li><a href="<c:url value='/used' />">Used</a></li>
                             <li><a href="./memberCenter.html">Member Center</a></li>
                             <li><a href="./about.html">About us</a></li>
                         </ul>
