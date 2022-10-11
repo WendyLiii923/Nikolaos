@@ -35,9 +35,14 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-            	<c:if test="${empty LoginOK}">
+            <c:choose>
+            	<c:when test="${empty LoginOK}">
                 <a href="<c:url value='/login/login' />">Sign in</a>
-                </c:if>
+                </c:when>
+                <c:otherwise>
+                <a href="<c:url value='/login/logout' />">Sign out</a>
+                </c:otherwise>
+           </c:choose>
                 <a href="#">FAQs</a>
             </div>
             <div class="offcanvas__top__hover">
@@ -75,9 +80,14 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <c:if test="${empty LoginOK}">
-                				<a href="<c:url value='/login/login' />">Sign in</a>
-                				</c:if>
+                                <c:choose>
+            	<c:when test="${empty LoginOK}">
+                <a href="<c:url value='/login/login' />">Sign in</a>
+                </c:when>
+                <c:otherwise>
+                <a href="<c:url value='/login/logout' />">Sign out</a>
+                </c:otherwise>
+           </c:choose>
                                 <a href="#">FAQs</a>
                             </div>
                             <div class="header__top__hover">
