@@ -114,7 +114,7 @@ function updateMember() {
                         <div class="col">
                         </div>
                         <div class="col">
-                            <a class="btn btn-primary pull-right" href="./Order_Customers.html">訂單查詢</a>
+                            <a class="btn btn-primary pull-right" href="<c:url value='/orders/ordersIndex'/>">訂單查詢</a>
                         </div>
                         <div class="col">
                             <a class="btn btn-primary pull-left" href="./productManageSystem.html">商品上架</a>
