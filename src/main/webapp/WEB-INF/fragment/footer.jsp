@@ -25,7 +25,7 @@
     <script src="<c:url value='/js/jquery.countdown.min.js' />"></script>
     <script src="<c:url value='/js/jquery.slicknav.js' />"></script>
     <script src="<c:url value='/js/mixitup.min.js' />"></script>
-    <script src="<c:url value='/js/owl.carousel.min.js' />"></script>
+<%--     <script src="<c:url value='/js/owl.carousel.min.js' />"></script> --%>
     <script src="<c:url value='/js/main.js' />"></script>
     
 <c:set var='debug' value='true' scope='application' />
