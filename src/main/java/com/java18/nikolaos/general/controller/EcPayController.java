@@ -88,6 +88,7 @@ public class EcPayController {
             stb.append("Item#");
             totalPrice += detail.getPrice() * detail.getProductQty();
         }
+        
         UsedOrder order = orderService.getOrder(orderId);
         totalPrice += order.getShippingFee();
         // remove last # mark
