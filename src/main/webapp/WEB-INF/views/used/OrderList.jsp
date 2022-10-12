@@ -12,22 +12,8 @@
 <%@ include file="../include/TopBar.jsp" %>
 <%@ include file="../include/LoginModal.jsp" %>
 <div class="d-flex" style="height: calc(100vh - 56px)">
-	<div class="h-100 p-3 border-right" style="width: 200px">
-		<div class="list-group list-group-flush">
-		<c:forEach var="category" items="${categoryList}">
-			<tr>
-				<td>
-					<a class="list-group-item list-group-item-action"
-						href="<c:url value='/used'>
-								<c:param name="categoryId" value="${category.id}"/>
-								<c:param name="parentId" value="${category.parentId}"/>
-							</c:url>">
-						${category.name} </a>
-				</td>
-			</tr>
-		</c:forEach>
-		</div>
-	</div>
+	<%@ include file="../include/Category.jsp" %>
+	
 	<div class="h-100 overflow-hidden " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">

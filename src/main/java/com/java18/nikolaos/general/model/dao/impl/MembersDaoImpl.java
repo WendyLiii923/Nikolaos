@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.general.model.dao.MembersDao;
-import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.register.model.MemberBean;
 
 @Repository
 public class MembersDaoImpl implements MembersDao {
@@ -23,10 +23,10 @@ public class MembersDaoImpl implements MembersDao {
 	}
 	
 	@Override
-	public Members getMember(String email, String password) {
-		Members result = null;
+	public MemberBean getMember(String email, String password) {
+		MemberBean result = null;
 		
-		Query<Members> check = getSession().createQuery(selectMemberByMemberIdAndPassword, Members.class);
+		Query<MemberBean> check = getSession().createQuery(selectMemberByMemberIdAndPassword, MemberBean.class);
 		check.setParameter("email", email);
 		check.setParameter("password", password);
 		

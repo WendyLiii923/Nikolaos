@@ -17,7 +17,7 @@
 		    <label for="email">帳號</label>
 		    <input type="text" id="email" name="email" class="form-control" placeholder="email">
 		  </div>
-		  <div class="form-group">
+		  <div class="form-group my-3">
 		    <label for="password">Password</label>
 		    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
 		  </div>

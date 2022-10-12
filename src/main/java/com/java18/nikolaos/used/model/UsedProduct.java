@@ -38,14 +38,6 @@ public class UsedProduct {
 	
 	@Column(name = "categoryId")
 	private Integer categoryId;
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "memberId")
-//	private Members member;
-
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "categoryId")
-//	private UsedCategory category;
 
 	@Column(name = "cover")
 	private String cover;

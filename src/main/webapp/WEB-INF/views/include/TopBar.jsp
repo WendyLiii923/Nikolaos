@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     
-      <a class="navbar-brand" href="/nikolaos/">Nikolaos</a>
+      <a class="navbar-brand" href="/nikolaos/"><img src="https://i.imgur.com/MYa3Lwv.jpeg" width='200'></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,14 +37,15 @@
         <div class="d-flex">
           <ul class="navbar-nav ms-3 me-5 mb-2 mb-lg-0">
             <!-- login -->
-            <li>
+            <li class="nav-item mx-5">
               <c:choose>
                 <c:when test="${empty sessionScope.loginMember}">
                   <button type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#login-modal">登入</button>
                 </c:when>
                 <c:otherwise>
-                  <a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>">
+<%--                   <a class="btn btn-secondary" href="<c:url value='/Auth/Logout'/>"> --%>
+                  <a class="btn btn-secondary" href="<c:url value='/login/logout'/>">
                     ${sessionScope.loginMember.name} 登出 </a>
                 </c:otherwise>
               </c:choose>
@@ -75,7 +76,7 @@
                 </svg>
               </span>
 
-              <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-menu dropdown-menu-lg-right">
                 <a class="dropdown-item" href="
 					    <c:url value='/OrderService/showOrderList' >
 							<c:param name='memberId' value='${sessionScope.loginMember.id}' />

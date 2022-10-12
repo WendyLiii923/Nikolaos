@@ -28,7 +28,7 @@ public class UsedHomeController {
 		model.addAttribute("productList", productService.getProducts(categoryId, parentId, start, end, status));
 		model.addAttribute("category", categoryService.getCategoryById(categoryId));
 		model.addAttribute("categoryList", categoryService.getCategoryList());
-		return "/used/Category";
+		return "/used/usedHome";
 	}
 
 }

@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.java18.nikolaos.orders.model.Orders;
 import com.java18.nikolaos.orders.model.service.OrdersService;
 
 @Controller
 @RequestMapping("/orders")
+@SessionAttributes({})
 public class OrdersController {
 
 	@Autowired
@@ -38,7 +40,7 @@ public class OrdersController {
 			@RequestParam("id")Integer id ) {
 		Orders order= os.findById(id);
 		order.setCancel_tag(true);
-		os.cancelOrder(order);
+		os.cancelOrder(order);	
 		return "/orders/orderManagement";
 		
 	}
@@ -91,7 +93,7 @@ public class OrdersController {
 			Model model, 
 			@RequestParam("id") Integer id) {
 		model.addAttribute("order", os.findById(id));
-		return "/orders/Order_Cust_To_Modify";
+		return "/orders/Order_Ente_To_Modify";
 	}
 	
 

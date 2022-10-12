@@ -12,29 +12,15 @@
 <%@ include file="../include/TopBar.jsp" %>
 <%@ include file="../include/LoginModal.jsp" %>
 <div class="d-flex" style="height: calc(100vh - 56px)">
-	<div class="h-100 p-3 border-right" style="width: 200px">
-		<div class="list-group list-group-flush">
-		<c:forEach var="category" items="${categoryList}">
-			<tr>
-				<td>
-					<a class="list-group-item list-group-item-action"
-						href="<c:url value='/used'>
-								<c:param name="categoryId" value="${category.id}"/>
-								<c:param name="parentId" value="${category.parentId}"/>
-							</c:url>">
-						${category.name} </a>
-				</td>
-			</tr>
-		</c:forEach>
-		</div>
-	</div>
+	<%@ include file="../include/Category.jsp" %>
+	
 	<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 		<div class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2" 
 			 style="height: 50px; background-color: #515151">
 				<h4>管理二手商品區</h4>
 		</div>
 
-		<div class="pl-3">
+		<div class="d-flex mx-3">
 			<a class="btn btn-primary" href="<c:url value='/ProductService/showUploadForm'/>">上架商品</a>
 		</div>
 
@@ -45,7 +31,7 @@
 						<div class="overflow-hidden position-relative" style="height: 150px; width: 150px;">
 							<img class="position-absolute" style="height: 150px; left: 0; top: 0;" src="${product.cover}">
 						</div>
-						<div class="pl-3" style="height: 150px; width: calc(100% - 300px);">
+						<div class="pl-3 px-3" style="height: 150px; width: calc(100% - 300px);">
 							<h4 style="font-weight: 700">
 								<a href="
 										<c:url value='/ProductService/showProduct'>

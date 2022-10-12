@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的訂單-Nikolaos</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Order Css -->
+    <style>
+        .collapse {
+            display: flex;
+        }
+
+        .tab_css {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+        }
+
+        .tab_css input {
+            display: none
+        }
+
+        .tab_css label {
+            margin: 0 5px 5px 0;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            background: #999;
+            color: #fff;
+            opacity: 0.5;
+        }
+
+        .tab_content {
+            order: 1;
+            display: none;
+            width: 100%;
+            line-height: 1.6;
+            font-size: .9em;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .tab_css input:checked+label,
+        .tab_css label:hover {
+            opacity: 1;
+            font-weight: bold;
+        }
+
+        .tab_css input:checked+label+.tab_content {
+            display: initial;
+        }
+
+        .orderline_row {
+            border-width: 2px;
+            border-style: solid;
+            border-color: #ddd;
+            border-radius: 10px;
+            padding: 8px;
+            margin-bottom: 5px;
+        }
+
+        .orderline_topic {
+            border-width: 15px;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            border-color: #34a225;
+            border-radius: 10px;
+            margin: 0pt;
+            margin-bottom: 15px;
+            background-color: #34a225;
+            color: #fff;
+            font-size: large;
+            font-weight: bolder;
+        }
+
+        .column_restricted_order {
+            width: 180px;
+            word-break: break-all;
+        }
+
+        #card_product {
+            width: 320px;
+            height: 300px;
+            overflow: auto;
+        }
+
+        #card_receive {
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+    <!-- Order Css End -->
+    <!-- Order script Start -->
+    <script>
+        function search() {
+            x = document.getElementById("search_order_id").value;
+            if (x == "") {
+                alert("搜尋欄位不可為空值!")
+            }
+            else {
+                location.href = "./Order_Ente_To_Search.html";
+            }
+        }
+    </script>
+    <!-- Order script Start -->
+</head>
+
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign in</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span>Usd <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>USD</li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+            <div class="price">$0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a href="#">Sign in</a>
+                                <a href="#">FAQs</a>
+                            </div>
+                            <div class="header__top__hover">
+                                <span>Usd <i class="arrow_carrot-down"></i></span>
+                                <ul>
+                                    <li>USD</li>
+                                    <li>EUR</li>
+                                    <li>USD</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="img/logonew.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="./shop.html">Shop</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="./about.html">About Us</a></li>
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+                                    <!-- <li><a href="./blog-details.html">Blog Details</a></li> -->
+                                </ul>
+                            </li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./contact.html">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <div class="price">$0.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>My Order</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>My Order</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Order Section Begin -->
+
+    <section class="order spad">
+        <form class="form-horizontal col-sm-offset-3 col-md-offset-3 container">
+            <h3 class="form-title-order" style="font-weight:bold;">我的訂單</h3>
+        </form>
+        <div class="form-horizontal container">
+            <!-- 訂單編號搜尋按鈕 -->
+            <div class="form-inline pull-right">
+                <div class="form-group-inline">
+                    <input id="search_order_id" placeholder="請輸入訂單編號"
+                        class="form-control form-control-sm" oninput="value=this.value.replace(/\D/g,'')" maxlength="5">
+                    <!-- value=this.value.replace(/\D/g,'') 限制 input 輸入框只能輸入數字 -->
+                </div>
+                <div>
+                    <button class="btn btn-success col-xs-3 btn-sm" onclick="search()">搜尋</button>
+                </div>
+            </div>
+            <!-- 訂單編號搜尋按鈕 End -->
+            <br>
+            <br>
+            <br>
+            <div class="tab_css">
+                <!-- 未出貨訂單 打包區塊 start -->
+                <input id="tab1" type="radio" name="tab" checked="checked" />
+                <label for="tab1">未出貨訂單</label>
+                <div class="tab_content">
+
+                    <!-- 訂單表頭 -->
+                    <div class="orderline_topic row align-items-center">
+                        <div class="col-sm-3">訂單編號</div>
+                        <div class="col-sm-5">成立時間</div>
+                        <div class="col-sm-4">訂單管理</div>
+                    </div>
+                    <!-- 訂單表頭 End -->
+
+                    <!-- 訂單編號0800694173的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694173</div>
+                            <div class="col-sm-5 align-self-center">2022/7/13 20:56</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                                <a href="./Order_Cust_To_Modify.html">
+                                    <button class="btn btn-primary btn-sm">修改訂單</button>
+                                </a>
+                                <button class="btn btn-danger btn-sm" onclick="order_cancel()">取消訂單</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694173的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694173的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body" id="card_receive">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="column_restricted_order">配送地址</th>
+                                    <td>新北市三重區北新路二段93巷18弄53號4樓之二</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0987425832</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">配送方式</th>
+                                    <td>宅配</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>王曉明</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>4000</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body" id="card_product">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="column_restricted_order">
+                                            已購商品名稱
+                                            有做出長度的限制(透過設class，如果被占用的話可以換ID)，如果商品名稱很長，超級長，想不到的長，像這欄這個樣子的話，商品名稱該欄位就會自動換行唷^^
+                                        </th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="column_restricted_order">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>2</td>
+                                        <td>500</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="column_restricted_order">已購商品名稱3</th>
+                                        <td>S</td>
+                                        <td>1</td>
+                                        <td>400</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694173的 詳細資訊 End -->
+
+                    <!-- 訂單編號0800694124的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694124</div>
+                            <div class="col-sm-5 align-self-center">2022/7/11 21:16</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample1" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                                <a href="./Order_Cust_To_Modify.html">
+                                    <button class="btn btn-primary btn-sm">修改訂單</button>
+                                </a>
+                                <button class="btn btn-danger btn-sm" onclick="order_cancel()">取消訂單</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694124的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694124的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample1" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body" id="card_receive">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="column_restricted_order">配送地址</th>
+                                    <td>新北市五股區防洪二路三段1148號9樓之4C室</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0963195872</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">配送方式</th>
+                                    <td>黑貓宅急便</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>劉彥瑋</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>8600</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body" id="card_product">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="column_restricted_order">已購商品名稱1</th>
+                                        <td>S</td>
+                                        <td>2</td>
+                                        <td>700</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="column_restricted_order">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>6</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱4</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>900</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱5</th>
+                                        <td>XS</td>
+                                        <td>3</td>
+                                        <td>450</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱6</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>550</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱7</th>
+                                        <td>L</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱8</th>
+                                        <td>L</td>
+                                        <td>12</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱9</th>
+                                        <td>S</td>
+                                        <td>5</td>
+                                        <td>90</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱10</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>1300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱11</th>
+                                        <td>XS</td>
+                                        <td>6</td>
+                                        <td>350</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694124的 詳細資訊 End -->
+
+                    <!-- 訂單編號0800694033的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694033</div>
+                            <div class="col-sm-5 align-self-center">2022/7/01 12:05</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample2" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                                <a href="./Order_Cust_To_Modify.html">
+                                    <button class="btn btn-primary btn-sm">修改訂單</button>
+                                </a>
+                                <button class="btn btn-danger btn-sm" onclick="order_cancel()">取消訂單</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694033的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694033的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample2" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="column_restricted_order">配送地址</th>
+                                    <td>新北市萬里區金山北路28巷79弄6號1樓</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0924555690</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送方式</th>
+                                    <td>郵寄</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>林志鴻</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>6300</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>S</td>
+                                        <td>12</td>
+                                        <td>250</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>M</td>
+                                        <td>3</td>
+                                        <td>150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱4</th>
+                                        <td>S</td>
+                                        <td>4</td>
+                                        <td>570</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱5</th>
+                                        <td>L</td>
+                                        <td>1</td>
+                                        <td>800</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694033的 詳細資訊 End -->
+                </div>
+                <!-- 未出貨訂單 打包區塊 end -->
+
+                <!-- 已出貨訂單 打包區塊 start -->
+                <input id="tab2" type="radio" name="tab" />
+                <label for="tab2">已出貨訂單</label>
+                <div class="tab_content">
+                    <!-- 訂單表頭 -->
+                    <div class="orderline_topic row align-items-center">
+                        <div class="col-sm-3">訂單編號</div>
+                        <div class="col-sm-5">成立時間</div>
+                        <div class="col-sm-4">訂單管理</div>
+                    </div>
+                    <!-- 訂單表頭 End -->
+
+                    <!-- 訂單編號0800694171的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694171</div>
+                            <div class="col-sm-5 align-self-center">2022/6/13 20:36</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample3" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                                <a href="./about.html">
+                                    <button class="btn btn-primary btn-sm">聯絡客服</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694171的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694171的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample3" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送地址</th>
+                                    <td>新北市三重區北新路二段93巷18弄53號4樓之二</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0987425832</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送方式</th>
+                                    <td>宅配</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>王曉明</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>4000</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>2</td>
+                                        <td>500</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>S</td>
+                                        <td>1</td>
+                                        <td>400</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694171的 詳細資訊 End -->
+
+                    <!-- 訂單編號0800694120的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694120</div>
+                            <div class="col-sm-5 align-self-center">2022/6/09 10:56</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample4" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                                <a href="./about.html">
+                                    <button class="btn btn-primary btn-sm">聯絡客服</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694120的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694120的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample4" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送地址</th>
+                                    <td>新北市五股區防洪二路三段1148號9樓之4C室</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0963195872</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送方式</th>
+                                    <td>黑貓宅急便</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>劉彥瑋</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>8600</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>S</td>
+                                        <td>2</td>
+                                        <td>700</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>6</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱4</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>900</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱5</th>
+                                        <td>XS</td>
+                                        <td>3</td>
+                                        <td>450</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱6</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>550</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱7</th>
+                                        <td>L</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱8</th>
+                                        <td>L</td>
+                                        <td>12</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱9</th>
+                                        <td>S</td>
+                                        <td>5</td>
+                                        <td>90</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱10</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>1300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱11</th>
+                                        <td>XS</td>
+                                        <td>6</td>
+                                        <td>350</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694120的 詳細資訊 End -->
+                </div>
+                <!-- 已出貨訂單 打包區塊 End -->
+                <!-- 不成立訂單 打包區塊 start -->
+                <input id="tab3" type="radio" name="tab" />
+                <label for="tab3">不成立訂單</label>
+                <div class="tab_content">
+                    <!-- 訂單表頭 -->
+                    <div class="orderline_topic row align-items-center">
+                        <div class="col-sm-3">訂單編號</div>
+                        <div class="col-sm-5">成立時間</div>
+                        <div class="col-sm-4">訂單管理</div>
+                    </div>
+                    <!-- 訂單表頭 End -->
+
+                    <!-- 訂單編號0800694166的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694166</div>
+                            <div class="col-sm-5 align-self-center">2021/7/13 20:56</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample5" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694166的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694166的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample5" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送地址</th>
+                                    <td>新北市三重區北新路二段93巷18弄53號4樓之二</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0987425832</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">配送方式</th>
+                                    <td>宅配</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>王曉明</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>4000</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>2</td>
+                                        <td>500</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>S</td>
+                                        <td>1</td>
+                                        <td>400</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694166的 詳細資訊 End -->
+
+                    <!-- 訂單編號0800694117的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694117</div>
+                            <div class="col-sm-5 align-self-center">2021/3/24 17:07</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample6" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694117的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694117的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample6" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送地址</th>
+                                    <td>新北市五股區防洪二路三段1148號9樓之4C室</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0963195872</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">配送方式</th>
+                                    <td>黑貓宅急便</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>劉彥瑋</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>8600</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>S</td>
+                                        <td>2</td>
+                                        <td>700</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>L</td>
+                                        <td>6</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱4</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>900</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱5</th>
+                                        <td>XS</td>
+                                        <td>3</td>
+                                        <td>450</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱6</th>
+                                        <td>M</td>
+                                        <td>1</td>
+                                        <td>550</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱7</th>
+                                        <td>L</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱8</th>
+                                        <td>L</td>
+                                        <td>12</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱9</th>
+                                        <td>S</td>
+                                        <td>5</td>
+                                        <td>90</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱10</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>1300</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱11</th>
+                                        <td>XS</td>
+                                        <td>6</td>
+                                        <td>350</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694117的 詳細資訊 End -->
+
+                    <!-- 訂單編號0800694031的 簡單資訊 -->
+                    <div class="orderline_row col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 align-self-center">0800694031</div>
+                            <div class="col-sm-5 align-self-center">2021/1/30 04:33</div>
+                            <div class="col-sm-4 justify-content-right align-self-center">
+                                <button class="btn btn-success btn-sm" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample7" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    詳細資訊
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694031的 簡單資訊 End -->
+
+                    <!-- 訂單編號0800694031的 詳細資訊 -->
+                    <div class="collapse" id="collapseExample7" style="text-align:left;padding: 20px;">
+                        <div class="card border-secondary card-body">
+                            <!-- 運送資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <tr>
+                                    <th scope="row">配送狀態</th>
+                                    <td>未出貨</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">配送地址</th>
+                                    <td>新北市萬里區金山北路28巷79弄6號1樓</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">連絡電話</th>
+                                    <td>0924555690</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">配送方式</th>
+                                    <td>郵寄</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">收件人</th>
+                                    <td>林志鴻</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">總金額</th>
+                                    <td>6300</td>
+                                </tr>
+                            </table>
+                            <!-- 運送資訊表格 End -->
+                        </div>
+                        <!-- 中間排版用空白card Start -->
+                        <div class="card px-3 border-light"></div>
+                        <!-- 中間排版用空白card End -->
+                        <div class="card border-secondary card-body">
+                            <!-- 商品資訊表格 -->
+                            <table class="table table-sm" style="font-size: 8px;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">商品名稱</th>
+                                        <th scope="col">尺寸</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">已購商品名稱1</th>
+                                        <td>S</td>
+                                        <td>12</td>
+                                        <td>250</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱2</th>
+                                        <td>XL</td>
+                                        <td>1</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱3</th>
+                                        <td>M</td>
+                                        <td>3</td>
+                                        <td>150</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱4</th>
+                                        <td>S</td>
+                                        <td>4</td>
+                                        <td>570</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">已購商品名稱5</th>
+                                        <td>L</td>
+                                        <td>1</td>
+                                        <td>800</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 商品資訊表格 End -->
+                        </div>
+                    </div>
+                    <!-- 訂單編號0800694031的 詳細資訊 End -->
+                </div>
+                <!-- 不成立訂單 打包區塊 End -->
+            </div>
+        </div>
+    </section>
+    <!-- Order Section End -->
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/logonew.jpg" alt=""></a>
+                        </div>
+                        <p>透過衣服告訴出社會打拼的人們，我們生活就像穿搭。<br>好看與否，其實不在於衣服價格，而是你是否有用心搭配。人生也是一樣，我們都一樣是活著，但用心的活著，肯定比盲目生活的人過得還要精彩。
+                        </p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>INFO</h6>
+                        <ul>
+                            <li><a href="#">How to buy</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <!-- <li><a href="#">Sale</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>GET IN TOUCH</h6>
+                        <ul>
+                            <li><a href="#">01-2345678</a></li>
+                            <li><a href="#">nikolaosxxx@gmail.com</a></li>
+                            <li><a href="#">165 ANTI FRAUD</a></li>
+                            <!-- <li><a href="#">Return & Exchanges</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>
+                            國立臺北科技大學 JAVA & Android 程式設計人才養成班 第十八屆 第一組<br>
+                            專題成果展作品 非營利使用<br>
+                            版權問題請聯繫：石驥惟 g057104100@gmail.com
+                        </p>
+                        <!-- <p>Copyright ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>2020
+                                All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </p> -->
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</body>
+
+</html>

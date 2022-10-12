@@ -13,21 +13,8 @@
 	<%@ include file="../include/LoginModal.jsp" %>
 
 	<div class="d-flex" style="height: calc(100vh - 56px)">
-		<div class="h-100 p-3 border-right" style="width: 200px">
-			<div class="list-group list-group-flush">
-				<c:forEach var="category" items="${categoryList}">
-					<tr>
-						<td>
-							<a class="list-group-item list-group-item-action"
-							href="<c:url value='/used'>
-								<c:param name="categoryId" value="${category.id}"/>
-								<c:param name="parentId" value="${category.parentId}"/>
-							</c:url>">${category.name} </a>
-						</td>
-					</tr>
-				</c:forEach>
-			</div>
-		</div>
+		<%@ include file="../include/Category.jsp" %>
+		
 		<div class="h-100 overflow-auto " style="width: calc(100% - 100px);">
 			<div
 				class="d-flex justify-content-between align-items-center text-white rounded m-3 p-2"
@@ -103,9 +90,11 @@
 				<div class="card shadow" style="width: 500px;">
 				  <div class="card-body">
 				  	<form action="<c:url value='/OrderService/showOrderDetail' />" method="POST" enctype="multipart/form-data">
+				  	<div>
 				  		<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<input type='hidden' name='shippingFee' value='60'>
 						<input type='hidden' name='totalPrice' value='${totalPrice}'>
+						<input type='hidden' name='memberId' value='${sessionScope.loginMember.id}'>
 						<div class="form-group">
 						    <label for="name">收件人名</label>
 						    <input type="text" class="form-control" readonly id="name" name="name" value="${sessionScope.loginMember.name}">
@@ -126,7 +115,8 @@
 						    <label for="payment">付款方式</label>
 						    <input type="text" class="form-control" readonly id="payment" name="payment" value="信用卡">
 						</div>
-						<button class="btn btn-block btn-primary mt-3" type="submit">確認並送出</button>
+						<button type="submit" class="btn btn-block btn-primary mt-3">確認並送出</button>
+					</div>
 					</form>
 				  </div>
 				</div>

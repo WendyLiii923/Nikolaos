@@ -3,7 +3,6 @@ package com.java18.nikolaos.orders.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.java18.nikolaos.register.model.MemberBean;
 
 @Entity
 public class Orders {
@@ -24,9 +22,9 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "member_id")
-	private MemberBean member;
+//	@ManyToOne(cascade = CascadeType.D)
+//	@JoinColumn(name = "member_id")
+//	private MemberBean member;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 //	@Temporal(TemporalType.TIMESTAMP)
@@ -48,26 +46,53 @@ public class Orders {
 	private boolean ok_tag;
 	
 	private String recip_phone;
+	
+//	private Integer orderItemId;
 
-//	@ManyToOne(cascade = CascadeType.ALL)
 //	private Integer shipping_method;
+//	
+//	@ManyToOne
+//	@JoinColumn(name="shipping_method",insertable = false,updatable = false)
+//	private Shippingmethod shippingmethod;
+
+	
+//	public MemberBean getMember() {
+//		return member;
+//	}
+//
+//	public void setMember(MemberBean member) {
+//		this.member = member;
+//	}
+
+	
+
+//	public Integer getOrderItemId() {
+//		return orderItemId;
+//	}
+//
+//	public Integer getShipping_method() {
+//		return shipping_method;
+//	}
+//
+//	public void setShipping_methodId(Integer shipping_method) {
+//		this.shipping_method = shipping_method;
+//	}
+//
+//	public Shippingmethod getShippingmethod() {
+//		return shippingmethod;
+//	}
+//
+//	public void setShippingmethod(Shippingmethod shippingmethod) {
+//		this.shippingmethod = shippingmethod;
+//	}
+
+//	public void setOrderItemId(Integer orderItemId) {
+//		this.orderItemId = orderItemId;
+//	}
 
 	public Orders() {
 	}
 
-//	public Orders(Integer id, Timestamp order_date, String shipping_address, Timestamp shipping_date, String recipient,
-//			Double total_amount, Boolean cancel_tag, Boolean ok_tag, String recip_phone) {
-//		super();
-//		this.id = id;
-//		this.order_date = order_date;
-//		this.shipping_address = shipping_address;
-//		this.shipping_date = shipping_date;
-//		this.recipient = recipient;
-//		this.total_amount = total_amount;
-//		this.cancel_tag = cancel_tag;
-//		this.ok_tag = ok_tag;
-//		this.recip_phone = recip_phone;
-//	}
 
 	public Orders(String shipping_address, String recipient, Double total_amount, String recip_phone
 	) {
@@ -101,13 +126,6 @@ public class Orders {
 		this.id = id;
 	}
 
-	public MemberBean getMembers() {
-		return member;
-	}
-
-	public void setMembers(MemberBean members) {
-		this.member = members;
-	}
 
 	public Date getOrder_date() {
 		return order_date;
@@ -173,13 +191,4 @@ public class Orders {
 		this.recip_phone = recip_phone;
 	}
 
-	
-
-//	public Integer getShipping_method() {
-//		return shipping_method;
-//	}
-//
-//	public void setShipping_method(Integer shipping_method) {
-//		this.shipping_method = shipping_method;
-//	}
 }

@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.java18.nikolaos.used.model.Members;
+import com.java18.nikolaos.register.model.MemberBean;
 import com.java18.nikolaos.used.model.ProductInfoView;
 import com.java18.nikolaos.used.model.UsedCart;
 import com.java18.nikolaos.used.model.service.CartService;
@@ -54,12 +54,12 @@ public class CartController {
 		return new RedirectView(url);
 	}
 	
-	@PostMapping(path = "/addCart", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/addCart", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Map<String, String>> addProductToCart(
 			@RequestParam Integer productId,
 			@RequestParam(defaultValue = "1") Integer productQty,
-			@SessionAttribute("loginMember") Members member
+			@SessionAttribute("loginMember") MemberBean member
 			) {
 		Map<String, String> map;
 		map = checkProductAndMemberStatus(productId, member.getId());
@@ -111,6 +111,7 @@ public class CartController {
 		model.addAttribute("categoryList", categoryService.getCategoryList());
 		model.addAttribute("cartInfoList", cartService.getCartDetailInfo(getCart.getId()));
 		model.addAttribute("totalPrice", cartService.getCartTotal(getCart.getId()));
+		model.addAttribute("cartId", getCart.getId());
 		return "/used/CheckOut";
 	}
 

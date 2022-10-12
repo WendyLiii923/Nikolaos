@@ -13,4 +13,8 @@ public interface MemberService {
 	MemberBean findByEmail(String email);
 	
 	MemberBean findByEmailAndPassword(String email, String password) ;
+
+	void updateMember(MemberBean bean);
+
+	 MemberBean findById (Integer id);
 }

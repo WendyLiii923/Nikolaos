@@ -1,4 +1,4 @@
-package com.java18.nikolaos.register.test;
+package com.java18.nikolaos.register.util;
 
 public class DBService {
 	public  static final String host = "127.0.0.1";
@@ -11,18 +11,18 @@ public class DBService {
 	public  static final String USERID_SQLServer = "sa";
 	public  static final String PSWD_SQLServer = "sa123456";
 
-	public  static final String nameMs = "java:comp/env/jdbc/BookDataMsSQL";
-	public  static final String nameMy = "java:comp/env/jdbc/BookDataMySQL";
+//	public  static final String nameMs = "java:comp/env/jdbc/BookDataMsSQL";
+//	public  static final String nameMy = "java:comp/env/jdbc/BookDataMySQL";
 	
-	public  static String JNDI_DB_NAME = (DB_TYPE.equals(DB_MYSQL)? nameMy : nameMs);
-	
-	static {
-		if (JNDI_DB_NAME.equals(DB_MYSQL)) {
-			JNDI_DB_NAME = nameMy;
-		} else if (JNDI_DB_NAME.equals(DB_SQLSERVER)) {
-			JNDI_DB_NAME = nameMs;
-		}
-	}
+//	public  static String JNDI_DB_NAME = (DB_TYPE.equals(DB_MYSQL)? nameMy : nameMs);
+//	
+//	static {
+//		if (JNDI_DB_NAME.equals(DB_MYSQL)) {
+//			JNDI_DB_NAME = nameMy;
+//		} else if (JNDI_DB_NAME.equals(DB_SQLSERVER)) {
+//			JNDI_DB_NAME = nameMs;
+//		}
+//	}
 	
 	private static final String DBURL_MySQL = "jdbc:mysql://" + host
 			+ "/18_project_db?useUnicode=yes&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Taipei&allowPublicKeyRetrieval=true";
