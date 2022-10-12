@@ -58,7 +58,7 @@
             <a href="#" class="search-switch"><img src="<c:url value='/img/icon/search.png' />" alt=""></a>
             <a href="#"><img src="<c:url value='/img/icon/heart.png' />" alt=""></a>
             <a href="#"><img src="<c:url value='/img/icon/cart.png' />" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            <div class="price"></div>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
@@ -116,7 +116,7 @@
                         	<c:if test="${ funcName != 'IND' }">
                             <li class="active"><a href="<c:url value='/' />">Home</a></li>
                             </c:if>
-                          	<li><a href="./shop.html">Shop</a></li>
+                          	<li><a href="<c:url value='/listClothes/DisplayPageProducts' />">Shop</a></li>
                             <li><a href="<c:url value='/used' />">Used</a></li>
                             <li>
                             <c:choose>
@@ -139,13 +139,13 @@
                         <a href="#"><img src="<c:url value='/img/icon/heart.png' />" alt=""></a>
                         <c:choose>
                			<c:when test="${ funcName != 'CHE' }">
-                        <a href="#"><img src="<c:url value='/img/icon/cart.png' />" alt="" href="<c:url value='/ShoppingCart/ShowCartContent' />"> <span>0</span></a>
+                        <a href="#"><img src="<c:url value='/img/icon/cart.png' />" alt="" href="/shopping-cart.html"> <span>0</span></a>
                         </c:when>
                 <c:otherwise>
                   <img src="<c:url value='/img/icon/cart.png' />">   
                 </c:otherwise>
               </c:choose>
-                        <div class="price">$1.00</div>
+                        <div class="price"></div>
                     </div>
                 </div>
             </div>

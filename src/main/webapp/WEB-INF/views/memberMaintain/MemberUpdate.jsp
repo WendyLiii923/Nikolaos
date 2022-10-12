@@ -16,7 +16,11 @@ function updateMember() {
 //     hiddenField.value='PUT';
     document.forms[0].method="POST";
 	document.forms[0].submit();
+	alert("修改成功!")
+    location.href = "./MemberUpdate.jsp";
+
 }
+
 
 </script>
 
@@ -117,7 +121,7 @@ function updateMember() {
                             <a class="btn btn-primary pull-right" href="<c:url value='/orders/ordersIndex'/>">訂單查詢</a>
                         </div>
                         <div class="col">
-                            <a class="btn btn-primary pull-left" href="./productManageSystem.html">商品上架</a>
+                            <a class="btn btn-primary pull-left" href="<c:url value='/productMaintain/DisplayPageProducts' />">商品上架</a>
                         </div>
                     </div>
 
@@ -206,6 +210,8 @@ function updateMember() {
 </form:form>
 
 </div>
+<div>
 <jsp:include page="../../fragment/footer.jsp" />
+</div>
 </body>
 </html>

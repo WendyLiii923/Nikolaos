@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.register.model.dao.MemberDao;
 
+
 import com.java18.nikolaos.register.model.MemberBean;
 
 import com.java18.nikolaos.register.model.MemberBean;
@@ -138,8 +139,7 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 		b0.setPhone(bean.getPhone());
 		b0.setAddress(bean.getAddress());
 		
-		
-		
+		session.saveOrUpdate(b0);
 	}
 	/*
 	*/
@@ -164,7 +164,9 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	
 	@Override
 	 public MemberBean findById(Integer id) {
+		MemberBean bean = null;
 	  Session session = factory.getCurrentSession();
-	  return session.get(MemberBean.class, id);
+	  bean = session.get(MemberBean.class, id);
+	  return bean;
 	 }
 }

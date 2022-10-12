@@ -101,15 +101,15 @@
 						</div>
 						<div class="form-group">
 						    <label for="address">地址</label>
-						    <input type="text" class="form-control" id="address" name="address">
+						    <input type="text" class="form-control" id="address" name="address" value="${sessionScope.loginMember.address}">
 						</div>
 						<div class="form-group">
 						    <label for="email">Email</label>
-						    <input type="text" class="form-control" id="email" name="email" placeholder="sample018@gmail.com">
+						    <input type="text" class="form-control" id="email" name="email" placeholder="sample018@gmail.com" value="${sessionScope.loginMember.email}">
 						</div>
 						<div class="form-group">
 						    <label for="phone">手機</label>
-						    <input type="text" class="form-control" id="phone" name="phone" placeholder="09xx-xxx-xxx">
+						    <input type="text" class="form-control" id="phone" name="phone" placeholder="09xx-xxx-xxx" value="${sessionScope.loginMember.phone}">
 						</div>
 						<div class="form-group">
 						    <label for="payment">付款方式</label>
