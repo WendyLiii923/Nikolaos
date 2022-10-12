@@ -80,15 +80,6 @@ function Abort() {
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Css Styles -->
-<!--     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
 </head>
 <body >
 <!-- style="background:#EBFFEB;" -->
@@ -108,19 +99,6 @@ function Abort() {
 </c:choose>
               <!-- 引入共同的頁首 -->
                <jsp:include page="../../fragment/header.jsp" /> 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
@@ -164,19 +142,10 @@ function Abort() {
                                     <td class="cart__price">${anEntry.value.actualPrice}</td>
                                      <td class="cart__close">
                                    <Input type="button" name="delete" value="刪除" onclick="confirmDelete(${anEntry.key})"></td>
-                                    
-                          
-                                    
                                 </tr>
-                              
-                               
                             </tbody>
-                              
-  
                         </table>
                     </div>
-                    
-                            
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="continue__btn">
@@ -212,8 +181,7 @@ function Abort() {
                             <li>總計 <span> <td align='right'><fmt:formatNumber value="${subtotal + VAT }" pattern="#,###,###" />元</td></span></li>
                         </ul>
 <!--                         <a href="#" class="primary-btn">Proceed to checkout</a> -->
-                         <a href="<c:url value='/ShoppingCart/checkout' />" class="primary-btn onClick="return Checkout(${subtotal});">再次確認後結帳</a>
-<%--                          <a href="<c:url value='/ShoppingCart/checkout' />" onClick="return Checkout(${subtotal});">再次確認</a> --%>
+                         <a href="<c:url value='/ShoppingCart/checkout' />" class="primary-btn" onClick="return Checkout(${subtotal});">再次確認後結帳</a>
                     </div>
                 </div>
                 

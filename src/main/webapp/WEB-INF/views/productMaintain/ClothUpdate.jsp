@@ -11,19 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}</title>
 
- <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <!-- Css Styles -->
     <style>
         /*背景圖片*/
         #TextareaHighlight {
@@ -110,12 +97,6 @@
     <!-- Bootstrap 核心 JavaScript 文件 -->
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-
-
-
-
-
-
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function setFocus()
@@ -151,10 +132,7 @@ function updateCloth() {
 <!-- <body onload="setFocus()" background="../images/bookMaintain.jpg"> -->
 
 <!-- 引入共同的頁首 -->  
-<jsp:include page="../..//fragment/header.jsp" />
-
-
-
+<jsp:include page="../../fragment/header.jsp" />
 <form:form method="post" modelAttribute="clothBean"   
 			enctype="multipart/form-data" >
 <div class="container py-5 " id="outSide">
@@ -164,16 +142,9 @@ function updateCloth() {
                 <img class="border border-3 rounded-2" style="width: 300px;" height='260px' src='../../listClothes/getProductPhoto?id=${cothBean.id}'/>
             </div>
             <div class="mt-5  ml-3">
-<!--                 <div class="btn btn-primary " style="width: 200px;"> -->
-<!--                     <input type="file"> -->
-<!--                 </div> -->
-
             </div>
-
         </div>
-
         <div class="col-md-6" id="rightColumn">
-
             <body>
                 <div class="container justify-content-center">
                     <div class="container px-3">
@@ -246,7 +217,6 @@ function updateCloth() {
         </div>
     </div>
 </div>
-</div>
 
 </form:form>
 
@@ -271,170 +241,8 @@ function updateCloth() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id='main' align='center'>
-
-<div id="backToClothMaintainList">
-     <a href="<c:url value='/productMaintain/DisplayPageProducts?pageNo=${param.pageNo}' />" >回維護首頁1</a>    
-</div>     
-<form:form method="post" modelAttribute="clothBean"   
-			enctype="multipart/form-data" >
-      
-<input type='hidden' id='updateOrDelete' name='_method' > 
-  
-<table  class="table_color" border="1">
-        
-   <tr height='40'>
-       <td colspan="6" align="center" valign="bottom"> 
-           <TABLE style="background:#ffE4C4">
-            <TR height='5' >
-                <TD align='center' >&nbsp;</TD>
-            </TR>
-            <TR height='20' >
-                <TD  align='center' >
-                   <FONT color='#8000FA' size='+2' style="font-weight:900;" >
-                      刪除商品資料
-                   </FONT>
-                </TD>
-            </TR>
-            <TR height='5' >
-                <TD align='center' >&nbsp;</TD>
-            </TR>
-         </TABLE>
-       </td>
-   </tr>
-   <tr height='36'>
-      <td width="45" align="right" class="title_font">商品名稱</td>
-      <td colspan="5"> 
-          <form:input path="name" size='40'/>
-           <form:errors path="name" cssClass="error"/>
-      </td>
-   </tr>
-   <tr height='36'>
-      <td width="45" align="right" class="title_font">亮點</td>
-      <td width="312" colspan="3">     
-           <form:input path="highlight" size='20'/>
-           <form:errors path="highlight" cssClass="error"/>
-      </td>
-      <td width="312" colspan="3">     
-           <form:input path="descrip" size='20'/>
-           <form:errors path="descrip" cssClass="error"/>
-      </td>
-      <td width="52" align="right" class="title_font">價格</td>
-      <td width="161">
-        <form:input path="actualPrice" size='4'/>
-           <form:errors path="actualPrice" cssClass="error"/>
-       </td>
-   </tr>
-   <tr height='36'>
-      <td width="45" class="title_font" ><div align="right">編號</div></td>
-      <td width="160">
-           <form:input path="id" size='6'/>
-           <form:errors path="id" cssClass="error"/>
-      </td>
-      <td width="45" class="title_font" ><div align="right">分類</div></td>
-      <td width="160">
-          <select type="form-select " aria-label="label for the select" id="formSelect" style="display: block;" >
-            	<option value="0" label="請挑選" />
-          		<c:forEach var="ClothCategoryBean" items="${ClothCategory}">
-            	<option value="${ClothCategoryBean.id}">${ClothCategoryBean.category}</option>
-<%--             	<form:options  items="${category}" /> --%>
-				</c:forEach>
-            <form:errors path="category" cssClass="error"/>
-            </select>
-      </td>
-
-    </tr>
-
-   <tr height='120'>
-      <td width="45" align="right" class="title_font">圖片</td>
-      <td colspan='5'>
-        <table>  
-           <tr>
-<%--                      src='${pageContext.servletContext.contextPath}/_00_init/getClothImage?id=${clothBean.id}'  /> --%>
-             <td><img height='120' width='96' src='../../listClothes/getProductPhoto?id=${cothBean.id}'/>
-             </td>
-             <td colspan='2'>
-                <form:input path="photo" type='file' />
-	   	  	 <form:errors path="photo"  cssClass="error" />
-             </td>
-           </tr>
-        </table>
-      </td>
-</tr>
-
-<tr height='35'>
-<td colspan='6' align='center'>
-<!--         <input type="button" name="update" value="修改" onclick='updateCloth()'/> -->
-        &nbsp;&nbsp;&nbsp;
-        <input type="button" name="delete" value="刪除" onclick="confirmDelete(${clothBean.id})" /> 
-  </td>
-  </tr>
-</table>
-  <div id="deleteMsg">
-         ${ErrMsg.errDBMessage}		 
-        <input type="hidden" name="pageNo" value="${param.pageNo}" />
-  </div>
-</form:form>
-<p>&nbsp;</p>
-
-</div>
 <!-- 引入共同的頁尾 -->  
-<jsp:include page="../..//fragment/footer.jsp" />
+<jsp:include page="../../fragment/footer.jsp" />
 </body>
 
 

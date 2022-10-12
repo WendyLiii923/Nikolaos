@@ -17,6 +17,7 @@ public class OrderItem2DaoImpl_Hibernate implements OrderItem2Dao {
 	SessionFactory factory;
 	
 
+	
 	@Autowired
 	public OrderItem2DaoImpl_Hibernate(SessionFactory factory) {
 		this.factory = factory;

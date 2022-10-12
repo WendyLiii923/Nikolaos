@@ -58,4 +58,12 @@ public class OrdersDaoImpl implements OrdersDao {
 		session.evict(oo);
 		session.saveOrUpdate(order);
 	}
+
+	@Override
+	public List<Orders> findByMemberId(Integer memberId) {
+		return factory.getCurrentSession().createQuery("FROM Orders WHERE member_id= :id",Orders.class)
+				.setParameter("id", memberId)
+				.getResultList();
+	}
+	
 }

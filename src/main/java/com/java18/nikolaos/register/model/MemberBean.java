@@ -1,27 +1,24 @@
 package com.java18.nikolaos.register.model;
 
-import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Timestamp;
+import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.java18.nikolaos.orders.model.Orders;
 
 @Entity
 @Table(name="members")
-public class MemberBean implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class MemberBean  {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column
     Integer id;
     String name;
     String password;
@@ -29,19 +26,10 @@ public class MemberBean implements Serializable {
     String phone;
     String address;
 
-
-//	String userType;
-//	Timestamp registerTime;
-//	Double totalAmt;
-//	Blob memberImage;
-//	String fileName;
-//	String mimeType;
-//	Clob comment;
-//	Double unpaid_amount;
-
-//	@Transient
-//	MultipartFile memberMultipartFile;
-
+//    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//	private  Set<Orders> Orders;
+    
     @Transient
     String password1;
 
@@ -55,10 +43,6 @@ public class MemberBean implements Serializable {
         this.phone = phone;
         this.address = address;
 
-//		this.userType = userType;
-//		this.registerTime = registerTime;
-//		this.totalAmt = totalAmt;
-//		this.unpaid_amount = unpaid_amount;
         
     }
 
@@ -66,33 +50,25 @@ public class MemberBean implements Serializable {
     public MemberBean() {
     }
 
-    public Integer getId() {
+    
+//    public Set<Orders> getOrders() {
+//		return Orders;
+//	}
+//
+//
+//	public void setOrders(Set<Orders> orders) {
+//		Orders = orders;
+//	}
+
+
+	public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-//	public Clob getComment() {
-//		return comment;
-//	}
-//
-//	public void setComment(Clob comment) {
-//		this.comment = comment;
-//	}
-//
-//	public void setUserType(String userType) {
-//		this.userType = userType;
-//	}
-//
-//	public void setTs(Timestamp ts) {
-//		this.registerTime = ts;
-//	}
-//
-//	public void setTotalAmt(Double totalAmt) {
-//		this.totalAmt = totalAmt;
-//	}
 
     public String getAddress() {
         return address;
@@ -109,10 +85,6 @@ public class MemberBean implements Serializable {
     public void setEmail(String mail) {
         email = mail;
     }
-
-//	public void setRegisterTime(Timestamp registerTime) {
-//		this.registerTime = registerTime;
-//	}
 
     public String getName() {
         return name;
@@ -138,33 +110,6 @@ public class MemberBean implements Serializable {
         this.phone = phone;
     }
 
-//	public String getUserType() {
-//		return userType;
-//	}
-//
-//	public Timestamp getRegisterTime() {
-//		return registerTime;
-//	}
-//
-//	public Double getTotalAmt() {
-//		return totalAmt;
-//	}
-//
-//	public Double getUnpaid_amount() {
-//		return unpaid_amount;
-//	}
-//
-//	public void setUnpaid_amount(Double unpaid_amount) {
-//		this.unpaid_amount = unpaid_amount;
-//	}
-
-//	public MultipartFile getMemberMultipartFile() {
-//		return memberMultipartFile;
-//	}
-//
-//	public void setMemberMultipartFile(MultipartFile memberMultipartFile) {
-//		this.memberMultipartFile = memberMultipartFile;
-//	}
 
     public String getPassword1() {
         return password1;
@@ -189,16 +134,6 @@ public class MemberBean implements Serializable {
         builder.append(phone);
         builder.append(", address=");
         builder.append(address);
-//		builder.append(", userType=");
-//		builder.append(userType);
-//		builder.append(", registerTime=");
-//		builder.append(registerTime);
-//		builder.append(", totalAmt=");
-//		builder.append(totalAmt);
-//		builder.append(", comment=");
-//		builder.append(comment);
-//		builder.append(", unpaid_amount=");
-//		builder.append(unpaid_amount);
         builder.append("]");
         return builder.toString();
     }

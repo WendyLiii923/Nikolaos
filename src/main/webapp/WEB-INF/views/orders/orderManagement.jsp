@@ -87,7 +87,6 @@
             </style>
             <!-- Order Css End -->
         </head>
-        <%-- <script type="text/javascript" src="<%=basePath%>orders.js"> --%>
             <script type="text/javascript">
                 window.onload = function () {
                     var UnOkOrders = document.getElementById("UnOkOrders");
@@ -97,10 +96,11 @@
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             getOrder(xhr.responseText);
+//                             console.log(xhr.responseText);
                         }
                     }
                     xhr.open("GET", "<c:url value='/orders/ordersAll'/>");
-                    xhr.send();
+                    xhr.send(null);
                 }
                 
                 function search() {
@@ -114,7 +114,7 @@
                         var url = "<c:url value='/orders/order' />?" + "id=" + orderId.value;
                         xhr.onreadystatechange = function () {
 							if (xhr.readyState == 4 && xhr.status == 200) {
-								getOrder(xhr.responseText);
+								// getOrder(xhr.responseText);
 						
 							}
 						}
@@ -269,14 +269,14 @@
                     resultCancelOrder = addTableHead();
                     for (n = 0; n < orders.length; n++) {
                         var order = orders[n];
-                        var xhr = new XMLHttpRequest();
-                        xhr.onreadystatechange = function () {
-                            if (xhr.readyState == 4 && xhr.status == 200) {
-                                getMember(xhr.responseText);
-                            }
-                        }
-                        xhr.open("GET", "<c:url value='/orders/member'/>");
-                        xhr.send();
+                        // var xhr = new XMLHttpRequest();
+                        // xhr.onreadystatechange = function () {
+                        //     if (xhr.readyState == 4 && xhr.status == 200) {
+                        //         getMember(xhr.responseText);
+                        //     }
+                        // }
+                        // xhr.open("GET", "<c:url value='/orders/member'/>");
+                        // xhr.send();
                         resultStr = result01() + order.id + result02() + "domino@gmail.com" + result03() + order.id + result04();
                         resultEnd = result05() + order.id + result06() + order.ok_tag + result07() + order.shipping_address + result08() +
                             order.recip_phone + result09() + order.recipient + result10() + order.total_amount + result11()

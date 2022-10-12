@@ -8,12 +8,14 @@ public interface OrdersService {
 	
 	void saveOrder(Orders orders);
 	
-	Orders findById(Integer id);
 	
 	void updateOrder(Orders orders);
 	
 	List<Orders> findAllOrders();
 	
-	public void cancelOrder(Orders order);
+	void cancelOrder(Orders order);
+
+
+	Orders findById(Integer id);
 
 }

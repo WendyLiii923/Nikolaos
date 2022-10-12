@@ -17,6 +17,8 @@ public interface OrdersDao {
 	// 查詢所有訂單
 	List<Orders> findAllOrders();
 
-	public void cancelOrder(Orders order);
+	void cancelOrder(Orders order);
+	
+	List<Orders> findByMemberId(Integer memberId); 
 
 }

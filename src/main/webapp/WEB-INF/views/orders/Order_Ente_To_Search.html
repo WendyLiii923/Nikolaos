@@ -9,20 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>訂單搜尋結果-企業-Nikolaos</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <!-- Order Css -->
     <style>
         .collapse {
             display: flex;
@@ -76,8 +62,6 @@
             height: 300px;
         }
     </style>
-    <!-- Order Css End -->
-    <!-- Order script Start -->
     <script>
         function order_cancel() {
             var r = confirm("確定取消此筆訂單?");
@@ -109,12 +93,11 @@
 
 
 <body>
-    <!-- Page Preloder -->
+    <jsp:include page="../../fragment/header.jsp" />
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
@@ -142,9 +125,6 @@
             <p>Free shipping, 30-day return or refund guarantee.</p>
         </div>
     </div>
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -510,12 +490,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- 訂單編號0800694033的 簡單資訊 End -->
-
-                <!-- 訂單編號0800694033的 詳細資訊 -->
                 <div class="collapse" id="collapseExample2" style="text-align:left;padding: 20px;">
                     <div class="card border-secondary card-body">
-                        <!-- 運送資訊表格 -->
                         <table class="table table-sm" style="font-size: 8px;">
                             <tr>
                                 <th scope="row">配送狀態</th>
@@ -542,13 +518,9 @@
                                 <td>6300</td>
                             </tr>
                         </table>
-                        <!-- 運送資訊表格 End -->
                     </div>
-                    <!-- 中間排版用空白card Start -->
                     <div class="card px-3 border-light"></div>
-                    <!-- 中間排版用空白card End -->
                     <div class="card border-secondary card-body">
-                        <!-- 商品資訊表格 -->
                         <table class="table table-sm" style="font-size: 8px;">
                             <thead class="table-dark">
                                 <tr>
@@ -591,91 +563,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- 商品資訊表格 End -->
+                   
                     </div>
                 </div>
-                <!-- 訂單編號0800694033的 詳細資訊 End -->
-                <!-- 未出貨訂單 打包區塊 end -->
+         
             </div>
         </div>
     </section>
-    <!-- Order Section End -->
-
-
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/logonew.jpg" alt=""></a>
-                        </div>
-                        <p>透過衣服告訴出社會打拼的人們，我們生活就像穿搭。<br>好看與否，其實不在於衣服價格，而是你是否有用心搭配。人生也是一樣，我們都一樣是活著，但用心的活著，肯定比盲目生活的人過得還要精彩。
-                        </p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>INFO</h6>
-                        <ul>
-                            <li><a href="#">How to buy</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <!-- <li><a href="#">Sale</a></li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>GET IN TOUCH</h6>
-                        <ul>
-                            <li><a href="#">01-2345678</a></li>
-                            <li><a href="#">nikolaosxxx@gmail.com</a></li>
-                            <li><a href="#">165 ANTI FRAUD</a></li>
-                            <!-- <li><a href="#">Return & Exchanges</a></li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="footer__copyright__text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>
-                            國立臺北科技大學 JAVA & Android 程式設計人才養成班 第十八屆 第一組<br>
-                            專題成果展作品 非營利使用<br>
-                            版權問題請聯繫：石驥惟 g057104100@gmail.com
-                        </p>
-                        <!-- <p>Copyright ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>2020
-                                All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            </p> -->
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Search Begin -->
+  
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
@@ -684,22 +579,8 @@
             </form>
         </div>
     </div>
-    <!-- Search End -->
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-
-
-</body>
+   
+    <jsp:include page="../../fragment/footer.jsp" />
 </body>
 
 </html>

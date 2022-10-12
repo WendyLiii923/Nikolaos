@@ -8,8 +8,6 @@ import com.java18.nikolaos.register.model.MemberBean;
 import com.java18.nikolaos.register.model.dao.MemberDao;
 import com.java18.nikolaos.register.model.service.MemberService;
 
-import com.java18.nikolaos.register.model.MemberBean;
-
 @Service
 public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;

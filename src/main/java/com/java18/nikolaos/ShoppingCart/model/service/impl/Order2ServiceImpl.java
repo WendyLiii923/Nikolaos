@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java18.nikolaos.ShoppingCart.model.Order2Bean;
 import com.java18.nikolaos.ShoppingCart.model.OrderItem2Bean;
 import com.java18.nikolaos.ShoppingCart.model.ShoppingCart;
-import com.java18.nikolaos.ShoppingCart.model.dao.Order2Dao;
 import com.java18.nikolaos.ShoppingCart.model.dao.OrderItem2Dao;
 import com.java18.nikolaos.ShoppingCart.model.service.Order2Service;
 import com.java18.nikolaos.ShoppingCart.model.ude.ProductStockException;
 import com.java18.nikolaos.listColth.model.dao.ClothDao;
+import com.java18.nikolaos.orders.model.Orders;
+import com.java18.nikolaos.orders.model.dao.OrdersDao;
 
 @Service
 @Transactional
@@ -23,37 +23,39 @@ public class Order2ServiceImpl implements Order2Service {
 	
 	private ClothDao clothDao;
 	private OrderItem2Dao orderItem2Dao;
-	private Order2Dao order2Dao;
-//	private MemberDao memberDao;
+	private OrdersDao ordersDao;
 	
 	
+	
+	public Order2ServiceImpl() {
+	}
+
+
 	@Autowired
-	public Order2ServiceImpl(ClothDao clothDao, OrderItem2Dao orderItem2Dao, Order2Dao order2Dao) {
+	public Order2ServiceImpl(ClothDao clothDao, OrderItem2Dao orderItem2Dao, OrdersDao ordersDao) {
 		this.clothDao = clothDao;
 		this.orderItem2Dao = orderItem2Dao;
-		this.order2Dao = order2Dao;
+		this.ordersDao = ordersDao;
 	}
 
 
 	@Override
-	public void persistOrder(Order2Bean ob) {
-		double currentAmount = ob.getTotalAmount();		
+	public void persistOrder(Orders ob) {
+//		double currentAmount = ob.getTotal_amount();		
 		checkStock(ob);
-		order2Dao.save(ob);
+		ordersDao.saveOrder(ob);
 		
 	}
 	
-	public void checkStock(Order2Bean ob) {
-		Set<OrderItem2Bean> items = ob.getItems();
+	public void checkStock(Orders ob) {
+		Set<OrderItem2Bean> items = ob.getOrderItem2Bean();
 		for(OrderItem2Bean oib:items) {
 			int stock = clothDao.findById(oib.getId()).getStock();
 			if(stock < oib.getQuantity()) {
 				throw new ProductStockException(
 						"庫存數量不足: id:"+oib.getId()+", 在庫量:"+stock+", 訂購量:"+oib.getQuantity()
 						);
-	
 			}else {
-				
 				orderItem2Dao.updateProductStock(oib);
 			}
 		}
@@ -62,16 +64,16 @@ public class Order2ServiceImpl implements Order2Service {
 
 
 	@Override
-	public Order2Bean findById(int orderNo) {
-		Order2Bean bean =null;
-		bean=order2Dao.findById(orderNo);
+	public Orders findById(int orderNo) {
+		Orders bean =null;
+		bean=ordersDao.findById(orderNo);
 		return bean;
 	}
 
 	@Override
-	public List<Order2Bean> findByMemberId(String memberId) {
-		List<Order2Bean> list =null;
-		list = order2Dao.findByMemberId(memberId);
+	public List<Orders> findByMemberId(Integer memberId) {
+		List<Orders> list =null;
+		list = ordersDao.findByMemberId(memberId);
 		return list;
 	}
 

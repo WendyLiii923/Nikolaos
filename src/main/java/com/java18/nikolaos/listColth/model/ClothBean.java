@@ -17,8 +17,6 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity(name = "ClothBean")
 @Table(name = "product") // 配到資料庫的product資料表
 public class ClothBean implements Serializable {

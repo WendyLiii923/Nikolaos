@@ -1,14 +1,6 @@
 package com.java18.nikolaos.login.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.http.HttpSession;
-
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
-import com.java18.nikolaos.register.model.MemberBean;
 // 登出時需要做的事寫在這裡，如session.invalidate()
 public class LogoutBean {
    
@@ -31,15 +23,13 @@ public class LogoutBean {
 	}
 
 	public Integer getLogout() {
-		MemberBean mb = (MemberBean)session.getAttribute("loginMember");
-		String email = "";
-		if (mb != null) {
-			email = mb.getEmail();
-		} else {
-			email = "(未知)";
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		log.info("使用者:" + userId + "已於 " + sdf.format(new Date())  + " 登出...");
+//		MemberBean mb = (MemberBean)session.getAttribute("loginMember");
+//		String email = "";
+//		if (mb != null) {
+//			email = mb.getEmail();
+//		} else {
+//			email = "(未知)";
+//		}
 		session.invalidate();
 		return 0;
 	}

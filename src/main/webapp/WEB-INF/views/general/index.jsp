@@ -34,7 +34,7 @@
                                 <h6>Nikolaos 內觀三部曲</h6>
                                 <h2>沈澱-寬鬆休息</h2>
                                 <p>服飾主推寬鬆休閒正是為了體現舒適，也體現做自己的重要性。在舒適的環境下，你才是你自己。</p>
-                                <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                                <a href="/nikolaos/listClothes/DisplayPageProducts" class="primary-btn">Shop now <span class="arrow_right"></span></a>
                                 <div class="hero__social">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
                                     <a href="#"><i class="fa fa-twitter"></i></a>

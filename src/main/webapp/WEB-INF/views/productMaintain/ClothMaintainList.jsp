@@ -16,17 +16,17 @@
 
 
  <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
+<!--     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" -->
+<!--         rel="stylesheet"> -->
 
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<!--     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
     <!-- Css Styles -->
     <style>
         /*背景圖片*/
@@ -124,7 +124,7 @@
 <!-- 下列敘述設定變數funcName的值為BMT，top.jsp 會用到此變數 -->
 <c:set var="funcName" value="BMT" scope="session" />
 <!-- 引入共同的頁首 -->
-<jsp:include page="../..//fragment/header.jsp" />
+<jsp:include page="../../fragment/header.jsp" />
 <div id='main' align="center">
 <%-- ${ BookDeleteMsg } --%>
 <c:remove var="BookDeleteMsg" />

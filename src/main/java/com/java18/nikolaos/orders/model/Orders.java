@@ -2,18 +2,20 @@ package com.java18.nikolaos.orders.model;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.java18.nikolaos.ShoppingCart.model.OrderItem2Bean;
 
 @Entity
 public class Orders {
@@ -22,12 +24,10 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-//	@ManyToOne(cascade = CascadeType.D)
-//	@JoinColumn(name = "member_id")
-//	private MemberBean member;
+	@Column(name = "member_id")
+	private Integer member;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-//	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	private Date order_date;
 
@@ -47,48 +47,42 @@ public class Orders {
 	
 	private String recip_phone;
 	
-//	private Integer orderItemId;
+	private Integer shipping_method;
 
-//	private Integer shipping_method;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="shipping_method",insertable = false,updatable = false)
-//	private Shippingmethod shippingmethod;
-
+	@OneToMany(mappedBy = "orders",cascade = CascadeType.ALL)
+	private  Set<OrderItem2Bean> orderItem2Bean;
 	
-//	public MemberBean getMember() {
-//		return member;
-//	}
-//
-//	public void setMember(MemberBean member) {
-//		this.member = member;
-//	}
+	public Integer getMember() {
+		return member;
+	}
 
 	
 
-//	public Integer getOrderItemId() {
-//		return orderItemId;
-//	}
-//
-//	public Integer getShipping_method() {
-//		return shipping_method;
-//	}
-//
-//	public void setShipping_methodId(Integer shipping_method) {
-//		this.shipping_method = shipping_method;
-//	}
-//
-//	public Shippingmethod getShippingmethod() {
-//		return shippingmethod;
-//	}
-//
-//	public void setShippingmethod(Shippingmethod shippingmethod) {
-//		this.shippingmethod = shippingmethod;
-//	}
+	public Set<OrderItem2Bean> getOrderItem2Bean() {
+		return orderItem2Bean;
+	}
 
-//	public void setOrderItemId(Integer orderItemId) {
-//		this.orderItemId = orderItemId;
-//	}
+
+
+	public void setOrderItem2Bean(Set<OrderItem2Bean> orderItem2Bean) {
+		this.orderItem2Bean = orderItem2Bean;
+	}
+
+
+
+	public void setMember(Integer member) {
+		this.member = member;
+	}
+	
+
+
+	public Integer getShipping_method() {
+		return shipping_method;
+	}
+
+	public void setShipping_method(Integer shipping_method) {
+		this.shipping_method = shipping_method;
+	}
 
 	public Orders() {
 	}

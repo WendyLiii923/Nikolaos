@@ -19,13 +19,10 @@ import com.java18.nikolaos.register.model.MemberBean;
 @SessionAttributes({"loginMember"}) 
 public class LogoutController {
 	
-//	private static Logger log = LoggerFactory.getLogger(LogoutController.class);
-	
 	@GetMapping("/showSessionData")
 	public String retrieveSessionObject(Model model) {
 		MemberBean memberBean = (MemberBean)model.getAttribute("loginMember");
 		model.addAttribute("memberName", memberBean.getName());
-//		model.addAttribute("memberId", memberBean.getMemberId());
 		model.addAttribute("memberEmail", memberBean.getEmail());
 		return "showSessionData";
 	}
@@ -41,14 +38,9 @@ public class LogoutController {
 		} else {
 			name = "訪客";
 		}
-//		log.info(name + "已登出");
-//		String farewellMessage = name + "您已登出，期待您再次蒞臨本網站";
 		redirectAtt.addFlashAttribute("logoutMessage");
-		// 登出時執行下列兩敘述
 		status.setComplete();		// 移除@SessionAttributes({"LoginOK"}) 標示的屬性物件
 		session.invalidate();		// 此敘述不能省略		
 		return "redirect:/";		// 跳轉回http://localhost:8080/Context_Path/
-		
-//		return "redirect: /";		// 跳轉回http://localhost:8080/
 	}
 }

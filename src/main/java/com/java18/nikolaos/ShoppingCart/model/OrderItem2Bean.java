@@ -2,13 +2,14 @@ package com.java18.nikolaos.ShoppingCart.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.java18.nikolaos.orders.model.Orders;
 
 @Entity(name = "orderitems2Bean")
 @Table(name = "orderitems2")
@@ -26,8 +27,8 @@ public class OrderItem2Bean {
 	Integer actualPrice;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_Order2Bean_orderNo")
-	Order2Bean order2Bean;
+	@JoinColumn(name = "orderId")
+	Orders orders;
 	
 
 	public OrderItem2Bean() {
@@ -119,13 +120,15 @@ public class OrderItem2Bean {
 		this.actualPrice = actualPrice;
 	}
 
-	public Order2Bean getOrder2Bean() {
-		return order2Bean;
+	public Orders getOrders() {
+		return orders;
 	}
 
-	public void setOrder2Bean(Order2Bean order2Bean) {
-		this.order2Bean = order2Bean;
+	public void setOrders(Orders orders) {
+		this.orders = orders;
 	}
+
+	
 	
 
 }
