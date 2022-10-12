@@ -6,28 +6,29 @@
 <html>
 <head>
 <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
+<!--     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" -->
+<!--         rel="stylesheet"> -->
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<!--     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
 <script type="text/javascript">
 function cancelOrder() {
 	if (confirm("確定取消此份訂單 ? ") ) {
 		// 接收此資料的Servlet會使用 finalDecision 參數的值
-		document.forms[0].finalDecision.value = "CANCEL";		
-		document.forms[0].action="<c:url value='cancelOrder' />";
-		document.forms[0].submit();	
-		return;
-	} else {
-		return;
+// 		document.forms[0].finalDecision.value = "CANCEL";		
+// 		document.forms[0].action="<c:url value='cancelOrder' />";
+// 		document.forms[0].submit();	
+	location.href="<c:url value='/listClothes/DisplayPageProducts '/>";
+// 		return;
+// 	} else {
+// 		return;
 	}
 }
 function reconfirmOrder() {
@@ -56,7 +57,7 @@ function reconfirmOrder() {
 <body style="background:;">
 <c:set var="funcName" value="CHE" scope="session"/>
 
-<jsp:include page="/fragment/header.jsp" />
+<jsp:include page="../../fragment/header.jsp"  	/>
 
 
 
@@ -74,26 +75,30 @@ function reconfirmOrder() {
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="checkout__input">
-                                        <p>會員編號：${loginMember.id} <span></span></p>
-                                        <input type="text">
+                                        <p>會員編號： <span></span></p>
+<!--                                         <input type="text" value=""> -->
+                                        <h5>${loginMember.id}</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="checkout__input">
-                                        <p>客戶姓名：${loginMember.name}<span></span></p>
-                                        <input type="text">
+                                        <p>客戶姓名：<span></span></p>
+<!--                                         <input type="text" value="" style=> -->
+                                        <h5>${loginMember.name}</h5>
                                     </div>
                                 </div>
                                     <div class="col-lg-4">
-                                    <div class="checkout__input">
-                                        <p>地址${loginMember.address}<span></span></p>
-                                        <input type="text">
-                                    </div>
+                             
                                 </div>
                             </div>
+                                   <div class="checkout__input">
+                                        <p><h6>預設地址</h6></p>
+<!--                                         <input type="text"> -->
+                                        <h5>${loginMember.address}</h5>
+                                    </div>
                      
                             <div class="checkout__input">
-                                <p>出貨地址：<span></span></p>
+                                <p><h6>出貨地址：</h6></p>
                                   <Input style="background:;" size="60" type="text" id='ShippingAddress' 
                    name="ShippingAddress" value="${loginMember.address}">
                    <!--          	MemberBean.address -->
@@ -115,48 +120,7 @@ function reconfirmOrder() {
                             </div>
                             
                             
-<c:forEach varStatus="vs" var="entry" items="${ShoppingCart.content}">
-                              <div class="checkout__input">
-<!--                                 <h4>商品名稱</h4> -->
-<!--                                 <input type="text"> -->
-<%--                                 ${entry.value.name} --%>
-                            </div>
-                            
-                            <div class="checkout__input">
-<!--                                 <h5>產品亮點</h5> -->
-<%--                             	${entry.value.highlight} --%>
-<!--                                 <input type="text"> -->
-                            </div>
-<!--                             <div class="checkout__input"> -->
-<!--                                 <p>Postcode / ZIP<span>*</span></p> -->
-<!--                                 <input type="text"> -->
-<!--                             </div> -->
-<!--                             <div class="row"> -->
-<!--                                 <div class="col-lg-6"> -->
-<!--                                     <div class="checkout__input"> -->
-<!--                                         <p>Phone<span>*</span></p> -->
-<!--                                         <input type="text"> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<!--                                 <div class="col-lg-6"> -->
-<!--                                     <div class="checkout__input"> -->
-<!--                                         <p>Email<span>*</span></p> -->
-<!--                                         <input type="text"> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-                            <div class="">
-<!--                                 <label for="acc"> -->
-<!--                                     Create an account? -->
-<!--                                     <input type="checkbox" id="acc"> -->
-<!--                                     <span class="checkmark"></span> -->
-<!--                                 </label> -->
-                               
-                            </div>
 
-                       
-                            
- </c:forEach>
                         </div>
                         <div class="col-lg-6 col-md-4">
                         
@@ -188,28 +152,9 @@ function reconfirmOrder() {
  	</li>
 <!--                                     <li>總計 <span>$750.99</span></li> -->
                                 </ul>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+          
                          
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+                               
        
 <!--                                 <button type="submit" class="site-btn">確定送出</button> -->
                                 <input type="button" class="site-btn" name="OrderBtn" value="確定送出" onclick="reconfirmOrder()">
@@ -229,189 +174,18 @@ function reconfirmOrder() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div style="text-align:center">
-<h4>請確認下列訊息：</h4>
-<FORM style="margin: 0 auto; width:750px;" action="<c:url value='/ShoppingCart/ProcessOrder.do' />" method="POST" >
-   <TABLE border='1' style="background:; border-color:rgb( 100, 100, 255); border-style: outset; width:810;">
-      <TR >
-         <TD style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-         	會員編號：${loginMember.memberId} 
-<!--          	MemberBean.memberId -->
-         </TD>
-         <TD style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-         	客戶姓名：${loginMember.name}
-         	<!--          	MemberBean.name -->
-         </TD>
-         <TD style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-<%--          	訂單日期：<fmt:formatDate value="${SYSTEM.utilDate}" pattern="yyyy-MM-dd"/> --%>
-         	訂單日期：${SYSTEM.today}
-         </TD>
-      </TR>
-      <TR>
-         <TD colspan='3' style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-         	會員地址：${loginMember.address}
-         </TD>
-      </TR>
-      <TR>
-         <TD colspan='3' style="text-align:left; border-color: ; border-style: ;">
-                   出貨地址：<Input style="background:;" size="60" type="text" id='ShippingAddress' 
-                   name="ShippingAddress" value="${loginMember.address}">
-                   <!--          	MemberBean.address -->
-                   <font color='red'>${errorMsg.ShippingAddress}</font>
-         </TD>
-      </TR>
-      <TR>
-         <TD colspan='3' style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-                   統一編號：<Input style="background:;" maxlength="8" type="text" 
-                   name="BNO" value="">
-         </TD>
-      </TR>
-      <TR>
-         <TD colspan='3' style="text-align:left; border-color: #FFBD32; border-style: ridge;">
-                                   發票抬頭：<Input style="background:;" size="50" type="text" 
-                      name="InvoiceTitle" value="" >
-         </TD>
-      </TR>
-    
-      <TR>
-         <TD colspan='3'>
-         
-   <TABLE border='1' style="background:; border-color:rgb( 100, 100, 255); " >
-      
-     <TR><TH style="text-align:center;font-size: 12pt;" width="350">產品</TH> 
-         <TH style="text-align:center;font-size: 12pt;" width="80">亮點</TH>
-         <TH style="text-align:center;font-size: 12pt;" width="80">敘述</TH>
-         <TH style="text-align:center;font-size: 12pt;" width="80">單價</TH>
-         <TH style="text-align:center;font-size: 12pt;" width="60">數量</TH>
-         <TH style="text-align:center;font-size: 12pt;" width="110">小計</TH></TR>
-     
-     <c:forEach varStatus="vs" var="entry" items="${ShoppingCart.content}">
-                                                    
-        <TR height='16'>
-          <TD style="text-align:left  ;font-size: 11pt;">${entry.value.name}</TD>
-          <TD style="text-align:center;font-size: 11pt;">
-          	${entry.value.highlight}
-          </TD>
-
-          <TD style="text-align:right ;font-size: 11pt;">
-          	<fmt:formatNumber value="${entry.value.actualPrice}" pattern="#,###" />元
-          </TD>
-          <TD style="text-align:right ;font-size: 11pt;"> 
-          	${entry.value.quantity}
-          </TD>
-          <TD style="text-align:right ;font-size: 11pt;">
-          	<fmt:formatNumber 
-          	value="${entry.value.actualPrice* entry.value.quantity}" pattern="#,###,###" />元
-          </TD>
-        </TR>
-     </c:forEach>
-     
-        <TR height='16'>
-          <TD style="text-align:right;font-size: 11pt;" colspan='5' >合計金額：</TD>
-          <TD style="text-align:right;font-size: 11pt;" >
-          <fmt:formatNumber value="${ShoppingCart.subtotal}" pattern="#,###,###" />元</TD>
-                  
-        </TR>
-        <TR>
-          <TD colspan='5' style="text-align:right;font-size: 11pt;" >營業稅：</TD>
-          <c:set var="VAT" value="${ShoppingCart.subtotal*0.05 + 0.0001}"/>
-          <TD style="text-align:right;font-size: 11pt;" > 
-          <fmt:formatNumber value="${VAT}" pattern="#,###,###" />元</TD>
-        </TR>
-        <TR>
-          <TD colspan='5' style="text-align:right;font-size: 11pt;" >總計金額：</TD>
-          <TD style="text-align:right;font-size: 11pt;color:#AA0200;" >
-          <fmt:formatNumber value="${ShoppingCart.subtotal + VAT }" pattern="#,###,###" />元</TD>
-        </TR>
-   </TABLE>
-          </TD>
-      </TR>
- 
-   </TABLE><P/>
-   <input type="hidden" name="finalDecision"  value="">   
-   <input type="button" name="OrderBtn"  value="確定送出" onclick="reconfirmOrder()">
-   <input type="button" name="CancelBtn" value="取消訂單" onclick="cancelOrder()">
-</FORM>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<jsp:include page="/fragment/footer.jsp" />
+<jsp:include page="../../fragment/footer.jsp" />
 
  <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+<!--     <script src="js/jquery-3.3.1.min.js"></script> -->
+<!--     <script src="js/bootstrap.min.js"></script> -->
+<!--     <script src="js/jquery.nice-select.min.js"></script> -->
+<!--     <script src="js/jquery.nicescroll.min.js"></script> -->
+<!--     <script src="js/jquery.magnific-popup.min.js"></script> -->
+<!--     <script src="js/jquery.countdown.min.js"></script> -->
+<!--     <script src="js/jquery.slicknav.js"></script> -->
+<!--     <script src="js/mixitup.min.js"></script> -->
+<!--     <script src="js/owl.carousel.min.js"></script> -->
+<!--     <script src="js/main.js"></script> -->
 </body>
 </html>

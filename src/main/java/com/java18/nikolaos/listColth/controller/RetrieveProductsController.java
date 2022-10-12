@@ -42,10 +42,10 @@ public class RetrieveProductsController {
 		this.service = service;
 	}
 
-	@GetMapping("/nikolaos")
-	public String index() {
-		return "boren_index";
-	}
+//	@GetMapping("/nikolaos")
+//	public String index() {
+//		return "boren_index";
+//	}
 
 	@GetMapping("/getProductPhoto")
 	@ResponseBody

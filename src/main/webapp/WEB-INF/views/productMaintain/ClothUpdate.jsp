@@ -151,7 +151,7 @@ function updateCloth() {
 <!-- <body onload="setFocus()" background="../images/bookMaintain.jpg"> -->
 
 <!-- 引入共同的頁首 -->  
-<jsp:include page="/fragment/header.jsp" />
+<jsp:include page="../..//fragment/header.jsp" />
 
 
 
@@ -434,7 +434,7 @@ function updateCloth() {
 
 </div>
 <!-- 引入共同的頁尾 -->  
-<jsp:include page="/fragment/footer.jsp" />
+<jsp:include page="../..//fragment/footer.jsp" />
 </body>
 
 

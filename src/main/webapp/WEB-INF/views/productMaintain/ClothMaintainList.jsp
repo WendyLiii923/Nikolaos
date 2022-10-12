@@ -124,7 +124,7 @@
 <!-- 下列敘述設定變數funcName的值為BMT，top.jsp 會用到此變數 -->
 <c:set var="funcName" value="BMT" scope="session" />
 <!-- 引入共同的頁首 -->
-<jsp:include page="/fragment/header.jsp" />
+<jsp:include page="../..//fragment/header.jsp" />
 <div id='main' align="center">
 <%-- ${ BookDeleteMsg } --%>
 <c:remove var="BookDeleteMsg" />
@@ -283,7 +283,7 @@
 
 
 <!-- 引入共同的頁首 -->
-<jsp:include page="/fragment/footer.jsp" />
+<jsp:include page="../..//fragment/footer.jsp" />
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

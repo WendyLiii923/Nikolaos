@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/productMaintain")
 
-@SessionAttributes({ "LoginOK", "pageNo" })
+@SessionAttributes({ "loginMember", "pageNo" })
 public class ClothInsertController {
 
 //	private static Logger log = LoggerFactory.getLogger(ClothInsertController.class);

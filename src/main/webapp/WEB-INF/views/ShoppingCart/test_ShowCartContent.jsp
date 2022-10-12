@@ -81,14 +81,14 @@ function Abort() {
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+<!--     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
+<!--     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
 </head>
 <body >
 <!-- style="background:#EBFFEB;" -->
@@ -238,106 +238,19 @@ function Abort() {
 
 
 
-<table style="margin: 0 auto; width:820px; border:2px solid black; ">
-<!--  background:#EFEFFB; -->
-<tr><td colspan='4'>
-<!--          購物車的標題          -->
 
-   <table style="width:820px">
-     <tr height='40'>
-     	<td width="270">&nbsp;</td>
-     	<td width="280" align='center'><FONT  size='+2'>${AppName}</FONT></td>
-     	<td width="270" align='right'></td>
-     </tr>
-     <tr height='18'>
-     	<td width="270">&nbsp;</td>
-     	<td width="280" align='center'><FONT  size='+2'>購 物 清 單</FONT></td>
-     	<td width="270" align='right'></td>
-     </tr>
-</table>
-</td></tr>
-
-<tr>
-   <td>
-     <table border='1'>
-     <tr><th width="320">商品</th><th width="70">亮點</th><th width="60">分類</th><th width="60">敘述</th><th width="40">價格</th><th width="110">總價</th><th width="110">修改</th></tr>
-     <c:forEach varStatus="vs" var="anEntry" items="${ShoppingCart.content}">
-        <tr height='16'>
-          <td >${anEntry.value.name}</td>
-          <td style="text-align:center;">${anEntry.value.highlight}</td>
-          <td style="text-align:center;">${anEntry.value.clothcategoryName}</td>
-<%--           <td style="text-align:center;">${anEntry.value.descrip}</td> --%>
-          <td style="text-align:right;"><fmt:formatNumber value="${anEntry.value.actualPrice}" pattern="#,###" />元</td>
-          <td style="text-align:right;">
-                <Input id="newQty${vs.index}" style="width:28px;text-align:right" name="newQty" type="text" value="<fmt:formatNumber value="${anEntry.value.quantity}" />" name="qty" onkeypress="return isNumberKey(event)"  />
-          </td>
-          <td style="text-align:right;"><fmt:formatNumber value="${anEntry.value.actualPrice * anEntry.value.quantity}" pattern="#,###,###" />元</td>
-          <td ><Input type="button" name="update" value="修改" onclick="modify(${anEntry.key}, ${anEntry.value.quantity}, ${vs.index})">
-               <Input type="button" name="delete" value="刪除" onclick="confirmDelete(${anEntry.key})"></td>
-        </tr>
-     </c:forEach>
-     
-     
-        <tr height='16'>
-          <td colspan='5' align='right'>合計金額：</td>
-          <td align='right'><fmt:formatNumber value="${subtotal}" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-        <tr>
-          <td colspan='5' align='right'>營業稅：</td>
-          <c:set var="VAT" value="${subtotal*0.05 + 0.0001}"/>
-          <td align='right'><fmt:formatNumber value="${VAT}" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-        <tr>
-          <td colspan='5' align='right'>總計金額：</td>
-          <td align='right'><fmt:formatNumber value="${subtotal + VAT }" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-   </table>
-   
-   </td>
-</tr>
-<tr height='80'>
-   <td > 
-     <table border='1'>
-        <tr >
-          <td width="265" align='center'>
-              <a href="<c:url value='/listClothes/DisplayPageProducts' />">繼續購物</a>
-          </td>
-          <td width="265" align='center'>
-              <a href="<c:url value='/ShoppingCart/checkout' />" onClick="return Checkout(${subtotal});">再次確認</a>
-          </td>
-          <td width="265" align='center'>
-              <a href="<c:url value='/ShoppingCart/abort' />" onClick="return Abort();">放棄購物</a>
-          </td>
-        </tr>
-     </table>
-   </td>
-</tr>
-</table>
-<div style='text-align:center;'>
-<c:if test='${not empty OrderErrorMessage}'>
-		<font color='red'>${OrderErrorMessage}</font>
-		<c:remove var="OrderErrorMessage"/>	
-</c:if>
-</div>
-    
-<form>
-   <input type="hidden" name="a"/>
-</form>
               <!-- 引入共同的頁尾 -->
-               <jsp:include page="/fragment/footer.jsp" /> 
+               <jsp:include page="../../fragment/footer.jsp" /> 
                   <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+<!--     <script src="js/jquery-3.3.1.min.js"></script> -->
+<!--     <script src="js/bootstrap.min.js"></script> -->
+<!--     <script src="js/jquery.nice-select.min.js"></script> -->
+<!--     <script src="js/jquery.nicescroll.min.js"></script> -->
+<!--     <script src="js/jquery.magnific-popup.min.js"></script> -->
+<!--     <script src="js/jquery.countdown.min.js"></script> -->
+<!--     <script src="js/jquery.slicknav.js"></script> -->
+<!--     <script src="js/mixitup.min.js"></script> -->
+<!--     <script src="js/owl.carousel.min.js"></script> -->
+<!--     <script src="js/main.js"></script> -->
 </body>
 </html>
