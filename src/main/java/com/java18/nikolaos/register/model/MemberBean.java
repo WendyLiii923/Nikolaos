@@ -58,6 +58,7 @@ public class MemberBean implements Serializable {
 //		this.registerTime = registerTime;
 //		this.totalAmt = totalAmt;
 //		this.unpaid_amount = unpaid_amount;
+        
     }
 
 
