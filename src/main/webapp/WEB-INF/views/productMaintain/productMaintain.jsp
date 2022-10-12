@@ -1,0 +1,485 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Css Styles -->
+    <style>
+        /*背景圖片*/
+        #TextareaHighlight {
+            width: 380px;
+        }
+
+        #rightColumn {
+            border-color: black;
+            border-width: 10px;
+        }
+
+        #TextareaDescrip {
+            width: 380px;
+        }
+
+        body {
+            background: url(../img/carback.jpg) no-repeat;
+            background-size: cover;
+            font-size: 15px;
+        }
+
+        /*给表單邊框設置大小,颜色和不透明度*/
+        .form {
+            background: rgba(255, 255, 255, 0.9);
+            width: 400px;
+            margin: 50px auto;
+        }
+
+        /*字體和大小*/
+        label {
+            font-family: Arial;
+            font-size: 15px
+        }
+
+        /*輸入正確，輸入框變淺綠色*/
+        input.form-control:valid {
+            background-color: mintcream;
+        }
+
+        /*输入錯誤,輸入框變淺紅色*/
+        input.form-control:invalid {
+            background-color: #ffeeed;
+        }
+
+        /*圖案是眶內元素，設定大小和顏色*/
+        .fa {
+            display: inline-block;
+            top: 27px;
+            left: 6px;
+            position: relative;
+            color: #575757;
+        }
+
+        /*輸入框設置padding,防止重疊*/
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            padding-left: 26px;
+        }
+
+        .form-title {
+            padding-top: 20px;
+        }
+
+        floatingTextarea1 {
+            width: 300px;
+        }
+
+        #button {
+            padding-bottom: 50px;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!--font-awesome 核心CSS 文件-->
+    <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 在bootstrap.min.js 之前引入 -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7">
+                    <div class="header__top__left">
+                        <p>Free shipping, 30-day return or refund guarantee.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="header__top__links">
+                            <a href="./login.html">Sign in</a>
+                            <a href="#">FAQs</a>
+                        </div>
+                        <div class="header__top__hover">
+                            <span>Usd <i class="arrow_carrot-down"></i></span>
+                            <ul>
+                                <li>USD</li>
+                                <li>EUR</li>
+                                <li>USD</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a href="./index.html"><img src="img/logonew.jpg" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="./index.html">Home</a></li>
+                        <li><a href="./shop.html">Shop</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">About Us</a></li>
+                                <li><a href="./shop-details.html">Shop Details</a></li>
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./checkout.html">Check Out</a></li>
+                                <!-- <li><a href="./blog-details.html">Blog Details</a></li> -->
+                            </ul>
+                        </li>
+                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./contact.html">Contacts</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                    <div class="price">$0.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->
+
+<div class="container py-5 " id="outSide">
+    <div class="container  ">
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <div class="card-body d-flex justify-content-center">
+                <img class="border border-3 rounded-2" style="width: 300px;" src="./img/product/product-3.jpg" alt="">
+            </div>
+            <div class="mt-5  ml-3">
+                <div class="btn btn-primary " style="width: 200px;">
+                    <input type="file">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6" id="rightColumn">
+
+            <body>
+                <div class="container justify-content-center">
+                    <div class="container px-3">
+                        <div class="d-inline-block ">
+                            <h4>產品名稱</h4>
+                        </div>
+                        <div class="d-inline-block px-3">
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+
+
+                    <div class="container px-3">
+                        <div class="d-inline-block ">
+                            <h4>產品編號</h4>
+                        </div>
+                        <div class="d-inline-block px-3">
+                            <input type="text" name="" id="">
+                        </div>
+                    </div>
+
+
+                    <div class="container px-3">
+                        <div class="d-inline-block">
+                            <h4>產品金額</h4>
+                        </div>
+                        <div class="d-inline-block px-3">
+                            <input type="number" name="" id="" style="width:208px">
+
+                        </div>
+                    </div>
+
+                    <div class="container px-3">
+                        <div class="d-inline-block">
+                            <h4>產品尺寸</h4>
+                        </div>
+                        <div class="d-inline-block px-3">
+                            <select type="form-select" name="" id="" style="width:208px">
+                                <option selected>選擇商品尺寸</option>
+                                <option value="1">S</option>
+                                <option value="2">M</option>
+                                <option value="3">L</option>
+                                <option value="4">XL</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="container px-3">
+                        <div class="d-inline-block">
+                            <h4>產品類別</h4>
+                        </div>
+                        <div class="d-inline-block px-3">
+                            <select type="form-select" name="" id="" style="width:208px">
+                            <c:forEach var="Category" items="${ClothCategories}">
+                                <option value="${Category.id}">${Category.category}</option>
+                            
+                            </c:forEach>
+                            	
+<!--                                 <option selected>選擇商品類別</option> -->
+<!--                                 <option value="2">下著</option> -->
+<!--                                 <option value="3">配件</option> -->
+<!--                                 <option value="4">T恤</option> -->
+<!--                                 <option value="5">襯衫</option> -->
+<!--                                 <option value="6">褲子</option> -->
+<!--                                 <option value="7">裙子</option> -->
+<!--                                 <option value="8">帽子</option> -->
+<!--                                 <option value="9">耳環</option> -->
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-floating px-3"">
+                        <div class=" py-3">
+                        <h4>產品亮點</h4>
+                    </div>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="TextareaHighlight"
+                        style="height: 60px "></textarea>
+                    <!-- <label for="floatingTextare1">產品描述</label> -->
+                </div>
+
+
+                <div class="form-floating px-3">
+                    <div class=" py-3">
+                        <h4>產品描述</h4>
+                    </div>
+                    <textarea class="form-control py-4" placeholder="產品描述一百字內" id="TextareaDescrip"
+                        style="height: 100px"></textarea>
+                    <!-- <label for="floatingTextarea2">產品描述</label> -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!-- <div>
+                        <div class="d-inline-block px-3">
+                            <h4>產品類別</h4>
+                        </div>
+                        <div class="form-floating py-5 d-inline-block">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                                style="width:208px;">
+                                <option selected>選擇商品類別</option>
+                                <option value="1">上衣</option>
+                                <option value="2">下著</option>
+                                <option value="3">配件</option>
+                                <option value="4">T恤</option>
+                                <option value="5">襯衫</option>
+                                <option value="6">褲子</option>
+                                <option value="7">裙子</option>
+                                <option value="8">帽子</option>
+                                <option value="9">耳環</option>
+                            </select>
+                            <!-- <label for="floatingSelect">產品類別</label> -->
+
+
+                <!-- <div class="d-inline-block px-3">
+                        <h4>尺寸</h4>
+                    </div>
+
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                        style="width:208px;">
+                        <option selected>選擇商品尺寸</option>
+                        <option value="1">S</option>
+                        <option value="2">M</option>
+                        <option value="3">L</option>
+                        <option value="4">XL</option>
+                    </select> -->
+                <!-- <label for="floatingSelect">產品類別</label> -->
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+</body>
+
+</div>
+<div class=" justify-content-center">
+
+</div>
+
+
+<div class="row justify-content-center align-items-center py-4 ">
+    <div class="col-2 mt-3">
+        <input type="submit" value="更新" class="btn btn-primary" style="width:100px">
+    </div>
+
+    <div class="col-2 mt-3">
+        <input type="submit" value="刪除" class="btn btn-danger" style="width:100px">
+    </div>
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="#"><img src="img/logonew.jpg" alt=""></a>
+                    </div>
+                    <p>透過衣服告訴出社會打拼的人們，我們生活就像穿搭。<br>好看與否，其實不在於衣服價格，而是你是否有用心搭配。人生也是一樣，我們都一樣是活著，但用心的活著，肯定比盲目生活的人過得還要精彩。
+                    </p>
+                    <a href="#"><img src="img/payment.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>INFO</h6>
+                    <ul>
+                        <li><a href="#">How to buy</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <!-- <li><a href="#">Sale</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>GET IN TOUCH</h6>
+                    <ul>
+                        <li><a href="#">01-2345678</a></li>
+                        <li><a href="#">nikolaosxxx@gmail.com</a></li>
+                        <li><a href="#">165 ANTI FRAUD</a></li>
+                        <!-- <li><a href="#">Return & Exchanges</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="footer__copyright__text">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
+                        國立臺北科技大學 JAVA & Android 程式設計人才養成班 第十八屆 第一組<br>
+                        專題成果展作品 非營利使用<br>
+                        版權問題請聯繫：石驥惟 g057104100@gmail.com
+                    </p>
+                    <!-- <p>Copyright ©
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>2020
+                        All rights reserved | This template is made with <i class="fa fa-heart-o"
+                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </p> -->
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</html>
