@@ -8,6 +8,8 @@ import com.java18.nikolaos.register.model.MemberBean;
 import com.java18.nikolaos.register.model.dao.MemberDao;
 import com.java18.nikolaos.register.model.service.MemberService;
 
+import com.java18.nikolaos.register.model.MemberBean;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;
@@ -45,5 +47,16 @@ public class MemberServiceImpl implements MemberService {
 		MemberBean mb = null;
 		mb = memberDao.findByEmailAndPassword(email, password);
 		return mb;
+	}
+
+	@Transactional
+	@Override
+	public void updateMember(MemberBean bean) {
+		memberDao.updateMember(bean);
+	}
+	@Transactional
+	@Override
+	public MemberBean findById (Integer id) {
+		return memberDao.findById(id);
 	}
 }

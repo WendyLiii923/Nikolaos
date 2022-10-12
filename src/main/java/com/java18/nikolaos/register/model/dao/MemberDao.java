@@ -18,4 +18,8 @@ public interface MemberDao {
 //	void updateUnpaidAmount(OrderBean ob);
 
 	void setConnection(Connection con);
+
+	void updateMember(MemberBean bean);
+	
+	MemberBean findById(Integer id); 
 }

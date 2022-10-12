@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.java18.nikolaos.register.model.dao.MemberDao;
+
+import com.java18.nikolaos.register.model.MemberBean;
+
 import com.java18.nikolaos.register.model.MemberBean;
 //import com.java18.nikolaos.ShoppingCart.model.OrderBean;
 // 本類別使用JDBC技術存取資料庫。
@@ -98,6 +101,46 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 //					(mb == null ? "帳號/密碼正確" : "帳號/密碼錯誤"));
 		return mb;
 	}
+	
+	@Override
+	public void updateMember(MemberBean bean) {
+		Session session = factory.getCurrentSession();
+		MemberBean b0 = session.get(MemberBean.class, bean.getId());
+		
+		final String password = bean.getPassword();
+		if (password != null && !password.isEmpty()) {
+			b0.setPassword(password);
+		}
+		
+//		final String name = bean.getName();
+//		if (name != null && !name.isEmpty()) {
+//			b0.setName(name);
+//		}
+//		
+//		final String email = bean.getEmail();
+//		if (email != null && !email.isEmpty()) {
+//			b0.setEmail(email);
+//		}
+//		
+//		final String phone = bean.getPhone();
+//		if (phone != null && !phone.isEmpty()) {
+//			b0.setPhone(phone);
+//		}
+//		
+//		final String address = bean.getAddress();
+//		if (address != null && !address.isEmpty()) {
+//			b0.setAddress(address);
+//		}
+//		
+//		b0.setPassword(bean.getPassword());
+		b0.setName(bean.getName());
+		b0.setEmail(bean.getEmail());
+		b0.setPhone(bean.getPhone());
+		b0.setAddress(bean.getAddress());
+		
+		
+		
+	}
 	/*
 	*/
 //	@Override
@@ -118,4 +161,10 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	public void setConnection(Connection conn) {
 		throw new RuntimeException("不支援setConnection(Connection con)方法...");
 	}
+	
+	@Override
+	 public MemberBean findById(Integer id) {
+	  Session session = factory.getCurrentSession();
+	  return session.get(MemberBean.class, id);
+	 }
 }

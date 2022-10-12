@@ -18,21 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sign in</title>
     
-<!-- <!-- Google Font --> -->
-<!--     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" -->
-<!--         rel="stylesheet"> -->
-
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/magnific-popup.css" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/slicknav.min.css" type="text/css"> -->
-
-
-<!--     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css"> -->
-<!--     <link rel="stylesheet" href="css/style.css" type="text/css"> -->
-    <!-- Css Styles -->
     
 <style>
         /*背景圖片*/
@@ -92,23 +77,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script> -->
 
-<!--     Bootstrap 核心 CSS 文件 -->
-<!--     <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
-<!--     font-awesome 核心我CSS 文件 -->
-<!--     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
-<!--     在bootstrap.min.js 之前引入 -->
-<!--     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script> -->
-<!--     Bootstrap 核心 JavaScript 文件 -->
-<!--     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
-
-<script type="text/javascript">
-//由<body>的onLoad事件處理函數觸發此函數
-function setFocusToUserId(){   
-	 document.forms[0].userId.focus();   // 將游標放在userId欄位內
-}
-</script>
 </head>
 <body>
 <!-- 下列敘述設定變數funcName的值為LOG，top.jsp 會用到此變數 -->

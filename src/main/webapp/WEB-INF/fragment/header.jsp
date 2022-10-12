@@ -116,16 +116,19 @@
                         	<c:if test="${ funcName != 'IND' }">
                             <li class="active"><a href="<c:url value='/' />">Home</a></li>
                             </c:if>
-                            <c:choose>
-                			<c:when test="${ funcName != 'SHO' }">
-                            <li><a href="<c:url value='/listProducts/DisplayPageProducts' />">Shop</a></li>
-                            </c:when>
-               				<c:otherwise>
-                    			Shop
-                			</c:otherwise>
-              				</c:choose>
+                          	<li><a href="./shop.html">Shop</a></li>
                             <li><a href="<c:url value='/used' />">Used</a></li>
-                            <li><a href="<c:url value='memberMaintain/MemberUpdate' />">Member Center</a></li>
+                            <li>
+                            <c:choose>
+            	<c:when test="${empty loginMember}">
+                <a href="<c:url value='/login/login' />">Member Center</a>
+                </c:when>
+                <c:otherwise>
+                <a href="<c:url value='//memberMaintain/MemberUpdate' />">Member Center</a>
+                </c:otherwise>
+           </c:choose>
+              </li>
+<%--                             <a href="<c:url value='/memberMaintain/MemberUpdate' />">Member Center</a> --%>
                             <li><a href="./about.html">About us</a></li>
                         </ul>
                     </nav>

@@ -82,7 +82,7 @@ public class LoginController {
 		MemberBean mb = null;
 		try {
 			// 呼叫 loginService物件的 checkIDPassword()，傳入userid與password兩個參數
-			mb = memberService.findByEmailAndPassword(bean.getEmail(),  
+			mb = memberService.findByEmailAndPassword(bean.getEmail(),
 					GlobalService.getMD5Endocing(GlobalService.encryptString(password)));
 			
 			if (mb != null) {
