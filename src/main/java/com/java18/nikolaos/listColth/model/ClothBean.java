@@ -67,8 +67,8 @@ public class ClothBean implements Serializable {
 	}
 
 	public ClothBean(Integer id, String name, String descrip, String highlight, Integer actualPrice, Blob photo,
-			String file_Name, String mime_Type, Integer colorId, Integer sizeId, Integer stock, String category,
-			Integer clothCategoryId, ClothCategoryBean clothCategoryBean, MultipartFile productImage, String priceStr) {
+			String file_Name, String mime_Type, Integer stock, String category,
+			Integer clothCategoryId, ClothCategoryBean clothCategoryBean, MultipartFile productImage) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -78,14 +78,12 @@ public class ClothBean implements Serializable {
 		this.photo = photo;
 		this.file_Name = file_Name;
 		this.mime_Type = mime_Type;
-		this.colorId = colorId;
-		this.sizeId = sizeId;
 		this.stock = stock;
 		this.category = category;
 		this.clothCategoryId = clothCategoryId;
 		this.clothCategoryBean = clothCategoryBean;
 		this.productImage = productImage;
-		this.priceStr = priceStr;
+	
 	}
 
 	public Integer getId() {
