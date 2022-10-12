@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.java18.nikolaos.ShoppingCart.model.Order2Bean;
 import com.java18.nikolaos.ShoppingCart.model.OrderItem2Bean;
 import com.java18.nikolaos.ShoppingCart.model.ShoppingCart;
 import com.java18.nikolaos.listColth.model.ClothBean;
+import com.java18.nikolaos.register.model.MemberBean;
 // 當使用者按下『加入購物車』時，瀏覽器會送出請求到本程式
 @Controller
 @RequestMapping("/listClothes")

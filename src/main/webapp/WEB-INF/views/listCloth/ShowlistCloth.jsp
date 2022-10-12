@@ -72,7 +72,7 @@
                <!-- 下列敘述設定變數funcName的值為SHO，topMVC.jsp 會用到此變數 -->
                <c:set var="funcName" value="SHO" scope="session" />
                <!-- 引入共同的頁首 -->
-               <jsp:include page="/fragment/header.jsp" />
+               <jsp:include page="../../fragment/header.jsp" />
                <!-- 判斷購物車內是否有商品 -->
                <c:choose>
                   <c:when test="${ShoppingCart.itemNumber > 0}">
@@ -433,7 +433,7 @@
                </TABLE>
                <!-- </div> -->
                <!-- 引入共同的頁尾 -->
-               <jsp:include page="/fragment/footer.jsp" />
+               <jsp:include page="../../fragment/footer.jsp" />
                
                    <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

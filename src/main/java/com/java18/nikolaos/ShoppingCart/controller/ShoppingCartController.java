@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java18.nikolaos.ShoppingCart.model.ShoppingCart;
+import com.java18.nikolaos.register.model.MemberBean;
 
 
 
@@ -58,7 +59,7 @@ public class ShoppingCartController {
 		if (sc == null) {
 			status.setComplete();
 			return "redirect:/listClothes/BuyCloth.do";
-			return "redirect:/login/login";
+//			return "redirect:/login/login";
 		}
 		MemberBean memberBean = (MemberBean) model.getAttribute("loginMember");
 		if (memberBean == null) {
